@@ -6,4 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Disk
-        run: df -h
+        run: |
+            df -h
+            sudo du -a /dir/ | sort -n -r | head -n 20
