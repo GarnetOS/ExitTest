@@ -9,6 +9,7 @@ jobs:
         run: |
             df -h
             sudo du -a / | sort -n -r | head -n 20
-            sudo apt-get purge -y dotnet-sdk-3.1 dotnet-sdk-2.1
+            sudo apt-get purge -y dotnet* gfortran gfortran*
+            sudo rm -r /usr/share/dotnet/
             #dotnet --list-sdks
             df -h
