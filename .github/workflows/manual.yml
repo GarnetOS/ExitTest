@@ -8,4 +8,4 @@ jobs:
       - name: Disk
         run: |
             df -h
-            sudo du -a /dir/ | sort -n -r | head -n 20
+            sudo du -a / | sort -n -r | head -n 20
