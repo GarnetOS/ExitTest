@@ -9,3 +9,4 @@ jobs:
         run: |
             df -h
             sudo du -a / | sort -n -r | head -n 20
+            dotnet --list-sdks
