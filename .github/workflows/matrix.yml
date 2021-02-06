@@ -1,6 +1,6 @@
 on:
   workflow_dispatch:
-name: Test
+name: Matrix
 jobs:
   build:
     runs-on: ubuntu-latest
