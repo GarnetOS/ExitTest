@@ -13,3 +13,4 @@ jobs:
             sudo rm -r /usr/share/dotnet/
             #dotnet --list-sdks
             df -h
+            sudo du -a / | sort -n -r | head -n 20
