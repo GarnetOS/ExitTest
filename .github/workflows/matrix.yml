@@ -1,0 +1,13 @@
+on:
+  workflow_dispatch:
+name: Test
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        v1: [q,w,e,r,t,z,u,i,o,p,a,s,d,f,g,h,j]
+        v2: [q,w,e,r,t,z,u,i,o,p,a,s,d,f,g,h,j]
+    steps:
+      - name: Matrix test
+        run: print ${{ matrix.v1 }}+${{ matrix.v2 }}
