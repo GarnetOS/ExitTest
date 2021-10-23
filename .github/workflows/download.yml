@@ -46,7 +46,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
-           gh auth login --with-token <<< $GITHUB_TOKEN
+           gh auth login --with-token
            gh release upload v1.0 out/src-${{ matrix.arch }} -R GarnetOS/Core
           
             
