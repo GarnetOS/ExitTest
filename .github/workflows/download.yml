@@ -44,6 +44,7 @@ jobs:
             mv src-${{matrix.arch}}.zip out
       - name: Upload
         run: |
+           gh auth login --with-token <<< $GITHUB_TOKEN
            gh release upload v1.0 out/src-${{ matrix.arch }} -R GarnetOS/Core
           
             
