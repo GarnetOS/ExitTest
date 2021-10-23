@@ -33,6 +33,8 @@ jobs:
           run: |
             mkdir src
             cd src
+            uname -a
+            apt update
             apt install wget zip
             wget https://www.linuxfromscratch.org/lfs/downloads/stable/wget-list
             wget --input-file=wget-list --continue --directory-prefix=.
