@@ -41,7 +41,7 @@ jobs:
             cd ..
             zip src-${{matrix.arch}} src
             ls
-            mv src-${{matrix.arch}} out
+            mv src-${{matrix.arch}}.zip out
       - name: Upload
         run: |
            gh release upload v1.0 out/src-${{ matrix.arch }} -R GarnetOS/Core
