@@ -41,7 +41,7 @@ jobs:
             cd ..
             zip src-${{matrix.arch}} src
             ls
-            mv src-${{matrix.arch}}.zip out
+            mv src-${{matrix.arch}}.zip /out/
       - name: Upload
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
