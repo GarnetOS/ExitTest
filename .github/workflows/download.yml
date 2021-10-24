@@ -39,7 +39,7 @@ jobs:
             wget https://www.linuxfromscratch.org/lfs/downloads/stable/wget-list
             wget --input-file=wget-list --continue --directory-prefix=.
             cd ..
-            zip src-${{matrix.arch}} src
+            zip -r src-${{matrix.arch}} src
             ls
             ls /out
             mv src-${{matrix.arch}}.zip /out/
