@@ -31,3 +31,5 @@ jobs:
             --volume "${PWD}/out:/out"
           run: |
             lscpu
+      - name: Disk
+        run: lscpu
