@@ -21,6 +21,7 @@ jobs:
           distro: buster
           setup: |
             mkdir -p "${PWD}/out"
+            sudo apt install wget curl
           dockerRunArgs: |
             --volume "${PWD}/out:/out"
           run: |
