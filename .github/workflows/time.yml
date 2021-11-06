@@ -27,6 +27,7 @@ jobs:
              apt update
              apt install wget curl
              wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
+             ls
              tar -xvf binutils-2.37.tar.xz
              cd binutils-2.37
              time { ../configure ... && make && make install; }
