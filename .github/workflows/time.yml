@@ -36,6 +36,7 @@ jobs:
              case $(uname -m) in
                x86_64) mkdir -pv $LFS/lib64 ;;
              esac
+             useradd -s /bin/bash -g lfs -m -k /dev/null lfs
              groupadd lfs
              chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
              case $(uname -m) in
@@ -58,7 +59,6 @@ jobs:
               export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
              EOF
              source ~/.bash_profile
-             useradd -s /bin/bash -g lfs -m -k /dev/null lfs
              wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
              ls
              tar -xvf binutils-2.37.tar.xz
