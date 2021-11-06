@@ -24,14 +24,49 @@ jobs:
           dockerRunArgs: |
             --volume "${PWD}/out:/out"
           run: |
-             mkdir /mnt/lfs
-             export LFS=/mnt/lfs
              apt update
              apt install wget curl xz-utils bash binutils bison bzip2 coreutils diffutils findutils gcc g++ libc6 grep gzip make patch perl python sed tar texinfo m4
+             for i in bin lib sbin; do
+               ln -sv usr/$i $LFS/$i
+             done
+
+             case $(uname -m) in
+               x86_64) mkdir -pv $LFS/lib64 ;;
+             esac
+             groupadd lfs
+             chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
+             case $(uname -m) in
+              x86_64) chown -v lfs $LFS/lib64 ;;
+             esac
+             mkdir /mnt/lfs
+             export LFS=/mnt/lfs
+             mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
+             su - lfs
+             cat > ~/.bash_profile << "EOF"
+              exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
+             EOF
+             cat > ~/.bashrc << "EOF"
+              set +h
+              umask 022
+              LFS=/mnt/lfs
+              LC_ALL=POSIX
+              LFS_TGT=$(uname -m)-lfs-linux-gnu
+              PATH=/usr/bin
+              if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
+              PATH=$LFS/tools/bin:$PATH
+              CONFIG_SITE=$LFS/usr/share/config.site
+              export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
+             EOF
+             source ~/.bash_profile
+             useradd -s /bin/bash -g lfs -m -k /dev/null lfs
              wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
              ls
              tar -xvf binutils-2.37.tar.xz
              cd binutils-2.37
              mkdir -v build
              cd build
-             time { ../configure && make && make install; }
+             time { ../configure --prefix=$LFS/tools \
+             --with-sysroot=$LFS \
+             --target=$LFS_TGT   \
+             --disable-nls       \
+             --disable-werror && make && make install; }
