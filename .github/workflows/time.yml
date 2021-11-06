@@ -27,6 +27,8 @@ jobs:
              apt update
              apt install wget curl xz-utils bash binutils bison bzip2 coreutils diffutils findutils gcc g++ libc6 grep gzip make patch perl python sed tar texinfo m4
              mkdir /mnt/lfs
+             mkdir /mnt/lfs/tools
+             mkdir /mnt/lfs/sources
              export LFS=/mnt/lfs
              mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
              for i in bin lib sbin; do
