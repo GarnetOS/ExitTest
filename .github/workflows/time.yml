@@ -1,0 +1,30 @@
+name: Time
+on:
+  workflow_dispatch:
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [armv6,armv7,aarch64]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: uraimo/run-on-arch-action@v2.0.5
+        name: Download and release
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      #- uses: actions/checkout@v2
+      # Runs a set of commands using the runners shell
+        with:
+          arch: ${{matrix.arch}}
+          distro: buster
+          setup: |
+            mkdir -p "${PWD}/out"
+            wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
+          dockerRunArgs: |
+            --volume "${PWD}/out:/out"
+          run: |
+             tar -xvf binutils-2.37.tar.xz
+             cd binutils-2.37
+             time { ../configure ... && make && make install; }
