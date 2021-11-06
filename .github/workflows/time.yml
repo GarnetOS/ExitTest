@@ -21,10 +21,10 @@ jobs:
           distro: buster
           setup: |
             mkdir -p "${PWD}/out"
-            wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
           dockerRunArgs: |
             --volume "${PWD}/out:/out"
           run: |
+             wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
              tar -xvf binutils-2.37.tar.xz
              cd binutils-2.37
              time { ../configure ... && make && make install; }
