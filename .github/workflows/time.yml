@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        arch: [armv6,armv7,aarch64]
+        arch: [armv6,armv7,aarch64,i386]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: uraimo/run-on-arch-action@v2.0.5
-        name: Download and release
+      - uses: GarnetOS/run-on-arch-action@v2.0.5
+        name: Get one SBU
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       #- uses: actions/checkout@v2
       # Runs a set of commands using the runners shell
