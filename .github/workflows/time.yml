@@ -30,4 +30,6 @@ jobs:
              ls
              tar -xvf binutils-2.37.tar.xz
              cd binutils-2.37
+             mkdir -v build
+             cd build
              time { ../configure ... && make && make install; }
