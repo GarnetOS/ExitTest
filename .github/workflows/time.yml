@@ -25,7 +25,7 @@ jobs:
             --volume "${PWD}/out:/out"
           run: |
              apt update
-             apt install wget curl
+             apt install wget curl xz-utils
              wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
              ls
              tar -xvf binutils-2.37.tar.xz
