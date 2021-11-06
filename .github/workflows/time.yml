@@ -25,11 +25,11 @@ jobs:
             --volume "${PWD}/out:/out"
           run: |
              apt update
-             apt install wget curl xz-utils
+             apt install wget curl xz-utils bash binutils bison bzip2 coreutils diffutils findutils gcc g++ glibc grep gzip make patch perl python sed tar texinfo xz m4
              wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
              ls
              tar -xvf binutils-2.37.tar.xz
              cd binutils-2.37
              mkdir -v build
              cd build
-             time { ../configure ... && make && make install; }
+             time { ../configure && make && make install; }
