@@ -34,7 +34,7 @@ jobs:
              for i in bin lib sbin; do
                ln -sv usr/$i $LFS/$i
              done
-
+            
              case $(uname -m) in
                x86_64) mkdir -pv $LFS/lib64 ;;
              esac
@@ -45,21 +45,8 @@ jobs:
              # x86_64) chown -v lfs $LFS/lib64 ;;
              #esac
              #su - lfs
-             cat > ~/.bash_profile << "EOF"
-              exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
-             EOF
-             cat > ~/.bashrc << "EOF"
-              set +h
-              umask 022
-              LFS=/mnt/lfs
-              LC_ALL=POSIX
-              LFS_TGT=$(uname -m)-lfs-linux-gnu
-              PATH=/usr/bin
-              if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
-              PATH=$LFS/tools/bin:$PATH
-              CONFIG_SITE=$LFS/usr/share/config.site
-              export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
-             EOF
+             wget https://gist.githubusercontent.com/radimkohout/e8768b2603adcee91ad502430bfb48d2/raw/8487e0c051a071f51b5a31d57de589cbd119661e/.bash_profile -P ~
+             wget https://gist.githubusercontent.com/radimkohout/316e4834cd97e780a614e8d087b4a3ef/raw/f4dfb64521cdb941f0d3ee83e4899444f78c650f/.bashrc -P ~
              source ~/.bash_profile
              wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
              ls
