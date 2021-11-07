@@ -39,12 +39,12 @@ jobs:
                x86_64) mkdir -pv $LFS/lib64 ;;
              esac
              groupadd lfs
-             useradd -s /bin/bash -g lfs -m -k /dev/null lfs
-             chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
-             case $(uname -m) in
-              x86_64) chown -v lfs $LFS/lib64 ;;
-             esac
-             su - lfs
+             #useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+             #chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
+             #case $(uname -m) in
+             # x86_64) chown -v lfs $LFS/lib64 ;;
+             #esac
+             #su - lfs
              cat > ~/.bash_profile << "EOF"
               exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
              EOF
