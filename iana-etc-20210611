@@ -1,0 +1,4 @@
+<{toBeReplaced}>
+tar -xvf iana-etc-20210611.tar.gz
+cd iana-etc-20210611.tar.gz
+cp services protocols /etc
