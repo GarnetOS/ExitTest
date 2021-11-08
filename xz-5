@@ -1,0 +1,14 @@
+<{toBeReplaced}>
+tar -xvf xz-5.2.5.tar.xz./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/xz-5.2.5
+cd xz-5.2.5.tar.xz./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/xz-5.2.5
+./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/xz-5.2.5
+
+make
+make check
+make install

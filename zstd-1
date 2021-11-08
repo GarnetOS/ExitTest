@@ -1,0 +1,9 @@
+<{toBeReplaced}>
+tar -xvf zstd-1.5.0.tar.gz
+cd zstd-1.5.0.tar.gz
+make
+
+make check
+
+make prefix=/usr install
+rm -v /usr/lib/libzstd.a
