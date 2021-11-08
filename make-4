@@ -1,0 +1,7 @@
+<{toBeReplaced}>
+tar -xvf make-4.3.tar.gz
+cd make-4.3.tar.gz
+./configure --prefix=/usr
+make
+make check
+make install
