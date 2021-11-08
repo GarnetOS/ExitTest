@@ -13,7 +13,7 @@ jobs:
   build:
     strategy:
       matrix:
-        arch: [armv6,armv7,aarch64,i386,amd64,s390x,ppc64le,mips64le,riscv64]
+        arch: [armv6,armv7,aarch64,i386,amd64,s390x,ppc64le,mips64le]
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
