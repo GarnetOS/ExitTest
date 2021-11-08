@@ -1,0 +1,11 @@
+<{toBeReplaced}>
+tar -xvf ninja-1.10.2.tar.gz
+cd ninja-1.10.2.tar.gz
+export NINJAJOBS=4
+sed -i '/int Guess/a \
+  int   j = 0;\
+  char* jobs = getenv( "NINJAJOBS" );\
+  if ( jobs != NULL ) j = atoi( jobs );\
+  if ( j > 0 ) return j;\
+' src/ninja.cc
+python3 configure.py --bootstrap
