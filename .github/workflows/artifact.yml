@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout
-      - uses: GarnetOS/run-on-arch-action@v2.1.1
+      - uses: GarnetOS/run-on-arch-action@v2.1.2
         name: Download and release
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       #- uses: actions/checkout@v2
