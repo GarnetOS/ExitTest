@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: GarnetOS/run-on-arch-action@v2.1.3
-      - name: Test archs
+        name: Test archs
         with:
           arch: ${{matrix.arch}}
           distro: buster
