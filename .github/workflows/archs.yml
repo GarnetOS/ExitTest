@@ -1,0 +1,26 @@
+name: Test archs
+
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    strategy: 
+        matrix:
+          arch: [armv6,armv7,aarch64,i386,amd64,s390x,ppc64le,mips64le]
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: GarnetOS/run-on-arch-action@v2.1.3
+      - name: Test archs
+        with:
+          arch: ${{matrix.arch}}
+          distro: buster
+          setup: |
+            mkdir -p "${PWD}/out"
+          dockerRunArgs: |
+            --volume "${PWD}/out:/out"
+          run: |
+              uname -a 
+              apt update
+              apt install git
