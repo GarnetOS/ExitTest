@@ -47,9 +47,24 @@ jobs:
             wget https://gist.githubusercontent.com/radimkohout/5f0e6ad2bd899d8f2a6b3636148664cb/raw/e5057e34464c621f0302dfe5a9ba7798b3649965/checkhost.sh
             chmod +x checkhost.sh
             ./checkhost.sh
-            cd out
-            fallocate -l 25G VHD.img 
-   #   - uses: actions/upload-artifact@v2
-   #     with:
-   #       name: out-${{matrix.arch}}-00
-   #       path: out/VHD.img
+            fallocate -l 25G out/VHD.img 
+            mkfs -v -t ext4 out/VHD.img
+            mkdir /mnt/lfs
+            mount out/VHD.img /mnt/lfs
+            export LFS=/mnt/lfs
+            mkdir -v $LFS/sources
+            chmod -v a+wt $LFS/sources
+            wget https://www.linuxfromscratch.org/lfs/downloads/stable/wget-list
+            wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
+            mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
+            for i in bin lib sbin; do
+              ln -sv usr/$i $LFS/$i
+            done
+            case $(uname -m) in
+              x86_64) mkdir -pv $LFS/lib64 ;;
+            esac
+            mkdir -pv $LFS/tools
+      - uses: actions/upload-artifact@v2
+        with:
+          name: out-${{matrix.arch}}-00
+          path: out/VHD.img
