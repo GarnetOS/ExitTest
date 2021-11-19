@@ -13,7 +13,7 @@ jobs:
   build:
     strategy:
       matrix:
-          arch: [armv6,armv7,aarch64,amd64,s390x,ppc64le,mips64le]
+          arch: [armv6,armv7,aarch64,amd64,s390x,ppc64le,mips64le,i386]
           distro: [bullseye]
           include:
             - arch: riscv64
