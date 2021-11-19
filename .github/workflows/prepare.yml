@@ -40,9 +40,9 @@ jobs:
           run: |
             uname -a
             apt update
-            apt install -y wget zip
+            apt install -y wget zip fallocate
             cd out
-            dd if=/dev/zero of=VHD.img bs=1G count=25
+            fallocate -l 25G VHD.img 
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-00
