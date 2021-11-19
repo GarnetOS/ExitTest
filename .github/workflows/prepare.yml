@@ -13,13 +13,11 @@ jobs:
   build:
     strategy:
       matrix:
-          arch: [armv6,armv7,aarch64,amd64,s390x,ppc64le,mips64le,riscv64]
-          distro: [unstable]
+          arch: [armv6,armv7,aarch64,amd64,s390x,ppc64le,mips64le]
+          distro: [bullseye]
           include:
-          # The full matrix of Dockerfiles would be extensive, so just
-          # cover each arch and OS at least once.
-            - arch: aarch64
-              distro: bullseye
+            - arch: riscv64
+              distro: unstable
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -47,5 +45,5 @@ jobs:
             dd if=/dev/zero of=VHD.img bs=1G count=25
       - uses: actions/upload-artifact@v2
         with:
-          name: out-${{matrix.arch}}
+          name: out-${{matrix.arch}}-00
           path: out/VHD.img
