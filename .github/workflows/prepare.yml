@@ -25,6 +25,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout
+      - name: Prepare image
+        run: |
+            apt install util-linux wget zip
+            mkdir /mnt/lfs
+            fallocate -l 25G out/VHD.img 
+            mkfs -v -t ext4 out/VHD.img
+            mkdir /mnt/lfs
+            mount out/VHD.img /mnt/lfs
       - uses: GarnetOS/run-on-arch-action@v2.1.2
         name: Download and release
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -34,9 +42,9 @@ jobs:
           arch: ${{matrix.arch}}
           distro: ${{matrix.distro}}
           setup: |
-            mkdir -p "${PWD}/out"
+            
           dockerRunArgs: |
-            --volume "${PWD}/out:/out"
+            --volume "/mnt/lfs:/mnt/lfs"
           run: |
             uname -a
             whoami
@@ -49,10 +57,6 @@ jobs:
             wget https://gist.githubusercontent.com/radimkohout/5f0e6ad2bd899d8f2a6b3636148664cb/raw/e5057e34464c621f0302dfe5a9ba7798b3649965/checkhost.sh
             chmod +x checkhost.sh
             ./checkhost.sh
-            fallocate -l 25G out/VHD.img 
-            mkfs -v -t ext4 out/VHD.img
-            mkdir /mnt/lfs
-            mount out/VHD.img /mnt/lfs
             export LFS=/mnt/lfs
             mkdir -v $LFS/sources
             chmod -v a+wt $LFS/sources
