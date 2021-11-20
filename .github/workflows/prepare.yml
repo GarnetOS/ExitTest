@@ -46,8 +46,6 @@ jobs:
             --volume "/mnt/lfs:/mnt/lfs"
           run: |
             uname -a
-            whoami
-            dmesg
             apt update
             apt install -y wget zip util-linux
             apt install -y gcc g++ gzip libc6 grep make patch perl python3 sed tar xz-utils binutils bison bzip2 coreutils diffutils findutils gawk texinfo
