@@ -30,8 +30,9 @@ jobs:
       - uses: actions/checkout@v2
         name: Checkout
       - name: Download artifact
-        uses: actions/download-artifact@v2
+        uses: dawidd6/action-download-artifact@v2
         with:
+          workflow: prepare.yml
           name: out-${{matrix.arch}}-00
       - name: Prepare image
         run: |
