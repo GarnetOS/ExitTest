@@ -32,8 +32,8 @@ jobs:
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v2
         with:
-          workflow: prepare.yml
-          name: out-${{matrix.arch}}-00
+          workflow: testzip.yml
+          name: out-test
       - name: Prepare image
         run: |
             sudo apt install -y util-linux wget zip
