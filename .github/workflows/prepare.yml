@@ -27,12 +27,12 @@ jobs:
         name: Checkout
       - name: Prepare image
         run: |
-            apt install util-linux wget zip
+            sudo apt install -y util-linux wget zip
             mkdir /mnt/lfs
-            fallocate -l 25G out/VHD.img 
-            mkfs -v -t ext4 out/VHD.img
+            sudo fallocate -l 25G out/VHD.img 
+            sudo mkfs -v -t ext4 out/VHD.img
             mkdir /mnt/lfs
-            mount out/VHD.img /mnt/lfs
+            sudo mount out/VHD.img /mnt/lfs
       - uses: GarnetOS/run-on-arch-action@v2.1.2
         name: Download and release
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
