@@ -20,7 +20,7 @@ jobs:
       - name: Prepare image
         run: |
             sudo apt install -y util-linux wget zip
-            sudo fallocate -l 25M VHD.img 
+            sudo fallocate -l 5G VHD.img 
             sudo mkfs -v -t ext4 VHD.img
       - uses: actions/upload-artifact@v2
         with:
