@@ -23,6 +23,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Make more space
+        run: |
+            sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
+            sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
       - uses: actions/checkout@v2
         name: Checkout
       - name: Download artifact
