@@ -28,10 +28,9 @@ jobs:
       - name: Prepare image
         run: |
             sudo apt install -y util-linux wget zip
-            mkdir /mnt/lfs
+            sudo mkdir /mnt/lfs
             sudo fallocate -l 25G out/VHD.img 
             sudo mkfs -v -t ext4 out/VHD.img
-            mkdir /mnt/lfs
             sudo mount out/VHD.img /mnt/lfs
       - uses: GarnetOS/run-on-arch-action@v2.1.2
         name: Download and release
