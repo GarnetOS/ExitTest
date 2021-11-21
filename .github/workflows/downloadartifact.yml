@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v2
         name: Checkout
       - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
+        uses: GarnetOS/action-download-artifact@v2.16.0
         with:
           workflow: testzip.yml
           name: out-test
