@@ -22,7 +22,7 @@ jobs:
       # Runs a set of commands using the runners shell
         with:
           arch: ${{matrix.arch}}
-          distro: buster
+          distro: ${{matrix.distro}}
           setup: |
             mkdir -p "${PWD}/out"
           dockerRunArgs: |
@@ -33,30 +33,30 @@ jobs:
              mkdir /mnt/lfs
              mkdir /mnt/lfs/tools
              mkdir /mnt/lfs/sources
-             export LFS=/mnt/lfs
-             mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
-             for i in bin lib sbin; do
-               ln -sv usr/$i $LFS/$i
-             done
+             #export LFS=/mnt/lfs
+             #mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
+             #for i in bin lib sbin; do
+             #  ln -sv usr/$i $LFS/$i
+             #done
             
-             case $(uname -m) in
-               x86_64) mkdir -pv $LFS/lib64 ;;
-             esac
-             groupadd lfs
+             #case $(uname -m) in
+             #  x86_64) mkdir -pv $LFS/lib64 ;;
+             #esac
+             #groupadd lfs
              #useradd -s /bin/bash -g lfs -m -k /dev/null lfs
              #chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
              #case $(uname -m) in
              # x86_64) chown -v lfs $LFS/lib64 ;;
              #esac
              #su - lfs
-             wget https://gist.githubusercontent.com/radimkohout/e8768b2603adcee91ad502430bfb48d2/raw/8487e0c051a071f51b5a31d57de589cbd119661e/.bash_profile -P ~
+             #wget https://gist.githubusercontent.com/radimkohout/e8768b2603adcee91ad502430bfb48d2/raw/8487e0c051a071f51b5a31d57de589cbd119661e/.bash_profile -P ~
              export LFS=/mnt/lfs
              export LC_ALL=POSIX
              export LFS_TGT=$(uname -m)-lfs-linux-gnu
              export PATH=/usr/bin
-             if [ ! -L /bin ]; then export PATH=/bin:$PATH; fi
-             export PATH=$LFS/tools/bin:$PATH
-             export CONFIG_SITE=$LFS/usr/share/config.site
+             #if [ ! -L /bin ]; then export PATH=/bin:$PATH; fi
+             #export PATH=$LFS/tools/bin:$PATH
+             #export CONFIG_SITE=$LFS/usr/share/config.site
              #source ~/.bash_profile
              wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
              ls
