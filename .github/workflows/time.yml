@@ -28,6 +28,7 @@ jobs:
           dockerRunArgs: |
             --volume "${PWD}/out:/out"
           run: |
+             lscpu
              apt update
              apt install -y wget curl xz-utils bash binutils bison bzip2 coreutils diffutils findutils gcc g++ libc6 grep gzip make patch perl python sed tar texinfo m4
              mkdir /mnt/lfs
@@ -38,7 +39,7 @@ jobs:
              #for i in bin lib sbin; do
              #  ln -sv usr/$i $LFS/$i
              #done
-            
+             export MAKEFLAGS='-j4'
              #case $(uname -m) in
              #  x86_64) mkdir -pv $LFS/lib64 ;;
              #esac
