@@ -14,3 +14,6 @@ jobs:
             #dotnet --list-sdks
             df -h
             #sudo du -a / | sort -n -r | head -n 20
+      - name: CPU
+        run: |
+            lscpu
