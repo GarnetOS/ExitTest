@@ -1,0 +1,11 @@
+<{toBeReplaced}>
+tar -xvf gdbm-1.20.tar.gz
+cd gdbm-1.20
+./configure --prefix=/usr    \
+            --disable-static \
+            --enable-libgdbm-compat
+make
+make -k check
+make install
+ rm -rf $LFS/sources/gdbm-1.20
+<{toBeEnded}>
