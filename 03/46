@@ -1,0 +1,6 @@
+<{toBeReplaced}>
+tar -xvf 
+cd 
+
+ rm -rf $LFS/sources/
+<{toBeEnded}>
