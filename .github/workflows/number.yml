@@ -13,7 +13,7 @@ jobs:
         name: Checkout
       - name: Number
         run: |
-            echo ${{github.event.inputs.package}}+1
-            echo ${{github.event.inputs.package}}-1
+            echo $((${{github.event.inputs.package}}+1))
+            echo $((${{github.event.inputs.package}}-1))
       - name: list
         run: ls -l
