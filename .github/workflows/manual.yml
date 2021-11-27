@@ -5,6 +5,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        name: Checkout
       - name: Disk
         run: |
             df -h
@@ -17,3 +19,5 @@ jobs:
       - name: CPU
         run: |
             lscpu
+      - name: list
+        run: ls -l
