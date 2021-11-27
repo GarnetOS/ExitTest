@@ -69,5 +69,5 @@ jobs:
             mkdir -pv $LFS/tools
       - uses: actions/upload-artifact@v2
         with:
-          name: out-${{matrix.arch}}-00
+          name: out-${{matrix.arch}}-0
           path: VHD.img
