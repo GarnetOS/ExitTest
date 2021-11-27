@@ -55,6 +55,8 @@ jobs:
             chmod +x checkhost.sh
             ./checkhost.sh
             export LFS=/mnt/lfs
+            groupadd lfs
+            adduser -s /bin/bash -g lfs -m -k /dev/null --disabled-password --gecos "" lfs
             mkdir -v $LFS/sources
             chmod -v a+wt $LFS/sources
             wget https://www.linuxfromscratch.org/lfs/downloads/stable/wget-list
@@ -67,6 +69,11 @@ jobs:
               x86_64) mkdir -pv $LFS/lib64 ;;
             esac
             mkdir -pv $LFS/tools
+            chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
+            case $(uname -m) in
+              x86_64) chown -v lfs $LFS/lib64 ;;
+            esac
+            chown -v lfs $LFS/sources
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-0
