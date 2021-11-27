@@ -1,0 +1,60 @@
+name: 01 build
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Config number'     
+        required: true
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    strategy:
+      matrix:
+          arch: [armv6,armv7,aarch64,amd64,s390x,ppc64le,mips64le,i386]
+          distro: [bullseye]
+          include:
+            - arch: riscv64
+              distro: unstable
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Download artifact
+        uses: GarnetOS/action-download-artifact@test10
+        with:
+          workflow: testzip.yml
+          name: out-test
+      - uses: actions/checkout@v2
+        name: Checkout
+      - name: Prepare image
+        run: |
+            sudo ls
+            sudo apt install -y util-linux wget zip
+            sudo mkdir /mnt/lfs
+            sudo mount VHD.img /mnt/lfs
+            sudo ls 
+      - uses: GarnetOS/run-on-arch-action@v2.1.2
+        name: Download and release
+        with:
+          arch: out-${{matrix.arch}}-$([ ${{github.event.inputs.package}} < 10 ] && echo "0")${{github.event.inputs.package}}
+          distro: ${{matrix.distro}}
+          setup: |
+            
+          dockerRunArgs: |
+            --volume "/mnt/lfs:/mnt/lfs"
+            --volume "01:01"
+          run: |
+            uname -a
+            apt update
+            apt install -y wget zip util-linux
+            apt install -y gcc g++ gzip libc6 grep make patch perl python3 sed tar xz-utils binutils bison bzip2 coreutils diffutils findutils gawk texinfo
+            rm /bin/sh
+            ln -s /bin/bash /bin/sh
+            export LFS=/mnt/lfs
+            
+      - uses: actions/upload-artifact@v2
+        with:
+          name: out-${{matrix.arch}}-$([ ${{github.event.inputs.package}} < 10 ] && echo "0")${{github.event.inputs.package}}
+          path: VHD.img
