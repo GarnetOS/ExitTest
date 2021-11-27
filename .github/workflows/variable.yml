@@ -1,4 +1,4 @@
-name: 01 build
+name: variable
 
 on:
   workflow_dispatch:
