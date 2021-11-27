@@ -2,7 +2,10 @@ name: 01 build
 
 on:
   workflow_dispatch:
-
+    inputs:
+      package:
+        description: 'Config number'     
+        required: true
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -18,6 +21,15 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Make more space
+        run: |
+            sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
+            sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
+      - name: Download artifact
+        uses: GarnetOS/action-download-artifact@test10
+        with:
+          workflow: testzip.yml
+          name: out-test
       - uses: actions/checkout@v2
         name: Checkout
       - name: Prepare image
@@ -25,15 +37,10 @@ jobs:
             sudo ls
             sudo apt install -y util-linux wget zip
             sudo mkdir /mnt/lfs
-            sudo fallocate -l 20G VHD.img 
-            sudo mkfs -v -t ext4 VHD.img
             sudo mount VHD.img /mnt/lfs
             sudo ls 
       - uses: GarnetOS/run-on-arch-action@v2.1.2
         name: Download and release
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      #- uses: actions/checkout@v2
-      # Runs a set of commands using the runners shell
         with:
           arch: ${{matrix.arch}}
           distro: ${{matrix.distro}}
@@ -41,6 +48,7 @@ jobs:
             
           dockerRunArgs: |
             --volume "/mnt/lfs:/mnt/lfs"
+            --volume "01:01"
           run: |
             uname -a
             apt update
@@ -52,5 +60,5 @@ jobs:
             
       - uses: actions/upload-artifact@v2
         with:
-          name: out-${{matrix.arch}}-00
+          name: out-${{matrix.arch}}-$([ ${{github.event.inputs.package}} < 10 ] && echo "0")${{github.event.inputs.package}}
           path: VHD.img
