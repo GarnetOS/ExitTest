@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Config number'     
+        required: true
+name: Test
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+      - name: Number
+        run: |
+            echo ${{github.event.inputs.package}}+1
+            echo ${{github.event.inputs.package}}-1
+      - name: list
+        run: ls -l
