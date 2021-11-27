@@ -30,7 +30,7 @@ jobs:
         name: Checkout
       - name: Prepare image
         run: |
-            echo "name=$(echo $([ ${{github.event.inputs.package}} < 10 ] && echo "0" ${{github.event.inputs.package}})" >> $GITHUB_ENV
+            echo "name=$(echo $([ ${{github.event.inputs.package}} < 10 ] && echo "0") ${{github.event.inputs.package}})" >> $GITHUB_ENV
             sudo ls
             sudo apt install -y util-linux wget zip
             sudo mkdir /mnt/lfs
