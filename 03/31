@@ -1,0 +1,11 @@
+<{toBeReplaced}>
+tar -xvf Python-3.9.6.tar.xz
+cd Python-3.9.6
+./configure --prefix=/usr   \
+            --enable-shared \
+            --without-ensurepip
+
+make
+make install
+ rm -rf $LFS/sources/Python-3.9.6
+<{toBeEnded}>
