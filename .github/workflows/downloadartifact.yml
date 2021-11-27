@@ -30,13 +30,13 @@ jobs:
       - uses: actions/checkout@v2
         name: Checkout
       - name: Download artifact
-        uses: GarnetOS/action-download-artifact@test7
+        uses: GarnetOS/action-download-artifact@test8
         with:
           workflow: testzip.yml
           name: out-test
       - name: Prepare image
         run: |
-            sudo apt install -y util-linux wget zip
+            sudo apt install -y util-linux wget zip unzip
             sudo mkdir /mnt/lfs
             sudo mount VHD.img /mnt/lfs
       - uses: GarnetOS/run-on-arch-action@v2.1.2
