@@ -30,6 +30,7 @@ jobs:
         name: Checkout
       - name: Prepare image
         run: |
+            echo "name=$(echo $([ ${{github.event.inputs.package}} < 10 ] && echo "0" ${{github.event.inputs.package}})" >> $GITHUB_ENV
             sudo ls
             sudo apt install -y util-linux wget zip
             sudo mkdir /mnt/lfs
@@ -38,7 +39,7 @@ jobs:
       - uses: GarnetOS/run-on-arch-action@v2.1.2
         name: Download and release
         with:
-          arch: out-${{matrix.arch}}-$([ ${{github.event.inputs.package}} < 10 ] && echo "0")${{github.event.inputs.package}}
+          arch: out-${{matrix.arch}}-${{env.name}}
           distro: ${{matrix.distro}}
           setup: |
             
