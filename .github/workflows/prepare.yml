@@ -56,7 +56,7 @@ jobs:
             ./checkhost.sh
             export LFS=/mnt/lfs
             groupadd lfs
-            adduser -s /bin/bash -g lfs -m -k /dev/null --disabled-password --gecos "" lfs
+            useradd -m -s /bin/bash lfs
             mkdir -v $LFS/sources
             chmod -v a+wt $LFS/sources
             wget https://www.linuxfromscratch.org/lfs/downloads/stable/wget-list
