@@ -21,15 +21,16 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Make more space
+      - name: Make more space and set numbers
         run: |
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
+            echo "PREV=$((${{ github.event.inputs.package }}-1))" >> $GITHUB_ENV
       - name: Download artifact
         uses: GarnetOS/action-download-artifact@test10
         with:
-          workflow: testzip.yml
-          name: out-test
+          workflow: prepare.yml
+          name: out-${{matrix.arch}}-${{env.PREV}}
       - uses: actions/checkout@v2
         name: Checkout
       - name: Prepare image
@@ -48,7 +49,7 @@ jobs:
             
           dockerRunArgs: |
             --volume "/mnt/lfs:/mnt/lfs"
-            --volume "01:01"
+            --volume "${PWD}/01:${PWD}/01"
           run: |
             uname -a
             apt update
@@ -57,8 +58,9 @@ jobs:
             rm /bin/sh
             ln -s /bin/bash /bin/sh
             export LFS=/mnt/lfs
-            
+            useradd -m -s /bin/bash lfs
+            su -c './01/${{github.event.inputs.package}}' lfs
       - uses: actions/upload-artifact@v2
         with:
-          name: out-${{matrix.arch}}-$([ ${{github.event.inputs.package}} < 10 ] && echo "0")${{github.event.inputs.package}}
+          name: out-${{matrix.arch}}-${{github.event.inputs.package}}
           path: VHD.img
