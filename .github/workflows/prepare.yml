@@ -56,7 +56,7 @@ jobs:
             ./checkhost.sh
             export LFS=/mnt/lfs
             useradd -m -s /bin/bash lfs
-            groupadd lfs
+            #groupadd lfs
             mkdir -v $LFS/sources
             chmod -v a+wt $LFS/sources
             wget https://www.linuxfromscratch.org/lfs/downloads/stable/wget-list
