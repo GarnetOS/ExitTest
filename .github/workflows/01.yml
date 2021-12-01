@@ -24,7 +24,7 @@ jobs:
       - name: Prepare host
         run: |
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
-            sudo apt install curl wget
+            sudo apt install curl wget grep
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
             echo "PREV=$((${{ github.event.inputs.package }}-1))" >> $GITHUB_ENV
       - name: Download artifact
