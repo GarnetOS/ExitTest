@@ -21,13 +21,14 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Make more space and set numbers
+      - name: Prepare host
         run: |
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
+            sudo apt install curl wget
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
             echo "PREV=$((${{ github.event.inputs.package }}-1))" >> $GITHUB_ENV
       - name: Download artifact
-        uses: GarnetOS/action-download-artifact@test10
+        uses: GarnetOS/action-download-artifact@new
         with:
           workflow: prepare.yml
           name: out-${{matrix.arch}}-${{env.PREV}}
