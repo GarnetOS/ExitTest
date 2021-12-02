@@ -64,7 +64,7 @@ jobs:
             chmod +x -R 01
             cd 01
             chown lfs prepare
-            su -c './${{github.event.inputs.package}}' lfs
+            su lfs './${{github.event.inputs.package}}'
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-${{github.event.inputs.package}}
