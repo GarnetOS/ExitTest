@@ -1,5 +1,6 @@
 #!/bin/bash 
 pwd
+exit
 ./prepare
 tar -xvf binutils-2.37.tar.xz
 cd binutils-2.37
