@@ -1,5 +1,6 @@
 #!/bin/bash 
-./prepare
+./prepare 
+cd $LFS/sources
 tar -xvf glibc-2.34.tar.xz
 cd glibc-2.34
 case $(uname -m) in
