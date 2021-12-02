@@ -36,6 +36,7 @@ jobs:
         name: Checkout
       - name: Prepare image
         run: |
+            pwd
             sudo ls
             sudo apt install -y util-linux wget zip
             sudo mkdir /mnt/lfs
