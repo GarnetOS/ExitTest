@@ -32,7 +32,7 @@ jobs:
       - name: Download artifact
         uses: GarnetOS/action-download-artifact@new
         with:
-          workflow: 01.yml
+          workflow: prepare.yml
           name: out-${{matrix.arch}}-${{env.PREV}}
       - name: Prepare image
         run: |
@@ -62,6 +62,8 @@ jobs:
             export LFS=/mnt/lfs
             useradd -m -s /bin/bash lfs
             chmod +x -R 01
+            cp 01/prepare /home/lfs/prepare
+            chown lfs /home/lfs/prepare
             su -c './01/${{github.event.inputs.package}}' lfs
       - uses: actions/upload-artifact@v2
         with:
