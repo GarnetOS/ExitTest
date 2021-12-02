@@ -61,6 +61,7 @@ jobs:
             ln -s /bin/bash /bin/sh
             export LFS=/mnt/lfs
             useradd -m -s /bin/bash lfs
+            chmod +x -R 01
             su -c './01/${{github.event.inputs.package}}' lfs
       - uses: actions/upload-artifact@v2
         with:
