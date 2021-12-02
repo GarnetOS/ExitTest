@@ -1,5 +1,6 @@
 #!/bin/bash 
 ./prepare 
+export MAKEFLAGS='-j2'
 cd $LFS/sources
 cd gcc-11.2.0
 tar -xf ../mpfr-4.1.0.tar.xz
