@@ -64,7 +64,7 @@ jobs:
             chmod +x -R 01
             cd 01
             chown lfs prepare
-            su lfs './${{github.event.inputs.package}}'
+            timelimit -q -t 18900 su lfs './${{github.event.inputs.package}}' || true
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-${{github.event.inputs.package}}
