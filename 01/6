@@ -30,4 +30,3 @@ readelf -l a.out | grep '/ld-linux'
 rm -v dummy.c a.out
 $LFS/tools/libexec/gcc/$LFS_TGT/11.2.0/install-tools/mkheaders
  rm -rf $LFS/sources/glibc-2.34
-<{toBeEnded}>

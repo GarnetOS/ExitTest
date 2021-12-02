@@ -13,4 +13,3 @@ make
 make install -j1
 
  rm -rf $LFS/sources/binutils-2.37
-<{toBeEnded}>

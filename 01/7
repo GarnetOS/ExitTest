@@ -15,4 +15,3 @@ cd       build
 make
 make DESTDIR=$LFS install
  rm -rf $LFS/sources/gcc-11.2.0
-<{toBeEnded}>
