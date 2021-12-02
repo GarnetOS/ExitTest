@@ -62,9 +62,9 @@ jobs:
             export LFS=/mnt/lfs
             useradd -m -s /bin/bash lfs
             chmod +x -R 01
-            cp 01/prepare /home/lfs/prepare
-            chown lfs /home/lfs/prepare
-            su -c './01/${{github.event.inputs.package}}' lfs
+            cd 01
+            chown lfs prepare
+            su -c './${{github.event.inputs.package}}' lfs
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-${{github.event.inputs.package}}
