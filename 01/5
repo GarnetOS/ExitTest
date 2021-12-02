@@ -1,4 +1,5 @@
-<{toBeReplaced}>
+#!/bin/bash 
+./prepare
 tar -xvf linux-5.13.12.tar.xz
 cd linux-5.13.12
 make mrproper

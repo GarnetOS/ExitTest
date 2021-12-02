@@ -1,4 +1,5 @@
-<{toBeReplaced}>
+#!/bin/bash 
+./prepare
 tar -xvf glibc-2.34.tar.xz
 cd glibc-2.34
 case $(uname -m) in

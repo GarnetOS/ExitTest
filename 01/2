@@ -1,4 +1,5 @@
-<{toBeReplaced}>
+#!/bin/bash 
+./prepare
 tar -xvf binutils-2.37.tar.xz
 cd binutils-2.37
 mkdir -v build
