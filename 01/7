@@ -1,5 +1,6 @@
 #!/bin/bash 
 ./prepare 
+export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf gcc-11.2.0.tar.xz
 cd gcc-11.2.0
