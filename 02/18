@@ -1,4 +1,7 @@
-<{toBeReplaced}>
+#!/bin/bash 
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf make-4.3.tar.gz
 cd make-4.3
 ./configure --prefix=/usr   \
@@ -8,4 +11,3 @@ cd make-4.3
 make
 make DESTDIR=$LFS install
  rm -rf $LFS/sources/make-4.3
-<{toBeEnded}>

@@ -1,4 +1,7 @@
-<{toBeReplaced}>
+#!/bin/bash 
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf grep-3.7.tar.xz
 cd grep-3.7
 ./configure --prefix=/usr   \
@@ -6,4 +9,3 @@ cd grep-3.7
 make
 make DESTDIR=$LFS install
  rm -rf $LFS/sources/grep-3.7
-<{toBeEnded}>

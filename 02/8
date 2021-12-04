@@ -1,4 +1,7 @@
-<{toBeReplaced}>
+#!/bin/bash 
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf m4-1.4.19.tar.xz
 cd m4-1.4.19
 ./configure --prefix=/usr   \
@@ -7,4 +10,3 @@ cd m4-1.4.19
 make
 make DESTDIR=$LFS install
  rm -rf $LFS/sources/m4-1.4.19
-<{toBeEnded}>

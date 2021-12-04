@@ -1,4 +1,7 @@
-<{toBeReplaced}>
+#!/bin/bash 
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf findutils-4.8.0.tar.xz
 cd findutils-4.8.0
 ./configure --prefix=/usr                   \
@@ -8,4 +11,3 @@ cd findutils-4.8.0
 make
 make DESTDIR=$LFS install
  rm -rf $LFS/sources/findutils-4.8.0
-<{toBeEnded}>
