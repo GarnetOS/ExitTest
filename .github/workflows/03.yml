@@ -1,0 +1,67 @@
+name: 03 build
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Config number'     
+        required: true
+jobs:
+  build:
+    strategy:
+      matrix:
+          arch: [armv6,armv7,aarch64,amd64,s390x,ppc64le,mips64le,i386]
+          distro: [bullseye]
+          include:
+            - arch: riscv64
+              distro: unstable
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare host
+        run: |
+            sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
+            sudo apt install curl wget grep
+            sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
+            echo "PREV=$((${{ github.event.inputs.package }}-1))" >> $GITHUB_ENV
+      - uses: actions/checkout@v2
+        name: Checkout
+      - name: Download artifact
+        uses: GarnetOS/action-download-artifact@new
+        with:
+          workflow: 02.yml
+          name: out-${{matrix.arch}}-${{env.PREV}}
+      - name: Prepare image
+        run: |
+            pwd
+            sudo ls
+            sudo apt install -y util-linux wget zip
+            sudo mkdir /mnt/lfs
+            sudo mount VHD.img /mnt/lfs
+            sudo ls 
+      - uses: GarnetOS/run-on-arch-action@v2.1.2
+        name: Download and release
+        with:
+          arch: ${{matrix.arch}}
+          distro: ${{matrix.distro}}
+          setup: |
+            
+          dockerRunArgs: |
+            --volume "/mnt/lfs:/mnt/lfs"
+            --volume "${PWD}/03:${PWD}/03"
+          run: |
+            uname -a
+            apt update
+            apt install -y wget zip util-linux timelimit
+            apt install -y gcc g++ gzip libc6 grep make patch perl python3 sed tar xz-utils binutils bison bzip2 coreutils diffutils findutils gawk texinfo
+            rm /bin/sh
+            ln -s /bin/bash /bin/sh
+            export LFS=/mnt/lfs
+            useradd -m -s /bin/bash lfs
+            chmod +x -R 03
+            cp 03/${{github.event.inputs.package}} $LFS/
+            chown lfs prepare
+            timelimit -q -t 18900  || true
+      - uses: actions/upload-artifact@v2
+        with:
+          name: out-${{matrix.arch}}-${{github.event.inputs.package}}
+          path: VHD.img
