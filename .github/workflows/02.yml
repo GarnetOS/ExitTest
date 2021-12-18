@@ -57,6 +57,7 @@ jobs:
             ln -s /bin/bash /bin/sh
             export LFS=/mnt/lfs
             useradd -m -s /bin/bash lfs
+            echo "lfs ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
             chmod +x -R 02
             cd 02
             chown lfs prepare
