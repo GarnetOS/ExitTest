@@ -1,0 +1,7 @@
+eval timeout 6 $1
+EXITCODE=$?
+if (( $EXITCODE == 124 ))
+then
+    exit 0
+fi
+exit $EXITCODE
