@@ -60,7 +60,14 @@ jobs:
             chmod +x -R 03
             cp 03/${{github.event.inputs.package}} $LFS/
             chown lfs prepare
-            timelimit -q -t 18900  || true
+            cp 03/timout ./timeout
+            ./03/prepare
+            ./timeout chroot "$LFS" /usr/bin/env -i   \
+            HOME=/root                  \
+            TERM="$TERM"                \
+            PS1='(lfs chroot) \u:\w\$ ' \
+            PATH=/usr/bin:/usr/sbin     \
+            ./${{github.event.inputs.package}}
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-${{github.event.inputs.package}}
