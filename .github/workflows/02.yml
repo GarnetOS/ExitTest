@@ -29,7 +29,8 @@ jobs:
         uses: GarnetOS/action-download-artifact@new
         with:
           workflow: 02.yml
-          name: out-${{matrix.arch}}-${{env.PREV}}
+          #env.PREV
+          name: out-${{matrix.arch}}-${{github.event.inputs.package}}
       - name: Prepare image
         run: |
             pwd
@@ -64,5 +65,5 @@ jobs:
             timelimit -q -t 18900 su lfs './${{github.event.inputs.package}}' || true
       - uses: actions/upload-artifact@v2
         with:
-          name: out-${{matrix.arch}}-${{env.PREV}}
+          name: out-${{matrix.arch}}-${{github.event.inputs.package}}
           path: VHD.img
