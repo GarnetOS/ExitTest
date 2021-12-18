@@ -1,4 +1,4 @@
-eval timeout 18900 $1
+eval timeout 18900 $@
 EXITCODE=$?
 if (( $EXITCODE == 124 ))
 then
