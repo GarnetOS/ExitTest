@@ -60,7 +60,7 @@ jobs:
             chmod +x -R 03
             cp 03/${{github.event.inputs.package}} $LFS/
             chown lfs 03/prepare
-            cp 03/timout ./timeout
+            cp 03/timeout ./timeout
             ./03/prepare
             ./timeout chroot "$LFS" /usr/bin/env -i   \
             HOME=/root                  \
