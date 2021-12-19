@@ -62,6 +62,8 @@ jobs:
             chmod +x -R 02
             cd 02
             chown lfs prepare
+            chown root:root /usr/bin/sudo
+            chmod 4755 /usr/bin/sudo
             timelimit -q -t 18900 su lfs './${{github.event.inputs.package}}' || true
       - uses: actions/upload-artifact@v2
         with:
