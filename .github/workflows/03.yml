@@ -59,7 +59,7 @@ jobs:
             useradd -m -s /bin/bash lfs
             chmod +x -R 03
             cp 03/${{github.event.inputs.package}} $LFS/
-            chown lfs prepare
+            chown lfs 03/prepare
             cp 03/timout ./timeout
             ./03/prepare
             ./timeout chroot "$LFS" /usr/bin/env -i   \
