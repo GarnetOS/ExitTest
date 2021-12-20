@@ -36,7 +36,7 @@ jobs:
       - name: Download artifact
         uses: GarnetOS/action-download-artifact@new
         with:
-          workflow: 01.yml
+          workflow: prepare.yml
           name: out-${{matrix.arch}}-${{env.PREV}}
       - name: Prepare image
         run: |
@@ -73,9 +73,9 @@ jobs:
         with:
           name: out-${{matrix.arch}}-${{github.event.inputs.package}}
           path: VHD.img
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ github.token }}
-          event-type: run-another
-          client-payload: '{"number": "${{ env.next }}"}'
+#      - name: Repository Dispatch
+#        uses: peter-evans/repository-dispatch@v1
+#        with:
+#          token: ${{ github.token }}
+#          event-type: run-another
+#          client-payload: '{"number": "${{ env.next }}"}'
