@@ -65,6 +65,10 @@ jobs:
             rm /bin/sh
             ln -s /bin/bash /bin/sh
             export LFS=/mnt/lfs
+            useradd -m -s /bin/bash lfs
+            chmod +x -R 01
+            cd 01
+            chown lfs prepare
             export LC_ALL=POSIX
             LFS_TGT=$(uname -m)-lfs-linux-gnu
             export LFS_TGT
@@ -74,10 +78,6 @@ jobs:
             export PATH
             export CONFIG_SITE=$LFS/usr/share/config.site
             export MAKEFLAGS='-j2'
-            useradd -m -s /bin/bash lfs
-            chmod +x -R 01
-            cd 01
-            chown lfs prepare
             ./timeout su lfs './${{github.event.inputs.package}}'
       - uses: actions/upload-artifact@v2
         with:
