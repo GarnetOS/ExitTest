@@ -74,9 +74,9 @@ jobs:
         with:
           name: out-${{matrix.arch}}-${{github.event.inputs.package}}
           path: VHD.img
-#      - name: Repository Dispatch
-#        uses: peter-evans/repository-dispatch@v1
-#        with:
-#          token: ${{ github.token }}
-#          event-type: run-another
-#          client-payload: '{"number": "${{ env.next }}"}'
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ github.token }}
+          event-type: run-another
+          client-payload: '{"number": "${{ env.next }}"}'
