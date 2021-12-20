@@ -1,1 +1,6 @@
 #!/bin/bash
+./prepare
+echo $LFS
+echo $LFS_TFT
+echo $PATH
+echo $CONFIG_SITE
