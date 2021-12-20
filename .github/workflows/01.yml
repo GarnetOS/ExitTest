@@ -76,6 +76,6 @@ jobs:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ GITHUB_TOKEN }}
+          token: ${{ github.token }}
           event-type: run-another
           client-payload: '{"number": "${{ env.next }}"}'
