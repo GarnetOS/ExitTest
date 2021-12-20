@@ -74,9 +74,21 @@ jobs:
         with:
           name: out-${{matrix.arch}}-${{github.event.inputs.package}}
           path: VHD.img
+  post:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Prepare host
+        run: |
+            export CURR=$(([ -z "${{ github.event.inputs.package }}" ] && echo ${{github.event.client_payload.number}})||echo ${{ github.event.inputs.package }})
+            echo $CURR
+            echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
+            echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
+          
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ github.token }}
           event-type: run-another
-          client-payload: '{"number": "${{ env.next }}"}'
+          client-payload: '{"number": "${{ env.NEXT }}"}'
