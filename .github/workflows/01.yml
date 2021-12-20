@@ -1,6 +1,8 @@
 name: 01 build
 
 on:
+  repository_dispatch:
+    types: [run-another] 
   workflow_dispatch:
     inputs:
       package:
@@ -26,7 +28,9 @@ jobs:
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
             sudo apt install curl wget grep
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
-            echo "PREV=$((${{ github.event.inputs.package }}-1))" >> $GITHUB_ENV
+            export CURR = ${{ github.event.inputs.package }} || ${{github.event.client_payload.number}}
+            echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
+            echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
       - uses: actions/checkout@v2
         name: Checkout
       - name: Download artifact
@@ -69,3 +73,9 @@ jobs:
         with:
           name: out-${{matrix.arch}}-${{github.event.inputs.package}}
           path: VHD.img
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ GITHUB_TOKEN }}
+          event-type: run-another
+          client-payload: '{"number": "${{ env.next }}"}'
