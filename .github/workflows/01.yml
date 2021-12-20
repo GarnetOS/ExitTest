@@ -37,7 +37,7 @@ jobs:
       - name: Download artifact
         uses: GarnetOS/action-download-artifact@new
         with:
-          workflow: 01.yml
+          workflow: prepare.yml
           name: out-${{matrix.arch}}-${{env.PREV}}
       - name: Prepare image
         run: |
@@ -86,10 +86,9 @@ jobs:
             echo $CURR
             echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
             echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
-          
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.TOKEN }}
-          event-type: run-another
-          client-payload: '{"number": "${{ env.NEXT }}"}'
+      #- name: Repository Dispatch
+      #  uses: peter-evans/repository-dispatch@v1
+      #  with:
+      #    token: ${{ secrets.TOKEN }}
+      #    event-type: run-another
+      #    client-payload: '{"number": "${{ env.NEXT }}"}'
