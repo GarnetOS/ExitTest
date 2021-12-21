@@ -61,7 +61,7 @@ jobs:
             uname -a
             apt update
             apt install -y wget zip util-linux timelimit
-            apt install -y gcc g++ gzip libc6 grep make patch perl python3 sed tar xz-utils binutils bison bzip2 coreutils diffutils findutils gawk texinfo
+            apt install -y gcc g++ gzip libc6 grep make patch perl python3 sed tar xz-utils binutils bison bzip2 coreutils diffutils findutils gawk texinfo flex
             rm /bin/sh
             ln -s /bin/bash /bin/sh
             export LFS=/mnt/lfs
