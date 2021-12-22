@@ -64,6 +64,7 @@ jobs:
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv6.patch
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv7.patch
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv8.patch
+            wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/coreutils.patch
             mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
             for i in bin lib sbin; do
               ln -sv usr/$i $LFS/$i
