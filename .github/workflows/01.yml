@@ -84,7 +84,7 @@ jobs:
             ./timeout su lfs './${{env.CURR}}'
       - uses: actions/upload-artifact@v2
         with:
-          name: out-${{matrix.arch}}-${{github.event.inputs.package}}
+          name: out-${{matrix.arch}}-${{env.CURR}}
           path: VHD.img
   post:
     needs: build
