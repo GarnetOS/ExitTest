@@ -56,7 +56,7 @@ jobs:
             
           dockerRunArgs: |
             --volume "/mnt/lfs:/mnt/lfs"
-            --volume "${PWD}/01:${PWD}/01"
+            --volume "${PWD}/02:${PWD}/02"
           run: |
             uname -a
             apt update
@@ -66,8 +66,8 @@ jobs:
             ln -s /bin/bash /bin/sh
             export LFS=/mnt/lfs
             useradd -m -s /bin/bash lfs
-            chmod +x -R 01
-            cd 01
+            chmod +x -R 02
+            cd 02
             chown lfs prepare
             export LC_ALL=POSIX
             case $(uname -m) in
