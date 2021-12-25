@@ -1,12 +1,16 @@
 name: 02 build
 
 on:
+  repository_dispatch:
+    types: [run-another] 
   workflow_dispatch:
     inputs:
       package:
         description: 'Config number'     
         required: true
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "build"
   build:
     strategy:
       matrix:
@@ -15,22 +19,26 @@ jobs:
           include:
             - arch: riscv64
               distro: unstable
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Prepare host
         run: |
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
             sudo apt install curl wget grep
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
-            echo "PREV=$((${{ github.event.inputs.package }}-1))" >> $GITHUB_ENV
+            export CURR=$(([ -z "${{ github.event.inputs.package }}" ] && echo ${{github.event.client_payload.number}})||echo ${{ github.event.inputs.package }})
+            echo "CURR=$(($CURR))" >> $GITHUB_ENV
+            echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
+            echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
       - uses: actions/checkout@v2
         name: Checkout
       - name: Download artifact
         uses: GarnetOS/action-download-artifact@new
         with:
-          workflow: 02.yml
-          #env.PREV
-          name: out-${{matrix.arch}}-${{github.event.inputs.package}}
+          workflow: 01.yml
+          name: out-${{matrix.arch}}-${{env.PREV}}
       - name: Prepare image
         run: |
             pwd
@@ -48,24 +56,51 @@ jobs:
             
           dockerRunArgs: |
             --volume "/mnt/lfs:/mnt/lfs"
-            --volume "${PWD}/02:${PWD}/02"
+            --volume "${PWD}/01:${PWD}/01"
           run: |
             uname -a
             apt update
-            apt install -y wget zip util-linux timelimit sudo
-            apt install -y gcc g++ gzip libc6 grep make patch perl python3 sed tar xz-utils binutils bison bzip2 coreutils diffutils findutils gawk texinfo
+            apt install -y wget zip util-linux timelimit
+            apt install -y gcc g++ gzip libc6 grep make patch perl python3 sed tar xz-utils binutils bison bzip2 coreutils diffutils findutils gawk texinfo flex
             rm /bin/sh
             ln -s /bin/bash /bin/sh
             export LFS=/mnt/lfs
             useradd -m -s /bin/bash lfs
-            echo "lfs ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-            chmod +x -R 02
-            cd 02
+            chmod +x -R 01
+            cd 01
             chown lfs prepare
-            chown root:root /usr/bin/sudo
-            chmod 4755 /usr/bin/sudo
-            timelimit -q -t 18900 su lfs './${{github.event.inputs.package}}' || true
+            export LC_ALL=POSIX
+            case $(uname -m) in
+                arm*) LFS_TGT=$(uname -m)-lfs-linux-gnueabihf ;;
+                *) LFS_TGT=$(uname -m)-lfs-linux-gnu ;;
+            esac
+            export LFS_TGT
+            PATH=/usr/bin
+            if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
+            PATH=$LFS/tools/bin:$PATH
+            export PATH
+            export CONFIG_SITE=$LFS/usr/share/config.site
+            export MAKEFLAGS='-j2'
+            ./timeout su lfs './${{env.CURR}}'
       - uses: actions/upload-artifact@v2
         with:
-          name: out-${{matrix.arch}}-${{github.event.inputs.package}}
+          name: out-${{matrix.arch}}-${{env.CURR}}
           path: VHD.img
+  post:
+    needs: build
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Prepare host
+        run: |
+            export CURR=$(([ -z "${{ github.event.inputs.package }}" ] && echo ${{github.event.client_payload.number}})||echo ${{ github.event.inputs.package }})
+            echo $CURR
+            echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
+            echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.TOKEN }}
+          event-type: run-another
+          client-payload: '{"number": "${{ env.NEXT }}"}'
