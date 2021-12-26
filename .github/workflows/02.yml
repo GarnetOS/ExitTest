@@ -2,7 +2,7 @@ name: 02 build
 
 on:
   repository_dispatch:
-    types: [run-another] 
+    types: [run-another-2] 
   workflow_dispatch:
     inputs:
       package:
@@ -102,5 +102,5 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.TOKEN }}
-          event-type: run-another
+          event-type: run-another-2
           client-payload: '{"number": "${{ env.NEXT }}"}'
