@@ -58,10 +58,10 @@ jobs:
             export LFS=/mnt/lfs
             useradd -m -s /bin/bash lfs
             chmod +x -R 03
-            cp 03/${{github.event.inputs.package}} $LFS/
-            chown lfs 03/prepare
-            cp 03/timeout ./timeout
-            ./03/prepare
+            cd 03
+            cp ${{github.event.inputs.package}} $LFS/
+            chown 03/prepare
+            ./prepare
             ./timeout chroot "$LFS" /usr/bin/env -i   \
             HOME=/root                  \
             TERM="$TERM"                \
