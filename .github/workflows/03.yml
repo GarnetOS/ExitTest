@@ -1,6 +1,8 @@
 name: 03 build
 
 on:
+  repository_dispatch:
+    types: [run-another-3]
   workflow_dispatch:
     inputs:
       package:
@@ -60,7 +62,6 @@ jobs:
             chmod +x -R 03
             cd 03
             cp ${{github.event.inputs.package}} $LFS/
-            chown 03/prepare
             ./prepare
             ./timeout chroot "$LFS" /usr/bin/env -i   \
             HOME=/root                  \
@@ -71,3 +72,19 @@ jobs:
         with:
           name: out-${{matrix.arch}}-${{github.event.inputs.package}}
           path: VHD.img
+  post:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare host
+        run: |
+            export CURR=$(([ -z "${{ github.event.inputs.package }}" ] && echo ${{github.event.client_payload.number}})||echo ${{ github.event.inputs.package }})
+            echo $CURR
+            echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
+            echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.TOKEN }}
+          event-type: run-another-3
+          client-payload: '{"number": "${{ env.NEXT }}"}'
