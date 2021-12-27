@@ -62,7 +62,7 @@ jobs:
             cd 03
             cp ${{github.event.inputs.package}} $LFS/
             sudo ./prepare
-            sudo ./timeout chroot "$LFS" /usr/bin/env -i   \
+            sudo ./timeout sudo chroot "$LFS" /usr/bin/env -i   \
             HOME=/root                  \
             TERM="$TERM"                \
             PATH=/usr/bin:/usr/sbin     \
