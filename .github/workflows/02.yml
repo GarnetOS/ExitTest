@@ -74,6 +74,8 @@ jobs:
                 arm*) LFS_TGT=$(uname -m)-lfs-linux-gnueabihf ;;
                 *) LFS_TGT=$(uname -m)-lfs-linux-gnu ;;
             esac
+            chown root:root /usr/bin/sudo
+            chmod u+s /usr/bin/sudo
             export LFS_TGT
             PATH=/usr/bin
             if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
