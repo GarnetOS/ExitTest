@@ -1,5 +1,6 @@
 export LFS=/mnt/lfs
 sudo ls -l /
+sudo ls -l $LFS
 sudo mount -v --bind /dev $LFS/dev
 sudo mount -v --bind /dev/pts $LFS/dev/pts
 sudo mount -vt proc proc $LFS/proc
