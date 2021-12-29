@@ -25,7 +25,6 @@ jobs:
             sudo apt install curl wget grep
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
             echo "PREV=$((${{ github.event.inputs.package }}-1))" >> $GITHUB_ENV
-            sudo setenforce 0
       - uses: actions/checkout@v2
         name: Checkout
       - name: Download artifact
