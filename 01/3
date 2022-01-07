@@ -23,6 +23,10 @@ case $(uname -m) in
     sed -e '/mabi.lp64=/s/lib64/lib/' \
     -i.orig gcc/config/aarch64/t-aarch64-linux
  ;;
+  mips64le)
+    sed -e '/ma64=/s/lib64/lib/' \
+    -i.orig gcc/config/mips/t-linux64
+ ;;
 esac
 case $(uname -m) in
   armv6l)
