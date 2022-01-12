@@ -35,7 +35,7 @@ case $(uname -m) in
   armv7l)
     patch -Np1 -i ../gcc-10.2.0-armv7.patch
  ;;
-  armv8l)
+  aarch64)
     patch -Np1 -i ../gcc-10.2.0-armv8.patch
  ;;
 esac
