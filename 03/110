@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf grub-2.06.tar.xz
 cd grub-2.06
 ./configure --prefix=/usr          \
@@ -9,4 +9,3 @@ make
 make install
 mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions
  rm -rf $LFS/sources/grub-2.06
-<{toBeEnded}>

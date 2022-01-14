@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf libtool-2.4.6.tar.xz
 cd libtool-2.4.6
 ./configure --prefix=/usr
@@ -7,4 +7,3 @@ make check
 make install
 rm -fv /usr/lib/libltdl.a
  rm -rf $LFS/sources/libtool-2.4.6
-<{toBeEnded}>

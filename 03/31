@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf Python-3.9.6.tar.xz
 cd Python-3.9.6
 ./configure --prefix=/usr   \
@@ -8,4 +8,3 @@ cd Python-3.9.6
 make
 make install
  rm -rf $LFS/sources/Python-3.9.6
-<{toBeEnded}>

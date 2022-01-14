@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf bzip2-1.0.8.tar.gz
 cd bzip2-1.0.8
 patch -Np1 -i ../bzip2-1.0.8-install_docs-1.patch
@@ -18,7 +18,7 @@ done
 
 rm -fv /usr/lib/libbz2.a
  rm -rf $LFS/sources/bzip2-1.0.8
-<{toBeEnded}>    \
+    \
              libc_cv_slibdir=/usr/lib
 
 make
@@ -131,4 +131,3 @@ include /etc/ld.so.conf.d/*.conf
 EOF
 mkdir -pv /etc/ld.so.conf.d
  rm -rf $LFS/sources/glibc-2.34-fhs-
-<{toBeEnded}>

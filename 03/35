@@ -1,7 +1,6 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf man-pages-5.13.tar.xz
 cd man-pages-5.13
 make prefix=/usr install
 
  rm -rf $LFS/sources/man-pages-5.13
-<{toBeEnded}>

@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf attr-2.5.1.tar.gz
 cd attr-2.5.1
 ./configure --prefix=/usr     \
@@ -9,4 +9,3 @@ make
 make check
 make install
  rm -rf $LFS/sources/attr-2.5.1
-<{toBeEnded}>

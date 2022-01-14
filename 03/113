@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf kbd-2.4.0.tar.xz
 cd kbd-2.4.0
 patch -Np1 -i ../kbd-2.4.0-backspace-1.patch
@@ -9,4 +9,3 @@ make
 make check
 make install
  rm -rf $LFS/sources/kbd-2.4.0
-<{toBeEnded}>

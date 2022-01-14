@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf bc-5.0.0.tar.xz
 cd bc-5.0.0
 CC=gcc ./configure --prefix=/usr -G -O3
@@ -9,4 +9,3 @@ make test
 
 make install
  rm -rf $LFS/sources/bc-5.0.0
-<{toBeEnded}>

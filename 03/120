@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf eudev-3.2.10.tar.gz
 cd eudev-3.2.10
 ./configure --prefix=/usr           \
@@ -14,4 +14,3 @@ make install
 tar -xvf ../udev-lfs-20171102.tar.xz
 make -f udev-lfs-20171102/Makefile.lfs install
  rm -rf $LFS/sources/eudev-3.2.10
-<{toBeEnded}>

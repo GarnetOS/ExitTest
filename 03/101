@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf Python-3.9.6.tar.xz
 cd Python-3.9.6
 ./configure --prefix=/usr        \
@@ -17,4 +17,3 @@ tar --strip-components=1  \
     -C /usr/share/doc/python-3.9.6/html \
     -xvf ../python-3.9.6-docs-html.tar.bz2
  rm -rf $LFS/sources/Python-3.9.6
-<{toBeEnded}>

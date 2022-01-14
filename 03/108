@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf findutils-4.8.0.tar.xz
 cd findutils-4.8.0
 ./configure --prefix=/usr --localstatedir=/var/lib/locate
@@ -7,4 +7,3 @@ chown -Rv tester .
 su tester -c "PATH=$PATH make check"
 make install
  rm -rf $LFS/sources/findutils-4.8.0
-<{toBeEnded}>

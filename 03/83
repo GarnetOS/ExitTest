@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf grep-3.7.tar.xz
 cd grep-3.7
 ./configure --prefix=/usr
@@ -7,4 +7,3 @@ make check
 make install
 
  rm -rf $LFS/sources/grep-3.7
-<{toBeEnded}>

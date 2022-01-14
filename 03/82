@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf bison-3.7.6.tar.xz
 cd bison-3.7.6
 ./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.7.6
@@ -6,4 +6,3 @@ make
 make check
 make install
  rm -rf $LFS/sources/bison-3.7.6
-<{toBeEnded}>

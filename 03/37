@@ -1,6 +1,6 @@
-<{toBeReplaced}>
-tar -xvf glibc-2.34-fhs-1.patch
-cd glibc-2.34-fhs-
+cd /sources
+tar -xvf glibc-2.34.tar.xz
+cd glibc-2.34
 sed -e '/NOTIFY_REMOVED)/s/)/ \&\& data.attr != NULL)/' \
     -i sysdeps/unix/sysv/linux/mq_notify.c
 
@@ -124,4 +124,4 @@ cat >> /etc/ld.so.conf << "EOF"
 include /etc/ld.so.conf.d/*.conf
 
 EOF
-mkdir -pv /etc/ld.so.conf.d<{toBeEnded}>
+mkdir -pv /etc/ld.so.conf.d

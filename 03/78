@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf ncurses-6.2.tar.gz
 cd ncurses-6.2
 ./configure --prefix=/usr           \
@@ -31,4 +31,3 @@ make distclean
 make sources libs
 cp -av lib/lib*.so.5* /usr/lib
  rm -rf $LFS/sources/ncurses-6.2
-<{toBeEnded}>

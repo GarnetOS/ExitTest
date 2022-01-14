@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf pkg-config-0.29.2.tar.gz
 cd pkg-config-0.29.2
 ./configure --prefix=/usr              \
@@ -9,4 +9,3 @@ make
 make check
 make install
  rm -rf $LFS/sources/pkg-config-0.29.2
-<{toBeEnded}>

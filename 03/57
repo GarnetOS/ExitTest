@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf shadow-4.9.tar.xz
 cd shadow-4.9
 sed -i 's/groups$(EXEEXT) //' src/Makefile.in
@@ -22,6 +22,5 @@ useradd -D --gid 999
 pwconv
 grpconv
 sed -i 's/yes/no/' /etc/default/useradd
-passwd root
- rm -rf $LFS/sources/shadow-4.9
-<{toBeEnded}>
+echo "toor" | passwd root --stdin
+rm -rf $LFS/sources/shadow-4.9

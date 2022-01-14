@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf file-5.40.tar.gz
 cd file-5.40
 ./configure --prefix=/usr
@@ -6,4 +6,3 @@ make
 make check
 make install
  rm -rf $LFS/sources/file-5.40
-<{toBeEnded}>

@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf bash-5.1.8.tar.gz
 cd bash-5.1.8
 ./configure --prefix=/usr                      \
@@ -17,4 +17,3 @@ EOF
 make install
 exec /bin/bash --login +h
  rm -rf $LFS/sources/bash-5.1.8
-<{toBeEnded}>

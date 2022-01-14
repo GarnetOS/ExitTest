@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf perl-5.34.0.tar.xz
 cd perl-5.34.0
 patch -Np1 -i ../perl-5.34.0-upstream_fixes-1.patch
@@ -21,4 +21,4 @@ sh Configure -des                                         \
 make
 make test
 make install
-unset BUILD_ZLIB BUILD_BZIP2<{toBeEnded}>
+unset BUILD_ZLIB BUILD_BZIP2

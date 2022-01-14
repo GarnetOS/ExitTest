@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf util-linux-2.37.2.tar.xz
 cd util-linux-2.37.2
 ./configure ADJTIME_PATH=/var/lib/hwclock/adjtime   \
@@ -21,4 +21,3 @@ chown -Rv tester .
 su tester -c "make -k check"
 make install
  rm -rf $LFS/sources/util-linux-2.37.2
-<{toBeEnded}>

@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf texinfo-6.8.tar.xz
 cd texinfo-6.8
 sed -e 's/__attribute_nonnull__/__nonnull/' \
@@ -9,4 +9,3 @@ make
 
 make install
  rm -rf $LFS/sources/texinfo-6.8
-<{toBeEnded}>

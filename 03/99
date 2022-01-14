@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf libffi-3.4.2.tar.gz
 cd libffi-3.4.2
 ./configure --prefix=/usr          \
@@ -9,4 +9,3 @@ make
 make check
 make install
  rm -rf $LFS/sources/libffi-3.4.2
-<{toBeEnded}>

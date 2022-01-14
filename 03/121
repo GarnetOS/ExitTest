@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf man-db-2.9.4.tar.xz
 cd man-db-2.9.4
 ./configure --prefix=/usr                        \
@@ -15,4 +15,3 @@ make
 make check
 make install
  rm -rf $LFS/sources/man-db-2.9.4
-<{toBeEnded}>

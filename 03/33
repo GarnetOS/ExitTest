@@ -1,4 +1,4 @@
-<{toBeReplaced}>
+cd /sources
 tar -xvf util-linux-2.37.2.tar.xz
 cd util-linux-2.37.2
 mkdir -pv /var/lib/hwclock
@@ -20,4 +20,3 @@ make
 
 make install
  rm -rf $LFS/sources/util-linux-2.37.2
-<{toBeEnded}>
