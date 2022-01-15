@@ -1,5 +1,4 @@
-eval timeout 18900 $@
-EXITCODE=$?
+EXITCODE= eval timeout 18900 $@
 echo $EXITCODE
 if (( $EXITCODE == 124 ))
 then
