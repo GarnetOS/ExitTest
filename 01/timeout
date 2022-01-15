@@ -1,5 +1,5 @@
 #!/bin/bash
-eval timeout 18900 $@
+timeout 18900 $@
 EXITCODE=$?
 echo $EXITCODE
 if (( $EXITCODE == 124 ))
