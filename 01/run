@@ -2,6 +2,7 @@
 while read line; do
 eval su lfs $line
 EXITCODE=$?
+echo $EXITCODE
 if (( $EXITCODE != 0))
 then
     exit $EXITCODE
