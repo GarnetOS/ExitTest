@@ -1,6 +1,6 @@
 #!/bin/bash
 while read line; do
-eval su lfs $line
+eval $line
 EXITCODE=$?
 echo "NEW"
 echo $EXITCODE
