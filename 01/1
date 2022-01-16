@@ -45,5 +45,5 @@ cd 01
 ls -l
 echo 'int main(){}' > dummy.c
 g++ -o dummy dummy.c
-if [ -x dummy ] then echo "g++ compilation OK"; else echo "g++ compilation failed"; fi
+if [ -x dummy ]; then echo "g++ compilation OK"; else echo "g++ compilation failed"; fi
 rm -f dummy.c dummy
