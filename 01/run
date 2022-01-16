@@ -1,7 +1,6 @@
 #!/bin/bash
-echo $@
 while read line; do
-eval $line
+eval su lfs $line
 EXITCODE=$?
 if (( $EXITCODE != 0))
 then
