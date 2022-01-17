@@ -4,8 +4,3 @@ echo $LFS
 echo $LFS_TGT
 echo $PATH
 echo $CONFIG_SITE
-echo 'int main(){}' > dummy.c && g++ -o dummy dummy.c
-if [ -x dummy ]
-  then echo "g++ compilation OK";
-  else echo "g++ compilation failed"; fi
-rm -f dummy.c dummy
