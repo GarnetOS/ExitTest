@@ -1,12 +1,12 @@
 #!/bin/bash
-while read line; do
-eval $line
+eval $1
 EXITCODE=$?
-echo "NEW"
-echo $EXITCODE
-echo $line
-if (( $EXITCODE != 0))
-then
-    exit $EXITCODE
-fi
-done < $1
+#while read line; do
+#echo "NEW"
+#echo $EXITCODE
+#echo $line
+#if (( $EXITCODE != 0))
+#then
+#    exit $EXITCODE
+#fi
+#done < $1
