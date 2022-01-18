@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 timeout 18900 su lfs $@
 EXITCODE=$?
 echo $EXITCODE
