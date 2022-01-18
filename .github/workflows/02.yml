@@ -83,7 +83,7 @@ jobs:
             export PATH
             export CONFIG_SITE=$LFS/usr/share/config.site
             export MAKEFLAGS='-j2'
-            ./timeout su lfs './${{env.CURR}}'
+            ./timeout './${{env.CURR}}'
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-${{env.CURR}}
