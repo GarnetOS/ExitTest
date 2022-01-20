@@ -69,8 +69,9 @@ jobs:
             wget --directory-prefix=$LFS/sources https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
             wget --directory-prefix=$LFS/sources https://www.linuxfromscratch.org/blfs/view/11.0/basicnet/wget.html
             wget --directory-prefix=$LFS/sources https://roy.marples.name/downloads/dhcpcd/dhcpcd-9.4.0.tar.xz
+            wget --directory-prefix=$LFS/sources https://www.nano-editor.org/dist/v5/nano-5.8.tar.xz
             cd /mnt/lfs
-            wget https://www.nano-editor.org/dist/v5/nano-5.8.tar.xz
+            mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
             for i in bin lib sbin; do
               ln -sv usr/$i $LFS/$i
             done
