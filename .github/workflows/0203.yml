@@ -45,6 +45,11 @@ jobs:
             sudo mkdir /mnt/lfs
             sudo mount -o suid VHD.img /mnt/lfs
             export LFS=/mnt/lfs
+            if [[ -f "/mnt/lfs/usr/bin/env" ]]; then
+              echo "Env exists."
+            else
+              exit 1
+            fi
             sudo ls 
             sudo chown -R root:root $LFS/{usr,lib,var,etc,bin,sbin,tools}
             case ${{matrix.arch}} in
