@@ -4,6 +4,12 @@ export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf coreutils-8.32.tar.xz
 cd coreutils-8.32
+case $(uname -m) in
+    aarch64) patch -Np1 -i ../coreutils.patch
+    ;;
+    riscv64) patch -Np1 -i ../coreutils.patch
+    ;;
+esac
 ./configure --prefix=/usr                     \
             --host=$LFS_TGT                   \
             --build=$(build-aux/config.guess) \
