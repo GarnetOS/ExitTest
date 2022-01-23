@@ -1,3 +1,4 @@
+#!/bin/bash -e
 set +h
 umask 022
 export LFS=/mnt/lfs

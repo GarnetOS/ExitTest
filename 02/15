@@ -1,5 +1,4 @@
-#!/bin/bash 
-./prepare
+#!/bin/bash -e./prepare
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf gawk-5.1.0.tar.xz
