@@ -45,7 +45,7 @@ jobs:
             sudo ls
             sudo apt install -y util-linux wget zip
             sudo mkdir /mnt/lfs
-            fsck -py VHD.img
+            fsck -y VHD.img
             sudo mount -o suid VHD.img /mnt/lfs
             sudo ls 
       - uses: GarnetOS/run-on-arch-action@v2.1.2
