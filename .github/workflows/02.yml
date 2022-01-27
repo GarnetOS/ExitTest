@@ -37,15 +37,14 @@ jobs:
       - name: Download artifact
         uses: GarnetOS/action-download-artifact@new
         with:
-          workflow: 02.yml
+          workflow: 01.yml
           name: out-${{matrix.arch}}-${{env.PREV}}
       - name: Prepare image
         run: |
             pwd
             sudo ls
-            sudo apt install -y util-linux wget zip e2fsprogs
+            sudo apt install -y util-linux wget zip
             sudo mkdir /mnt/lfs
-            e2fsck -fy VHD.img || true
             sudo mount -o suid VHD.img /mnt/lfs
             sudo ls 
       - uses: GarnetOS/run-on-arch-action@v2.1.2
