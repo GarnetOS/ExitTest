@@ -43,9 +43,9 @@ jobs:
         run: |
             pwd
             sudo ls
-            sudo apt install -y util-linux wget zip
+            sudo apt install -y util-linux wget zip e2fsprogs
             sudo mkdir /mnt/lfs
-            fsck -p VHD.img
+            e2fsck -fy VHD.img
             sudo mount -o suid VHD.img /mnt/lfs
             sudo ls 
       - uses: GarnetOS/run-on-arch-action@v2.1.2
