@@ -67,7 +67,7 @@ jobs:
             wget -O coreutils.patch --directory-prefix=$LFS/sources https://711722.bugs.gentoo.org/attachment.cgi?id=617340
             wget --directory-prefix=$LFS/sources https://github.com/p11-glue/p11-kit/releases/download/0.24.0/p11-kit-0.24.0.tar.xz
             wget --directory-prefix=$LFS/sources https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
-            wget --directory-prefix=$LFS/sources https://www.linuxfromscratch.org/blfs/view/11.0/basicnet/wget.html
+            wget --directory-prefix=$LFS/sources https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
             wget --directory-prefix=$LFS/sources https://roy.marples.name/downloads/dhcpcd/dhcpcd-9.4.0.tar.xz
             wget --directory-prefix=$LFS/sources https://www.nano-editor.org/dist/v5/nano-5.8.tar.xz
             cd /mnt/lfs
