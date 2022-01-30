@@ -84,6 +84,9 @@ jobs:
             export CONFIG_SITE=$LFS/usr/share/config.site
             export MAKEFLAGS='-j2'
             ./timeout './${{env.CURR}}'
+      - name: Unmount
+        run: |
+            sudo umount /mnt/lfs           
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-${{env.CURR}}
