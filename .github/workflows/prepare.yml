@@ -51,6 +51,8 @@ jobs:
             apt install -y gcc g++ gzip libc6 grep make patch perl python3 sed tar xz-utils binutils bison bzip2 coreutils diffutils findutils gawk texinfo
             rm /bin/sh
             ln -s /bin/bash /bin/sh
+            dd if=/dev/zero of=/mnt/lfs/output.img bs=1 count=0 seek=19G
+            rm /mnt/lfs/output.img
             wget https://gist.githubusercontent.com/radimkohout/5f0e6ad2bd899d8f2a6b3636148664cb/raw/e5057e34464c621f0302dfe5a9ba7798b3649965/checkhost.sh
             chmod +x checkhost.sh
             ./checkhost.sh
