@@ -86,6 +86,7 @@ jobs:
             ./timeout './${{env.CURR}}'
       - name: Unmount
         run: |
+            sleep 1m
             sudo umount /mnt/lfs           
       - uses: actions/upload-artifact@v2
         with:
