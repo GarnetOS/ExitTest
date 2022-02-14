@@ -29,7 +29,7 @@ jobs:
         run: |
             sudo apt install -y util-linux wget zip
             sudo mkdir /mnt/lfs
-            sudo fallocate -l 20G VHD.img 
+            dd if=/dev/zero of=VHD.img bs=1M count=20480
             sudo mkfs -v -t ext4 VHD.img
             sudo mount VHD.img /mnt/lfs
       - uses: GarnetOS/run-on-arch-action@v2.1.2
