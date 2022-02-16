@@ -2,10 +2,6 @@ name: 02 to 03 permissions
  
 on:
   workflow_dispatch:
-    inputs:
-      package:
-        description: 'Config number'     
-        required: true
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -37,7 +33,7 @@ jobs:
         uses: GarnetOS/action-download-artifact@new
         with:
           workflow: 02.yml
-          name: out-${{matrix.arch}}-${{env.PREV}}
+          name: out-${{matrix.arch}}-25
       - name: Prepare image
         run: |
             pwd
@@ -60,8 +56,7 @@ jobs:
             sudo mknod -m 600 $LFS/dev/console c 5 1
             sudo mknod -m 666 $LFS/dev/null c 1 3
             cd /mnt/lfs
-            sudo wget https://www.nano-editor.org/dist/v5/nano-5.8.tar.xz
       - uses: actions/upload-artifact@v2
         with:
-          name: out-${{matrix.arch}}-${{env.CURR}}
+          name: out-${{matrix.arch}}-26
           path: VHD.img
