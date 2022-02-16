@@ -61,12 +61,13 @@ jobs:
             #groupadd lfs
             mkdir -v $LFS/sources
             chmod -v a+wt $LFS/sources
+            cd $LFS/sources
             wget https://www.linuxfromscratch.org/lfs/downloads/stable/wget-list
             wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv6.patch
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv7.patch
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv8.patch
-            wget --directory-prefix=$LFS/sources -O coreutils.patch https://711722.bugs.gentoo.org/attachment.cgi?id=617340
+            wget -O coreutils.patch https://711722.bugs.gentoo.org/attachment.cgi?id=617340
             wget --directory-prefix=$LFS/sources https://github.com/p11-glue/p11-kit/releases/download/0.24.0/p11-kit-0.24.0.tar.xz
             wget --directory-prefix=$LFS/sources https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
             wget --directory-prefix=$LFS/sources https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
