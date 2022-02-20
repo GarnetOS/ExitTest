@@ -66,6 +66,7 @@ jobs:
             ls /mnt/lfs/usr/bin/
             ls /mnt/lfs/usr/bin/env
             ls /usr/bin/env
+            export LFS=/mnt/lfs
             sudo ./timeout sudo chroot "$LFS" /usr/bin/env -i   \
             HOME=/root                  \
             TERM="$TERM"                \
