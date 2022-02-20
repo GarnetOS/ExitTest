@@ -15,7 +15,7 @@ case $(uname -m) in
     sed -e '/m64=/s/lib64/lib/' \
         -i.orig gcc/config/i386/t-linux64
  ;;
-  ppc64)
+  ppc64le)
     sed -e '/m64=/s/lib64/lib/' \
         -i.orig gcc/config/rs6000/t-linux64
  ;;
@@ -23,7 +23,7 @@ case $(uname -m) in
     sed -e '/mabi.lp64=/s/lib64/lib/' \
     -i.orig gcc/config/aarch64/t-aarch64-linux
  ;;
-  mips64)
+  mips64le)
     sed -e '/ma64=/s/lib64/lib/' \
     -i.orig gcc/config/mips/t-linux64
  ;;
