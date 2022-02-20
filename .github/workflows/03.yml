@@ -63,7 +63,9 @@ jobs:
             cp ${{github.event.inputs.package}} $LFS/
             sudo ./prepare
             echo $LFS
-            ls /usr/bin/
+            ls /mnt/lfs/usr/bin/
+            ls /mnt/lfs/usr/bin/env
+            ls /usr/bin/env
             sudo ./timeout sudo chroot "$LFS" /usr/bin/env -i   \
             HOME=/root                  \
             TERM="$TERM"                \
