@@ -82,6 +82,12 @@ jobs:
             export PATH
             export CONFIG_SITE=$LFS/usr/share/config.site
             export MAKEFLAGS='-j2'
+            case $(uname -m) in
+              *64le) mkdir -pv $LFS/lib64 ;;
+            esac
+            case $(uname -m) in
+              *64le) chown -v lfs $LFS/lib64 ;;
+            esac
             ./timeout './${{env.CURR}}'
       - name: Unmount
         run: |
