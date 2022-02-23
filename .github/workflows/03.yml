@@ -67,7 +67,11 @@ jobs:
             ls /mnt/lfs/usr/bin/env
             ls /usr/bin/env
             export LFS=/mnt/lfs
-            chroot /mnt/lfs ls /usr/bin
+            chroot /mnt/lfs /usr/bin/env -i   \
+            HOME=/root                  \
+            TERM="$TERM"                \
+            PATH=/usr/bin:/usr/sbin     \
+            ls /usr/bin
             sudo ./timeout sudo chroot /mnt/lfs /usr/bin/env -i   \
             HOME=/root                  \
             TERM="$TERM"                \
