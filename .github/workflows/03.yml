@@ -71,7 +71,7 @@ jobs:
             HOME=/root                  \
             TERM="$TERM"                \
             PATH=/usr/bin:/usr/sbin     \
-            ls /usr/bin
+            /bin/bash --login +h
             sudo ./timeout sudo chroot /mnt/lfs /usr/bin/env -i   \
             HOME=/root                  \
             TERM="$TERM"                \
