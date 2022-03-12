@@ -3,26 +3,7 @@
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 cd gcc-11.2.0
-cd       build
-
-../configure                                       \
-    --build=$(../config.guess)                     \
-    --host=$LFS_TGT                                \
-    --prefix=/usr                                  \
-    CC_FOR_TARGET=$LFS_TGT-gcc                     \
-    --with-build-sysroot=$LFS                      \
-    --enable-initfini-array                        \
-    --disable-nls                                  \
-    --disable-multilib                             \
-    --disable-decimal-float                        \
-    --disable-libatomic                            \
-    --disable-libgomp                              \
-    --disable-libquadmath                          \
-    --disable-libssp                               \
-    --disable-libvtv                               \
-    --disable-libstdcxx                            \
-    --enable-languages=c,c++
-
+cd build
 make
 
 make DESTDIR=$LFS install
