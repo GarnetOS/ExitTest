@@ -91,10 +91,11 @@ jobs:
               *64le) chown -v lfs $LFS/lib64 ;;
             esac
             chown -v lfs $LFS/sources
+            tar -czvf out.tar.gz VHD.img
       - name: Unmount
         run: |
             sudo umount /mnt/lfs           
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-0
-          path: VHD.img
+          path: out.tar.gz
