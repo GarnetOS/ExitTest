@@ -45,6 +45,7 @@ jobs:
             sudo ls
             sudo apt install -y util-linux wget zip
             sudo mkdir /mnt/lfs
+            tar -xvf out.tar.gz
             sudo mount VHD.img /mnt/lfs
             sudo ls 
       - uses: GarnetOS/run-on-arch-action@v2.1.2
@@ -85,11 +86,14 @@ jobs:
             ./timeout './${{env.CURR}}'
       - name: Unmount
         run: |
-            sudo umount /mnt/lfs           
+            sudo umount /mnt/lfs  
+      - name: Prepare image
+        run: |
+               tar -czvf out.tar.gz VHD.img      
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-${{env.CURR}}
-          path: VHD.img
+          path: out.tar.gz
   post:
     needs: build
     # The type of runner that the job will run on
