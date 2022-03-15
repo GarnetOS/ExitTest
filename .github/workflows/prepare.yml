@@ -61,6 +61,7 @@ jobs:
             #groupadd lfs
             mkdir -v $LFS/sources
             chmod -v a+wt $LFS/sources
+            dhclient -r
             cd $LFS/sources
             wget https://www.linuxfromscratch.org/lfs/downloads/stable/wget-list
             wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
