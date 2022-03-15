@@ -64,7 +64,8 @@ jobs:
             #dhclient -r
             cd $LFS/sources
             wget https://www.linuxfromscratch.org/lfs/downloads/stable/wget-list
-            wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
+            wget --input-file=wget-list --continue --directory-prefix=$LFS/sources || true
+            wget --directory-prefix=$LFS/sources http://mirror.jaleco.com/lfs/pub/lfs/lfs-packages/11.0/ncurses-6.2.tar.gz
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv6.patch
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv7.patch
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv8.patch
@@ -74,6 +75,7 @@ jobs:
             wget --directory-prefix=$LFS/sources https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
             wget --directory-prefix=$LFS/sources https://roy.marples.name/downloads/dhcpcd/dhcpcd-9.4.0.tar.xz
             wget --directory-prefix=$LFS/sources https://www.nano-editor.org/dist/v5/nano-5.8.tar.xz
+            
             cd /mnt/lfs
             mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
             for i in bin lib sbin; do
