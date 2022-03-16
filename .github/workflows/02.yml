@@ -37,7 +37,7 @@ jobs:
       - name: Download artifact
         uses: GarnetOS/action-download-artifact@new
         with:
-          workflow: 02.yml
+          workflow: 01.yml
           name: out-${{matrix.arch}}-${{env.PREV}}
       - name: Prepare image
         run: |
@@ -45,7 +45,7 @@ jobs:
             sudo ls
             sudo apt install -y util-linux wget zip
             sudo mkdir /mnt/lfs
-            tar -xvf out.tar.xz
+            tar -xvf out.tar.gz
             sudo mount -o suid VHD.img /mnt/lfs
             sudo ls 
       - uses: GarnetOS/run-on-arch-action@v2.1.2
@@ -89,10 +89,13 @@ jobs:
         run: |
             sleep 1m
             sudo umount /mnt/lfs           
+      - name: Prepare image
+        run: |
+               tar -czvf out.tar.gz VHD.img      
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-${{env.CURR}}
-          path: VHD.img
+          path: out.tar.gz
   post:
     needs: build
     # The type of runner that the job will run on
