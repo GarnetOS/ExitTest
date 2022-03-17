@@ -37,7 +37,7 @@ jobs:
       - name: Download artifact
         uses: GarnetOS/action-download-artifact@new
         with:
-          workflow: 02.yml
+          workflow: 01.yml
           name: out-${{matrix.arch}}-${{env.PREV}}
       - name: Prepare image
         run: |
@@ -91,7 +91,8 @@ jobs:
             sudo umount /mnt/lfs           
       - name: Prepare image
         run: |
-               tar -czvf out.tar.gz VHD.img      
+               tar -czvf out.tar.gz VHD.img
+               tar -tzf out.tar.gz >/dev/null
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-${{env.CURR}}
