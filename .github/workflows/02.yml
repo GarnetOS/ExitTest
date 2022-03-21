@@ -37,7 +37,7 @@ jobs:
       - name: Download artifact
         uses: GarnetOS/action-download-artifact@new
         with:
-          workflow: 02.yml
+          workflow: 01.yml
           name: out-${{matrix.arch}}-${{env.PREV}}
       - name: Prepare image
         run: |
@@ -93,7 +93,7 @@ jobs:
         run: |
                tar -czvf out.tar.gz VHD.img
                tar -tzf out.tar.gz >/dev/null
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v2.3.1
         with:
           name: out-${{matrix.arch}}-${{env.CURR}}
           path: out.tar.gz
