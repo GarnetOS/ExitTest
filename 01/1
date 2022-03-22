@@ -1,6 +1,0 @@
-#!/bin/bash -e
-./prepare
-echo $LFS
-echo $LFS_TGT
-echo $PATH
-echo $CONFIG_SITE

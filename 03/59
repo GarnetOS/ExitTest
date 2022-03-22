@@ -1,3 +1,0 @@
-cd /sources
-cd gcc-11.2.0
-make
