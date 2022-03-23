@@ -1,0 +1,9 @@
+<{toBeReplaced}>
+tar -xvf libpipeline-1.5.5.tar.gz
+cd libpipeline-1.5.5
+./configure --prefix=/usr
+make
+make check
+make install
+ rm -rf $LFS/sources/libpipeline-1.5.5
+<{toBeEnded}>
