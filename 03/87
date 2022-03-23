@@ -1,8 +1,16 @@
-cd /sources
-tar -xvf gperf-3.1.tar.gz
-cd gperf-3.1
-./configure --prefix=/usr --docdir=/usr/share/doc/gperf-3.1
+<{toBeReplaced}>
+tar -xvf expat-2.4.6.tar.xz
+cd expat-2.4.6
+./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/expat-2.4.7
+
 make
-make -j1 check
+
+make check
+
 make install
- rm -rf $LFS/sources/gperf-3.1
+
+install -v -m644 doc/*.{html,css} /usr/share/doc/expat-2.4.7
+ rm -rf $LFS/sources/expat-2.4.6
+<{toBeEnded}>

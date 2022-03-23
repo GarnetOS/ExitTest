@@ -1,10 +1,10 @@
-cd /sources
-tar -xvf tar-1.34.tar.xz
-cd tar-1.34
-FORCE_UNSAFE_CONFIGURE=1  \
+<{toBeReplaced}>
+tar -xvf texinfo-6.8.tar.xz
+cd texinfo-6.8
+sed -e 's/__attribute_nonnull__/__nonnull/' \
+    -i gnulib/lib/malloc/dynarray-skeleton.c
 ./configure --prefix=/usr
 make
-make check
 make install
-make -C doc install-html docdir=/usr/share/doc/tar-1.34
- rm -rf $LFS/sources/tar-1.34
+ rm -rf $LFS/sources/texinfo-6.8
+<{toBeEnded}>

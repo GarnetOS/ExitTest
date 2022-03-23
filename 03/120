@@ -1,16 +1,18 @@
-cd /sources
-tar -xvf eudev-3.2.10.tar.gz
-cd eudev-3.2.10
-./configure --prefix=/usr           \
-            --bindir=/usr/sbin      \
-            --sysconfdir=/etc       \
-            --enable-manpages       \
-            --disable-static
+<{toBeReplaced}>
+tar -xvf man-db-2.10.1.tar.xz
+cd man-db-2.10.1
+./configure --prefix=/usr                         \
+            --docdir=/usr/share/doc/man-db-2.10.1 \
+            --sysconfdir=/etc                     \
+            --disable-setuid                      \
+            --enable-cache-owner=bin              \
+            --with-browser=/usr/bin/lynx          \
+            --with-vgrind=/usr/bin/vgrind         \
+            --with-grap=/usr/bin/grap             \
+            --with-systemdtmpfilesdir=            \
+            --with-systemdsystemunitdir=
 make
-mkdir -pv /usr/lib/udev/rules.d
-mkdir -pv /etc/udev/rules.d
 make check
 make install
-tar -xvf ../udev-lfs-20171102.tar.xz
-make -f udev-lfs-20171102/Makefile.lfs install
- rm -rf $LFS/sources/eudev-3.2.10
+ rm -rf $LFS/sources/man-db-2.10.1
+<{toBeEnded}>

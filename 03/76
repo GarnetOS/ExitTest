@@ -1,31 +1,15 @@
-cd /sources
-cd gcc-11.2.0
+<{toBeReplaced}>
+tar -xvf pkg-config-0.29.2.tar.gz
+cd pkg-config-0.29.2
+./configure --prefix=/usr              \
+            --with-internal-glib       \
+            --disable-host-tool        \
+            --docdir=/usr/share/doc/pkg-config-0.29.2
+
 make
-ulimit -s 32768
-chown -Rv tester . 
-su tester -c "PATH=$PATH make -k check"
-../contrib/test_summary
+make check
 make install
-rm -rf /usr/lib/gcc/$(gcc -dumpmachine)/11.2.0/include-fixed/bits/
-chown -v -R root:root \
-    /usr/lib/gcc/*linux-gnu/11.2.0/include{,-fixed}
-ln -svr /usr/bin/cpp /usr/lib
-ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/11.2.0/liblto_plugin.so \
-        /usr/lib/bfd-plugins/
-echo 'int main(){}' > dummy.c
-cc dummy.c -v -Wl,--verbose &> dummy.log
-readelf -l a.out | grep ': /lib'
-
-grep -o '/usr/lib.*/crt[1in].*succeeded' dummy.log
-
-grep -B4 '^ /usr/include' dummy.log
-
-grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'
-
-grep "/lib.*/libc.so.6 " dummy.log
 
 
-rm -v dummy.c a.out dummy.log
-mkdir -pv /usr/share/gdb/auto-load/usr/lib
-mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib
-rm -rf $LFS/sources/gcc-11.2.0
+ rm -rf $LFS/sources/pkg-config-0.29.2
+<{toBeEnded}>

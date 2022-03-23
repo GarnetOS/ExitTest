@@ -1,40 +1,30 @@
-cd /sources
-tar -xvf gcc-11.2.0.tar.xz
-cd gcc-11.2.0
-sed -e '/static.*SIGSTKSZ/d' \
-    -e 's/return kAltStackSize/return SIGSTKSZ * 4/' \
-    -i libsanitizer/sanitizer_common/sanitizer_posix_libcdep.cpp
-case $(uname -m) in
-  x86_64)
-    sed -e '/m64=/s/lib64/lib/' \
-        -i.orig gcc/config/i386/t-linux64
-  ;;
-  ppc64)
-    sed -e '/m64=/s/lib64/lib/' \
-        -i.orig gcc/config/rs6000/t-linux64
-  ;;
-  aarch64)
-    sed -e '/mabi.lp64=/s/lib64/lib/' \
-    -i.orig gcc/config/aarch64/t-aarch64-linux
-  ;;
-esac
-case $(uname -m) in
-  armv6l)
-    patch -Np1 -i ../gcc-10.2.0-armv6.patch
- ;;
-  armv7l)
-    patch -Np1 -i ../gcc-10.2.0-armv7.patch
- ;;
-  aarch64)
-    patch -Np1 -i ../gcc-10.2.0-armv8.patch
- ;;
-esac
-mkdir -v build
-cd       build
-../configure --prefix=/usr            \
-             LD=ld                    \
-             --enable-languages=c,c++ \
-             --disable-multilib       \
-             --disable-bootstrap      \
-             --with-system-zlib
+<{toBeReplaced}>
+tar -xvf shadow-4.11.1.tar.xz
+cd shadow-4.11.1
+sed -i 's/groups$(EXEEXT) //' src/Makefile.in
+find man -name Makefile.in -exec sed -i 's/groups\.1 / /'   {} \;
+find man -name Makefile.in -exec sed -i 's/getspnam\.3 / /' {} \;
+find man -name Makefile.in -exec sed -i 's/passwd\.5 / /'   {} \;
+sed -e 's:#ENCRYPT_METHOD DES:ENCRYPT_METHOD SHA512:' \
+    -e 's:/var/spool/mail:/var/mail:'                 \
+    -e '/PATH=/{s@/sbin:@@;s@/bin:@@}'                \
+    -i etc/login.defs
+sed -i 's:DICTPATH.*:DICTPATH\t/lib/cracklib/pw_dict:' etc/login.defs
+touch /usr/bin/passwd
+./configure --sysconfdir=/etc \
+            --disable-static  \
+            --with-group-name-max-length=32
 make
+make exec_prefix=/usr install
+make -C man install-man
+
+pwconv
+grpconv
+mkdir -p /etc/default
+useradd -D --gid 999
+
+sed -i '/MAIL/s/yes/no/' /etc/default/useradd
+
+passwd root
+ rm -rf $LFS/sources/shadow-4.11.1
+<{toBeEnded}>

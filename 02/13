@@ -1,18 +1,11 @@
-#!/bin/bash -e
-./prepare
-export MAKEFLAGS='-j2'
-cd $LFS/sources
-tar -xvf file-5.40.tar.gz
-cd file-5.40
-mkdir build
-pushd build
-  ../configure --disable-bzlib      \
-               --disable-libseccomp \
-               --disable-xzlib      \
-               --disable-zlib
-  make
-popd
-./configure --prefix=/usr --host=$LFS_TGT --build=$(./config.guess)
-make FILE_COMPILE=$(pwd)/build/src/file
+<{toBeReplaced}>
+tar -xvf gawk-5.1.1.tar.xz
+cd gawk-5.1.1
+sed -i 's/extras//' Makefile.in
+./configure --prefix=/usr   \
+            --host=$LFS_TGT \
+            --build=$(build-aux/config.guess)
+make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/file-5.40
+ rm -rf $LFS/sources/gawk-5.1.1
+<{toBeEnded}>

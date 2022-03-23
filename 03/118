@@ -1,17 +1,36 @@
-cd /sources
-tar -xvf texinfo-6.8.tar.xz
-cd texinfo-6.8
-./configure --prefix=/usr
-sed -e 's/__attribute_nonnull__/__nonnull/' \
-    -i gnulib/lib/malloc/dynarray-skeleton.c
+<{toBeReplaced}>
+tar -xvf eudev-3.2.11.tar.gz
+cd eudev-3.2.11
+./configure --prefix=/usr           \
+            --bindir=/usr/sbin      \
+            --sysconfdir=/etc       \
+            --enable-manpages       \
+            --disable-static
 make
+mkdir -pv /usr/lib/udev/rules.d
+mkdir -pv /etc/udev/rules.d
 make check
 make install
-make TEXMF=/usr/share/texmf install-tex
-pushd /usr/share/info
-  rm -v dir
-  for f in *
-    do install-info $f dir 2>/dev/null
-  done
-popd
- rm -rf $LFS/sources/texinfo-6.8
+tar -xvf ../udev-lfs-20171102.tar.xz
+make -f udev-lfs-20171102/Makefile.lfs install
+udevadm hwdb --update
+ rm -rf $LFS/sources/eudev-3.2.11
+<{toBeEnded}>customizing settings, not after
+source $VIMRUNTIME/defaults.vim
+let skip_defaults_vim=1
+
+set nocompatible
+set backspace=2
+set mouse=
+syntax on
+if (&term == "xterm") || (&term == "putty")
+  set background=dark
+endif
+
+" End /etc/vimrc
+EOF
+vim -c ':options'
+set spelllang=en,ru
+set spell
+ rm -rf $LFS/sources/vim-8.2.4383
+<{toBeEnded}>

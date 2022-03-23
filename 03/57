@@ -1,26 +1,10 @@
-cd /sources
-tar -xvf shadow-4.9.tar.xz
-cd shadow-4.9
-sed -i 's/groups$(EXEEXT) //' src/Makefile.in
-find man -name Makefile.in -exec sed -i 's/groups\.1 / /'   {} \;
-find man -name Makefile.in -exec sed -i 's/getspnam\.3 / /' {} \;
-find man -name Makefile.in -exec sed -i 's/passwd\.5 / /'   {} \;
-sed -e 's:#ENCRYPT_METHOD DES:ENCRYPT_METHOD SHA512:' \
-    -e 's:/var/spool/mail:/var/mail:'                 \
-    -e '/PATH=/{s@/sbin:@@;s@/bin:@@}'                \
-    -i etc/login.defs
-sed -i 's:DICTPATH.*:DICTPATH\t/lib/cracklib/pw_dict:' etc/login.defs
-sed -e "224s/rounds/min_rounds/" -i libmisc/salt.c
-touch /usr/bin/passwd
-./configure --sysconfdir=/etc \
-            --with-group-name-max-length=32
-make
-make exec_prefix=/usr install
-make -C man install-man
-mkdir -p /etc/default
-useradd -D --gid 999
-pwconv
-grpconv
-sed -i 's/yes/no/' /etc/default/useradd
-echo "toor" | passwd root --stdin
-rm -rf $LFS/sources/shadow-4.9
+<{toBeReplaced}>
+tar -xvf libcap-2.63.tar.xz
+cd libcap-2.63
+sed -i '/install -m.*STA/d' libcap/Makefile
+make prefix=/usr lib=lib
+make test
+make prefix=/usr lib=lib install
+
+ rm -rf $LFS/sources/libcap-2.63
+<{toBeEnded}>

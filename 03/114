@@ -1,8 +1,11 @@
-cd /sources
-tar -xvf libpipeline-1.5.3.tar.gz
-cd libpipeline-1.5.3
-./configure --prefix=/usr
+<{toBeReplaced}>
+tar -xvf make-4.3.tar.gz
+cd make-4.3
+./configure --prefix=/usr   \
+            --without-guile \
+            --host=$LFS_TGT \
+            --build=$(build-aux/config.guess)
 make
-make check
-make install
- rm -rf $LFS/sources/libpipeline-1.5.3
+make DESTDIR=$LFS install
+ rm -rf $LFS/sources/make-4.3
+<{toBeEnded}>

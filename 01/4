@@ -1,12 +1,10 @@
-#!/bin/bash -e
-./prepare 
-export MAKEFLAGS='-j2'
-cd $LFS/sources
-cd gcc-11.2.0
-cd       build
-make
-make install
-cd ..
-cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
-  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
- rm -rf $LFS/sources/gcc-11.2.0
+<{toBeReplaced}>
+tar -xvf linux-5.16.9.tar.xz
+cd linux-5.16.9
+make mrproper
+make headers
+find usr/include -name '.*' -delete
+rm usr/include/Makefile
+cp -rv usr/include $LFS/usr
+ rm -rf $LFS/sources/linux-5.16.9
+<{toBeEnded}>

@@ -1,11 +1,8 @@
-cd /sources
-tar -xvf grub-2.06.tar.xz
-cd grub-2.06
-./configure --prefix=/usr          \
-            --sysconfdir=/etc      \
-            --disable-efiemu       \
-            --disable-werror
+<{toBeReplaced}>
+tar -xvf gzip-1.11.tar.xz
+cd gzip-1.11
+./configure --prefix=/usr --host=$LFS_TGT
 make
-make install
-mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions
- rm -rf $LFS/sources/grub-2.06
+make DESTDIR=$LFS install
+ rm -rf $LFS/sources/gzip-1.11
+<{toBeEnded}>

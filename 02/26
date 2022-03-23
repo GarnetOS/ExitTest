@@ -1,7 +1,4 @@
-#!/bin/bash -e
-./prepare 
-export MAKEFLAGS='-j2'
-cd $LFS/sources
+<{toBeReplaced}>
 tar -xvf gcc-11.2.0.tar.xz
 cd gcc-11.2.0
 mkdir -v build
@@ -17,3 +14,4 @@ cd       build
 make
 make DESTDIR=$LFS install
  rm -rf $LFS/sources/gcc-11.2.0
+<{toBeEnded}>

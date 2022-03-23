@@ -1,17 +1,10 @@
-cd /sources
-tar -xvf perl-5.34.0.tar.xz
-cd perl-5.34.0
-sh Configure -des                                        \
-             -Dprefix=/usr                               \
-             -Dvendorprefix=/usr                         \
-             -Dprivlib=/usr/lib/perl5/5.34/core_perl     \
-             -Darchlib=/usr/lib/perl5/5.34/core_perl     \
-             -Dsitelib=/usr/lib/perl5/5.34/site_perl     \
-             -Dsitearch=/usr/lib/perl5/5.34/site_perl    \
-             -Dvendorlib=/usr/lib/perl5/5.34/vendor_perl \
-             -Dvendorarch=/usr/lib/perl5/5.34/vendor_perl
-
+<{toBeReplaced}>
+tar -xvf Python-3.10.2.tar.xz
+cd Python-3.10.2
+./configure --prefix=/usr   \
+            --enable-shared \
+            --without-ensurepip
 make
-
 make install
- rm -rf $LFS/sources/perl-5.34.0
+ rm -rf $LFS/sources/Python-3.10.2
+<{toBeEnded}>

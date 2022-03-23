@@ -1,13 +1,9 @@
-#!/bin/bash -e
-./prepare
-export MAKEFLAGS='-j2'
-cd $LFS/sources
-tar -xvf findutils-4.8.0.tar.xz
-cd findutils-4.8.0
-./configure --prefix=/usr                   \
-            --localstatedir=/var/lib/locate \
-            --host=$LFS_TGT                 \
-            --build=$(build-aux/config.guess)
+<{toBeReplaced}>
+tar -xvf grep-3.7.tar.xz
+cd grep-3.7
+./configure --prefix=/usr   \
+            --host=$LFS_TGT
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/findutils-4.8.0
+ rm -rf $LFS/sources/grep-3.7
+<{toBeEnded}>

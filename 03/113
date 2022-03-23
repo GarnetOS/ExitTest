@@ -1,11 +1,9 @@
-cd /sources
-tar -xvf kbd-2.4.0.tar.xz
-cd kbd-2.4.0
-patch -Np1 -i ../kbd-2.4.0-backspace-1.patch
-sed -i '/RESIZECONS_PROGS=/s/yes/no/' configure
-sed -i 's/resizecons.8 //' docs/man/man8/Makefile.in
-./configure --prefix=/usr --disable-vlock
+<{toBeReplaced}>
+tar -xvf libpipeline-1.5.5.tar.gz
+cd libpipeline-1.5.5
+./configure --prefix=/usr
 make
 make check
 make install
- rm -rf $LFS/sources/kbd-2.4.0
+ rm -rf $LFS/sources/libpipeline-1.5.5
+<{toBeEnded}>

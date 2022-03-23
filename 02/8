@@ -1,12 +1,12 @@
-#!/bin/bash -e
-./prepare
-export MAKEFLAGS='-j2'
-cd $LFS/sources
-tar -xvf m4-1.4.19.tar.xz
-cd m4-1.4.19
-./configure --prefix=/usr   \
-            --host=$LFS_TGT \
-            --build=$(build-aux/config.guess)
+<{toBeReplaced}>
+tar -xvf bash-5.1.16.tar.gz
+cd bash-5.1.16
+./configure --prefix=/usr                   \
+            --build=$(support/config.guess) \
+            --host=$LFS_TGT                 \
+            --without-bash-malloc
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/m4-1.4.19
+ln -sv bash $LFS/bin/sh
+ rm -rf $LFS/sources/bash-5.1.16
+<{toBeEnded}>

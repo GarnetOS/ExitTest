@@ -1,12 +1,3 @@
 #!/bin/bash
 eval $1
 EXITCODE=$?
-#while read line; do
-#echo "NEW"
-#echo $EXITCODE
-#echo $line
-#if (( $EXITCODE != 0))
-#then
-#    exit $EXITCODE
-#fi
-#done < $1

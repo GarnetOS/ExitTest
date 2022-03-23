@@ -1,11 +1,23 @@
-cd /sources
-tar -xvf expat-2.4.1.tar.xz
-cd expat-2.4.1
-./configure --prefix=/usr    \
-            --disable-static \
-            --docdir=/usr/share/doc/expat-2.4.1
+<{toBeReplaced}>
+tar -xvf 88
+cd 88
+./configure --prefix=/usr        \
+            --bindir=/usr/bin    \
+            --localstatedir=/var \
+            --disable-logger     \
+            --disable-whois      \
+            --disable-rcp        \
+            --disable-rexec      \
+            --disable-rlogin     \
+            --disable-rsh        \
+            --disable-servers
+
 make
+
 make check
+
 make install
-install -v -m644 doc/*.{html,png,css} /usr/share/doc/expat-2.4.1
- rm -rf $LFS/sources/expat-2.4.1
+
+mv -v /usr/{,s}bin/ifconfig
+ rm -rf $LFS/sources/88
+<{toBeEnded}>

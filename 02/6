@@ -1,11 +1,10 @@
 <{toBeReplaced}>
-tar -xvf make-4.3.tar.gz
-cd make-4.3
+tar -xvf m4-1.4.19.tar.xz
+cd m4-1.4.19
 ./configure --prefix=/usr   \
-            --without-guile \
             --host=$LFS_TGT \
             --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/make-4.3
+ rm -rf $LFS/sources/m4-1.4.19
 <{toBeEnded}>

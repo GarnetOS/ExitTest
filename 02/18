@@ -1,13 +1,9 @@
-#!/bin/bash -e
-./prepare
-export MAKEFLAGS='-j2'
-cd $LFS/sources
-tar -xvf make-4.3.tar.gz
-cd make-4.3
+<{toBeReplaced}>
+tar -xvf sed-4.8.tar.xz
+cd sed-4.8
 ./configure --prefix=/usr   \
-            --without-guile \
-            --host=$LFS_TGT \
-            --build=$(build-aux/config.guess)
+            --host=$LFS_TGT
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/make-4.3
+ rm -rf $LFS/sources/sed-4.8
+<{toBeEnded}>

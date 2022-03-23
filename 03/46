@@ -1,11 +1,9 @@
-cd /sources
-tar -xvf flex-2.6.4.tar.gz
-cd flex-2.6.4
-./configure --prefix=/usr \
-            --docdir=/usr/share/doc/flex-2.6.4 \
-            --disable-static
+<{toBeReplaced}>
+tar -xvf bc-5.2.2.tar.xz
+cd bc-5.2.2
+CC=gcc ./configure --prefix=/usr -G -O3
 make
-make check
+make test
 make install
-ln -sv flex /usr/bin/lex
-rm -rf $LFS/sources/flex-2.6.4
+ rm -rf $LFS/sources/bc-5.2.2
+<{toBeEnded}>

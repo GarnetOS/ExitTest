@@ -1,11 +1,11 @@
-#!/bin/bash -e
-./prepare
-export MAKEFLAGS='-j2'
-cd $LFS/sources
-tar -xvf diffutils-3.8.tar.xz
-cd diffutils-3.8
-./configure --prefix=/usr --host=$LFS_TGT
+<{toBeReplaced}>
+tar -xvf findutils-4.9.0.tar.xz
+cd findutils-4.9.0
+./configure --prefix=/usr                   \
+            --localstatedir=/var/lib/locate \
+            --host=$LFS_TGT                 \
+            --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
-
- rm -rf $LFS/sources/diffutils-3.8
+ rm -rf $LFS/sources/findutils-4.9.0
+<{toBeEnded}>

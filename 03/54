@@ -1,11 +1,13 @@
-cd /sources
-tar -xvf attr-2.5.1.tar.gz
-cd attr-2.5.1
-./configure --prefix=/usr     \
-            --disable-static  \
-            --sysconfdir=/etc \
-            --docdir=/usr/share/doc/attr-2.5.1
+<{toBeReplaced}>
+tar -xvf mpc-1.2.1.tar.gz
+cd mpc-1.2.1
+./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/mpc-1.2.1
 make
+make html
 make check
 make install
- rm -rf $LFS/sources/attr-2.5.1
+make install-html
+ rm -rf $LFS/sources/mpc-1.2.1
+<{toBeEnded}>

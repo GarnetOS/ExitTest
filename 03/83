@@ -1,9 +1,24 @@
-cd /sources
-tar -xvf grep-3.7.tar.xz
-cd grep-3.7
-./configure --prefix=/usr
+<{toBeReplaced}>
+tar -xvf bash-5.1.16.tar.gz
+cd bash-5.1.16
+./configure --prefix=/usr                      \
+            --docdir=/usr/share/doc/bash-5.1.16 \
+            --without-bash-malloc              \
+            --with-installed-readline
+
 make
-make check
+chown -Rv tester .
+
+su -s /usr/bin/expect tester << EOF
+set timeout -1
+spawn make tests
+expect eof
+lassign [wait] _ _ _ value
+exit $value
+EOF
+
 make install
 
- rm -rf $LFS/sources/grep-3.7
+exec /usr/bin/bash --login
+ rm -rf $LFS/sources/bash-5.1.16
+<{toBeEnded}>

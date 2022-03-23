@@ -1,11 +1,11 @@
-cd /sources
-tar -xvf zstd-1.5.0.tar.gz
-cd zstd-1.5.0
+<{toBeReplaced}>
+tar -xvf xz-5.2.5.tar.xz
+cd xz-5.2.5
+./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/xz-5.2.5
 make
-
 make check
-
-make prefix=/usr install
-rm -v /usr/lib/libzstd.a
-
- rm -rf $LFS/sources/zstd-1.5.0
+make install
+ rm -rf $LFS/sources/xz-5.2.5
+<{toBeEnded}>
