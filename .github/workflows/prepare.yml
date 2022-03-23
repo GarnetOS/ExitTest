@@ -63,7 +63,7 @@ jobs:
             chmod -v a+wt $LFS/sources
             #dhclient -r
             cd $LFS/sources
-            wget https://www.linuxfromscratch.org/lfs/downloads/11.0/wget-list
+            wget https://www.linuxfromscratch.org/lfs/downloads/11.1/wget-list
             wget --input-file=wget-list --continue --directory-prefix=$LFS/sources --tries=5 || true
             wget --directory-prefix=$LFS/sources http://mirror.jaleco.com/lfs/pub/lfs/lfs-packages/11.0/ncurses-6.2.tar.gz
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv6.patch
