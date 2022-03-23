@@ -65,16 +65,16 @@ jobs:
             cd $LFS/sources
             wget https://www.linuxfromscratch.org/lfs/downloads/11.1/wget-list
             wget --input-file=wget-list --continue --directory-prefix=$LFS/sources --tries=5 || true
-            wget --directory-prefix=$LFS/sources http://mirror.jaleco.com/lfs/pub/lfs/lfs-packages/11.0/ncurses-6.2.tar.gz
-            wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv6.patch
-            wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv7.patch
-            wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.0/patches/gcc-11.2.0-armv8.patch
+            wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.1/patches/gcc-11.2.0-armv6.patch
+            wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.1/patches/gcc-11.2.0-armv7.patch
+            wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.1/patches/gcc-11.2.0-armv8.patch
+            wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.1/patches/binutils_ppc_fix_1.patch
             wget -O coreutils.patch https://711722.bugs.gentoo.org/attachment.cgi?id=617340
-            wget --directory-prefix=$LFS/sources https://github.com/p11-glue/p11-kit/releases/download/0.24.0/p11-kit-0.24.0.tar.xz
-            wget --directory-prefix=$LFS/sources https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
-            wget --directory-prefix=$LFS/sources https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
-            wget --directory-prefix=$LFS/sources https://roy.marples.name/downloads/dhcpcd/dhcpcd-9.4.0.tar.xz
-            wget --directory-prefix=$LFS/sources https://www.nano-editor.org/dist/v5/nano-5.8.tar.xz
+            wget --directory-prefix=$LFS/sources https://github.com/p11-glue/p11-kit/releases/download/0.24.1/p11-kit-0.24.1.tar.xz
+            wget --directory-prefix=$LFS/sources https://github.com/lfs-book/make-ca/releases/download/v1.10/make-ca-1.10.tar.xz
+            wget --directory-prefix=$LFS/sources https://ftp.gnu.org/gnu/wget/wget-1.21.2.tar.gz
+            wget --directory-prefix=$LFS/sources https://roy.marples.name/downloads/dhcpcd/dhcpcd-9.4.1.tar.xz
+            wget --directory-prefix=$LFS/sources https://www.nano-editor.org/dist/v6/nano-6.2.tar.xz
             
             cd /mnt/lfs
             mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
