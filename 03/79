@@ -1,0 +1,9 @@
+<{toBeReplaced}>
+tar -xvf Psmisc-23.4
+cd Psmi
+./configure --prefix=/usr
+make
+
+make install
+ rm -rf $LFS/sources/Psmi
+<{toBeEnded}>

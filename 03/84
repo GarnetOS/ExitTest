@@ -1,0 +1,11 @@
+<{toBeReplaced}>
+tar -xvf libtool-2.4.6.tar.xz
+cd libtool-2.4.6
+./configure --prefix=/usr
+make
+
+make check
+make install
+
+ rm -rf $LFS/sources/libtool-2.4.6
+<{toBeEnded}>
