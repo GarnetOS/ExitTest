@@ -1,0 +1,7 @@
+<{toBeReplaced}>
+tar -xvf iana-etc-20220207.tar.gz
+cd iana-etc-20220207
+cp services protocols /etc
+
+ rm -rf $LFS/sources/iana-etc-20220207
+<{toBeEnded}>
