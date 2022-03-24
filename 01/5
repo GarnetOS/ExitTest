@@ -1,4 +1,7 @@
-<{toBeReplaced}>
+#!/bin/bash -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf glibc-2.35.tar.xz
 cd glibc-2.35
 case $(uname -m) in
@@ -20,4 +23,3 @@ echo "rootsbindir=/usr/sbin" > configparms
       --with-headers=$LFS/usr/include    \
       libc_cv_slibdir=/usr/lib
  rm -rf $LFS/sources/glibc-2.35
-<{toBeEnded}>
