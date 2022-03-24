@@ -11,4 +11,6 @@ cd       build
              --target=$LFS_TGT   \
              --disable-nls       \
              --disable-werror
+ make
+ make install
  rm -rf $LFS/sources/binutils-2.38
