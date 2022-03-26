@@ -1,10 +1,9 @@
 <{toBeReplaced}>
-tar -xvf tar-1.34.tar.xz
-cd tar-1.34
-./configure --prefix=/usr                     \
-            --host=$LFS_TGT                   \
-            --build=$(build-aux/config.guess)
+tar -xvf sed-4.8.tar.xz
+cd sed-4.8
+./configure --prefix=/usr   \
+            --host=$LFS_TGT
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/tar-1.34
+ rm -rf $LFS/sources/sed-4.8
 <{toBeEnded}>

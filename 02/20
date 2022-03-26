@@ -1,12 +1,10 @@
 <{toBeReplaced}>
-tar -xvf xz-5.2.5.tar.xz
-cd xz-5.2.5
+tar -xvf tar-1.34.tar.xz
+cd tar-1.34
 ./configure --prefix=/usr                     \
             --host=$LFS_TGT                   \
-            --build=$(build-aux/config.guess) \
-            --disable-static                  \
-            --docdir=/usr/share/doc/xz-5.2.5
+            --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/xz-5.2.5
+ rm -rf $LFS/sources/tar-1.34
 <{toBeEnded}>

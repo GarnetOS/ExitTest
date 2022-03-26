@@ -1,27 +1,14 @@
 <{toBeReplaced}>
-tar -xvf binutils-2.38.tar.xz
-cd binutils-2.38
-expect -c "spawn ls"
-spawn ls
-The system has no more ptys.
-Ask your system administrator to create more.
-patch -Np1 -i ../binutils-2.38-lto_fix-1.patch
-sed -e '/R_386_TLS_LE /i \   || (TYPE) == R_386_TLS_IE \\' \
-    -i ./bfd/elfxx-x86.h
+tar -xvf dejagnu-1.6.3.tar.gz
+cd dejagnu-1.6.3
 mkdir -v build
 cd       build
-../configure --prefix=/usr       \
-             --enable-gold       \
-             --enable-ld=default \
-             --enable-plugins    \
-             --enable-shared     \
-             --disable-werror    \
-             --enable-64-bit-bfd \
-             --with-system-zlib
-make tooldir=/usr
-make -k check
-make tooldir=/usr install
-rm -fv /usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes}.a
-
- rm -rf $LFS/sources/binutils-2.38
+../configure --prefix=/usr
+makeinfo --html --no-split -o doc/dejagnu.html ../doc/dejagnu.texi
+makeinfo --plaintext       -o doc/dejagnu.txt  ../doc/dejagnu.texi
+make install
+install -v -dm755  /usr/share/doc/dejagnu-1.6.3
+install -v -m644   doc/dejagnu.{html,txt} /usr/share/doc/dejagnu-1.6.3
+make check
+ rm -rf $LFS/sources/dejagnu-1.6.3
 <{toBeEnded}>

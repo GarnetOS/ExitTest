@@ -1,10 +1,13 @@
 <{toBeReplaced}>
-tar -xvf bison-3.8.2.tar.xz
-cd bison-3.8.2
-./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.8.2
+tar -xvf gettext-0.21.tar.xz
+cd gettext-0.21
+./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/gettext-0.21
+
 make
 make check
 make install
-
- rm -rf $LFS/sources/bison-3.8.2
+chmod -v 0755 /usr/lib/preloadable_libintl.so
+ rm -rf $LFS/sources/gettext-0.21
 <{toBeEnded}>

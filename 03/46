@@ -1,9 +1,9 @@
 <{toBeReplaced}>
-tar -xvf bc-5.2.2.tar.xz
-cd bc-5.2.2
-CC=gcc ./configure --prefix=/usr -G -O3
+tar -xvf m4-1.4.19.tar.xz
+cd m4-1.4.19
+./configure --prefix=/usr
 make
-make test
+make check
 make install
- rm -rf $LFS/sources/bc-5.2.2
+ rm -rf $LFS/sources/m4-1.4.19
 <{toBeEnded}>

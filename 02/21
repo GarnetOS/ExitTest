@@ -1,18 +1,12 @@
 <{toBeReplaced}>
-tar -xvf binutils-2.38.tar.xz
-cd binutils-2.38
-sed '6009s/$add_dir//' -i ltmain.sh
-mkdir -v build
-cd       build
-../configure                   \
-    --prefix=/usr              \
-    --build=$(../config.guess) \
-    --host=$LFS_TGT            \
-    --disable-nls              \
-    --enable-shared            \
-    --disable-werror           \
-    --enable-64-bit-bfd
+tar -xvf xz-5.2.5.tar.xz
+cd xz-5.2.5
+./configure --prefix=/usr                     \
+            --host=$LFS_TGT                   \
+            --build=$(build-aux/config.guess) \
+            --disable-static                  \
+            --docdir=/usr/share/doc/xz-5.2.5
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/binutils-2.38
+ rm -rf $LFS/sources/xz-5.2.5
 <{toBeEnded}>

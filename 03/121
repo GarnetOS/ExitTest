@@ -1,12 +1,18 @@
 <{toBeReplaced}>
-tar -xvf procps-ng-3.3.17.tar.xz
-cd procps-ng-3.3.17
-./configure --prefix=/usr                            \
-            --docdir=/usr/share/doc/procps-ng-3.3.17 \
-            --disable-static                         \
-            --disable-kill
+tar -xvf man-db-2.10.1.tar.xz
+cd man-db-2.10.1
+./configure --prefix=/usr                         \
+            --docdir=/usr/share/doc/man-db-2.10.1 \
+            --sysconfdir=/etc                     \
+            --disable-setuid                      \
+            --enable-cache-owner=bin              \
+            --with-browser=/usr/bin/lynx          \
+            --with-vgrind=/usr/bin/vgrind         \
+            --with-grap=/usr/bin/grap             \
+            --with-systemdtmpfilesdir=            \
+            --with-systemdsystemunitdir=
 make
 make check
 make install
- rm -rf $LFS/sources/procps-ng-3.3.17
+ rm -rf $LFS/sources/man-db-2.10.1
 <{toBeEnded}>

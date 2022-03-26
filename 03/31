@@ -1,10 +1,10 @@
 <{toBeReplaced}>
-tar -xvf texinfo-6.8.tar.xz
-cd texinfo-6.8
-sed -e 's/__attribute_nonnull__/__nonnull/' \
-    -i gnulib/lib/malloc/dynarray-skeleton.c
-./configure --prefix=/usr
+tar -xvf Python-3.10.2.tar.xz
+cd Python-3.10.2
+./configure --prefix=/usr   \
+            --enable-shared \
+            --without-ensurepip
 make
 make install
- rm -rf $LFS/sources/texinfo-6.8
+ rm -rf $LFS/sources/Python-3.10.2
 <{toBeEnded}>

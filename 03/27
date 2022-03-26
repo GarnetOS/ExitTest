@@ -1,8 +1,17 @@
 <{toBeReplaced}>
-tar -xvf gettext-0.21.tar.xz
-cd gettext-0.21
-./configure --disable-shared
+tar -xvf gcc-11.2.0.tar.xz
+cd gcc-11.2.0
+mkdir -v build
+cd       build
+../libstdc++-v3/configure           \
+    --host=$LFS_TGT                 \
+    --build=$(../config.guess)      \
+    --prefix=/usr                   \
+    --disable-multilib              \
+    --disable-nls                   \
+    --disable-libstdcxx-pch         \
+    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/11.2.0
 make
-cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
- rm -rf $LFS/sources/gettext-0.21
+make DESTDIR=$LFS install
+ rm -rf $LFS/sources/gcc-11.2.0
 <{toBeEnded}>

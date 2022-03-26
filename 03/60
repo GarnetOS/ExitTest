@@ -1,4 +1,5 @@
 <{toBeReplaced}>
+tar -xvf gcc-11.2.0.tar.xz
 cd gcc-11.2.0
 sed -e '/static.*SIGSTKSZ/d' \
     -e 's/return kAltStackSize/return SIGSTKSZ * 4/' \

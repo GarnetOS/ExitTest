@@ -1,4 +1,5 @@
 <{toBeReplaced}>
+tar -xvf glibc-2.35.tar.xz
 cd glibc-2.35
 patch -Np1 -i ../glibc-2.35-fhs-1.patch
 mkdir -v build

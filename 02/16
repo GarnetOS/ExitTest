@@ -1,11 +1,8 @@
 <{toBeReplaced}>
-tar -xvf make-4.3.tar.gz
-cd make-4.3
-./configure --prefix=/usr   \
-            --without-guile \
-            --host=$LFS_TGT \
-            --build=$(build-aux/config.guess)
+tar -xvf gzip-1.11.tar.xz
+cd gzip-1.11
+./configure --prefix=/usr --host=$LFS_TGT
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/make-4.3
+ rm -rf $LFS/sources/gzip-1.11
 <{toBeEnded}>

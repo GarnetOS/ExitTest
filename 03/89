@@ -1,10 +1,23 @@
 <{toBeReplaced}>
-tar -xvf less-590.tar.gz
-cd less-590
-./configure --prefix=/usr --sysconfdir=/etc
+tar -xvf 88
+cd 88
+./configure --prefix=/usr        \
+            --bindir=/usr/bin    \
+            --localstatedir=/var \
+            --disable-logger     \
+            --disable-whois      \
+            --disable-rcp        \
+            --disable-rexec      \
+            --disable-rlogin     \
+            --disable-rsh        \
+            --disable-servers
 
 make
 
+make check
+
 make install
- rm -rf $LFS/sources/less-590
+
+mv -v /usr/{,s}bin/ifconfig
+ rm -rf $LFS/sources/88
 <{toBeEnded}>

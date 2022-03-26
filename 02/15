@@ -1,8 +1,9 @@
 <{toBeReplaced}>
-tar -xvf gzip-1.11.tar.xz
-cd gzip-1.11
-./configure --prefix=/usr --host=$LFS_TGT
+tar -xvf grep-3.7.tar.xz
+cd grep-3.7
+./configure --prefix=/usr   \
+            --host=$LFS_TGT
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/gzip-1.11
+ rm -rf $LFS/sources/grep-3.7
 <{toBeEnded}>

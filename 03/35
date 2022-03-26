@@ -1,7 +1,7 @@
 <{toBeReplaced}>
-tar -xvf iana-etc-20220207.tar.gz
-cd iana-etc-20220207
-cp services protocols /etc
+tar -xvf man-pages-5.13.tar.xz
+cd man-pages-5.13
+make prefix=/usr install
 
- rm -rf $LFS/sources/iana-etc-20220207
+ rm -rf $LFS/sources/man-pages-5.13
 <{toBeEnded}>

@@ -1,6 +1,6 @@
 <{toBeReplaced}>
-tar -xvf sysklogd-1.5.1.tar.gz
-cd sysklogd-1.5.1
+tar -xvf sysvinit-3.01.tar.xz
+cd sysvinit-3.01
 sed -i '/Error loading kernel symbols/{n;n;d}' ksym_mod.c
 sed -i 's/union wait/int/' syslogd.c
 make
@@ -18,5 +18,5 @@ user.* -/var/log/user.log
 
 # End /etc/syslog.conf
 EOF
- rm -rf $LFS/sources/sysklogd-1.5.1
+ rm -rf $LFS/sources/sysvinit-3.01
 <{toBeEnded}>

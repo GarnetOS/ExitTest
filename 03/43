@@ -1,10 +1,9 @@
 <{toBeReplaced}>
-tar -xvf file-5.41.tar.gz
-
-cd file-5.41.
-./configure --prefix=/usr
+tar -xvf zstd-1.5.2.tar.gz
+cd zstd-1.5.2
 make
 make check
-make install
- rm -rf $LFS/sources/file-5.41.
+make prefix=/usr install
+rm -v /usr/lib/libzstd.a
+ rm -rf $LFS/sources/zstd-1.5.2
 <{toBeEnded}>

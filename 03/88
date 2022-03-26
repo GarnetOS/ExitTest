@@ -1,16 +1,9 @@
 <{toBeReplaced}>
-tar -xvf 88
-cd 88
-./configure --prefix=/usr        \
-            --bindir=/usr/bin    \
-            --localstatedir=/var \
-            --disable-logger     \
-            --disable-whois      \
-            --disable-rcp        \
-            --disable-rexec      \
-            --disable-rlogin     \
-            --disable-rsh        \
-            --disable-servers
+tar -xvf expat-2.4.6.tar.xz
+cd expat-2.4.6
+./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/expat-2.4.7
 
 make
 
@@ -18,6 +11,6 @@ make check
 
 make install
 
-mv -v /usr/{,s}bin/ifconfig
- rm -rf $LFS/sources/88
+install -v -m644 doc/*.{html,css} /usr/share/doc/expat-2.4.7
+ rm -rf $LFS/sources/expat-2.4.6
 <{toBeEnded}>
