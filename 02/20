@@ -1,4 +1,7 @@
-<{toBeReplaced}>
+#!/bin/bash -e 
+./prepare 
+export MAKEFLAGS='-j2' 
+cd $LFS/sources
 tar -xvf tar-1.34.tar.xz
 cd tar-1.34
 ./configure --prefix=/usr                     \
@@ -7,4 +10,3 @@ cd tar-1.34
 make
 make DESTDIR=$LFS install
  rm -rf $LFS/sources/tar-1.34
-<{toBeEnded}>

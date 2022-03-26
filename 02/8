@@ -1,4 +1,7 @@
-<{toBeReplaced}>
+#!/bin/bash -e 
+./prepare 
+export MAKEFLAGS='-j2' 
+cd $LFS/sources
 tar -xvf ncurses-6.3.tar.gz
 cd ncurses-6.3
 sed -i s/mawk// configure
@@ -23,4 +26,3 @@ make
 make DESTDIR=$LFS TIC_PATH=$(pwd)/build/progs/tic install
 echo "INPUT(-lncursesw)" > $LFS/usr/lib/libncurses.so
  rm -rf $LFS/sources/ncurses-6.3
-<{toBeEnded}>

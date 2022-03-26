@@ -1,4 +1,7 @@
-<{toBeReplaced}>
+#!/bin/bash -e 
+./prepare 
+export MAKEFLAGS='-j2' 
+cd $LFS/sources
 tar -xvf xz-5.2.5.tar.xz
 cd xz-5.2.5
 ./configure --prefix=/usr                     \
@@ -9,4 +12,3 @@ cd xz-5.2.5
 make
 make DESTDIR=$LFS install
  rm -rf $LFS/sources/xz-5.2.5
-<{toBeEnded}>

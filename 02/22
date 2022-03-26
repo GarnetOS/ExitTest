@@ -1,4 +1,7 @@
-<{toBeReplaced}>
+#!/bin/bash -e 
+./prepare 
+export MAKEFLAGS='-j2' 
+cd $LFS/sources
 tar -xvf binutils-2.38.tar.xz
 cd binutils-2.38
 sed '6009s/$add_dir//' -i ltmain.sh
@@ -15,4 +18,3 @@ cd       build
 make
 make DESTDIR=$LFS install
  rm -rf $LFS/sources/binutils-2.38
-<{toBeEnded}>
