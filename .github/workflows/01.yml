@@ -37,7 +37,7 @@ jobs:
       - name: Download artifact
         uses: GarnetOS/action-download-artifact@new
         with:
-          workflow: 01.yml
+          workflow: prepare.yml
           name: out-${{matrix.arch}}-${{env.PREV}}
       - name: Prepare image
         run: |
@@ -62,6 +62,7 @@ jobs:
             uname -a
             apt update
             apt upgrade -y
+            apt install -y libicu67
             apt install -y wget zip util-linux timelimit sudo
             apt install -y gcc g++ gzip libc6 grep make patch perl python3 sed tar xz-utils binutils bison bzip2 coreutils diffutils findutils gawk texinfo flex
             rm /bin/sh
