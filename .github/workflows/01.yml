@@ -37,7 +37,7 @@ jobs:
       - name: Download artifact
         uses: GarnetOS/action-download-artifact@new
         with:
-          workflow: prepare.yml
+          workflow: 01.yml
           name: out-${{matrix.arch}}-${{env.PREV}}
       #- uses: prewk/s3-cp-action@v0.1.1
       #  with:
