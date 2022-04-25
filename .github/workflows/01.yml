@@ -110,7 +110,7 @@ jobs:
       - name: Minio install and deploy
         run: |
             wget https://dl.min.io/client/mc/release/linux-amd64/mcli_20220416211121.0.0_amd64.deb
-            dpkg -i mcli_20220416211121.0.0_amd64.deb
+            sudo dpkg -i mcli_20220416211121.0.0_amd64.deb
             mcli alias set myminio/ http://${{ secrets.MINIO_IP }}:9000 ${{ secrets.MINIO_ACCESS }} ${{ secrets.MINIO_SECRET }}
             mcli cp out-${{matrix.arch}}.tar.gz myminio/bucket
   post:
