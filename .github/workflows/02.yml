@@ -29,7 +29,7 @@ jobs:
             sudo apt install curl wget grep
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
             wget https://dl.min.io/client/mc/release/linux-amd64/archive/mcli_20220426180022.0.0_amd64.deb
-            sudo dpkg -i mcli_20220416211121.0.0_amd64.deb
+            sudo dpkg -i mcli_20220426180022.0.0_amd64.deb
             mcli alias set myminio/ http://${{ secrets.MINIO_IP }}:9000 ${{ secrets.MINIO_ACCESS }} ${{ secrets.MINIO_SECRET }}
             export CURR=$(([ -z "${{ github.event.inputs.package }}" ] && echo ${{github.event.client_payload.number}})||echo ${{ github.event.inputs.package }})
             echo "CURR=$(($CURR))" >> $GITHUB_ENV
