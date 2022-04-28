@@ -83,6 +83,23 @@ jobs:
             TERM="$TERM"                \
             PATH=/usr/bin:/usr/sbin     \
             ./${{github.event.inputs.package}}
+      - name: Unmount
+        run: |
+            sleep 1m
+            sudo umount /mnt/lfs           
+      - name: Prepare image
+        run: |
+               tar -czvf out.tar.gz VHD.img
+               tar -tzf out.tar.gz >/dev/null
+      - uses: actions/upload-artifact@v2.3.1
+        with:
+          name: out-${{matrix.arch}}-${{env.CURR}}
+          path: out.tar.gz
+      - name: Rename
+        run: mv out.tar.gz out-${{matrix.arch}}.tar.gz
+      - name: Minio install and deploy
+        run: |
+            mcli cp out-${{matrix.arch}}.tar.gz myminio/bucket
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-${{github.event.inputs.package}}
