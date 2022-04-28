@@ -23,17 +23,23 @@ jobs:
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
             sudo apt install curl wget grep
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
+            wget https://dl.min.io/client/mc/release/linux-amd64/archive/mcli_20220426180022.0.0_amd64.deb
+            sudo dpkg -i mcli_20220426180022.0.0_amd64.deb
+            mcli alias set myminio/ http://${{ secrets.MINIO_IP }}:9000 ${{ secrets.MINIO_ACCESS }} ${{ secrets.MINIO_SECRET }}
             export CURR=$(([ -z "${{ github.event.inputs.package }}" ] && echo ${{github.event.client_payload.number}})||echo ${{ github.event.inputs.package }})
             echo "CURR=$(($CURR))" >> $GITHUB_ENV
             echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
             echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
       - uses: actions/checkout@v3
         name: Checkout
-      - name: Download artifact
-        uses: GarnetOS/action-download-artifact@new
-        with:
-          workflow: 02.yml
-          name: out-${{matrix.arch}}-25
+      - name: Download
+        run: |
+            mcli cp myminio/bucket/out-${{matrix.arch}}.tar.gz out.tar.gz
+      #- name: Download artifact
+      #  uses: GarnetOS/action-download-artifact@new
+      #  with:
+      #    workflow: 02.yml
+      #    name: out-${{matrix.arch}}-25
       - name: Prepare image
         run: |
             pwd
