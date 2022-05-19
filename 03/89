@@ -1,23 +1,11 @@
-<{toBeReplaced}>
-tar -xvf 88
-cd 88
-./configure --prefix=/usr        \
-            --bindir=/usr/bin    \
-            --localstatedir=/var \
-            --disable-logger     \
-            --disable-whois      \
-            --disable-rcp        \
-            --disable-rexec      \
-            --disable-rlogin     \
-            --disable-rsh        \
-            --disable-servers
-
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf check-0.15.2.tar.gz
+cd check-0.15.2
+./configure --prefix=/usr --disable-static
 make
-
 make check
-
-make install
-
-mv -v /usr/{,s}bin/ifconfig
- rm -rf $LFS/sources/88
-<{toBeEnded}>
+make docdir=/usr/share/doc/check-0.15.2 install

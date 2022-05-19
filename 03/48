@@ -1,4 +1,8 @@
-<{toBeReplaced}>
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf flex-2.6.4.tar.gz
 cd flex-2.6.4
 ./configure --prefix=/usr \
@@ -8,5 +12,3 @@ make
 make check
 make install
 ln -sv flex /usr/bin/lex
- rm -rf $LFS/sources/flex-2.6.4
-<{toBeEnded}>

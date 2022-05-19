@@ -1,4 +1,8 @@
-<{toBeReplaced}>
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf shadow-4.11.1.tar.xz
 cd shadow-4.11.1
 sed -i 's/groups$(EXEEXT) //' src/Makefile.in
@@ -17,14 +21,9 @@ touch /usr/bin/passwd
 make
 make exec_prefix=/usr install
 make -C man install-man
-
 pwconv
 grpconv
 mkdir -p /etc/default
 useradd -D --gid 999
-
 sed -i '/MAIL/s/yes/no/' /etc/default/useradd
-
 passwd root
- rm -rf $LFS/sources/shadow-4.11.1
-<{toBeEnded}>

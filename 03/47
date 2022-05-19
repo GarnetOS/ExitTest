@@ -1,9 +1,11 @@
-<{toBeReplaced}>
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf bc-5.2.2.tar.xz
 cd bc-5.2.2
 CC=gcc ./configure --prefix=/usr -G -O3
 make
 make test
 make install
- rm -rf $LFS/sources/bc-5.2.2
-<{toBeEnded}>

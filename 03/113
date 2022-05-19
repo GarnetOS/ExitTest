@@ -1,0 +1,8 @@
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf lfs-bootscripts-20210608.tar.xz
+cd lfs-bootscripts-20210608
+make install

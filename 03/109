@@ -1,9 +1,24 @@
-<{toBeReplaced}>
-tar -xvf groff-1.22.4.tar.gz
-cd groff-1.22.4
-PAGE=<paper_size> ./configure --prefix=/usr
-make -j1
-make install
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf sysklogd-1.5.1.tar.gz
+cd sysklogd-1.5.1
+sed -i '/Error loading kernel symbols/{n;n;d}' ksym_mod.c
+sed -i 's/union wait/int/' syslogd.c
+make
+make BINDIR=/sbin install
+cat > /etc/syslog.conf << "EOF"
+# Begin /etc/syslog.conf
 
- rm -rf $LFS/sources/groff-1.22.4
-<{toBeEnded}>
+auth,authpriv.* -/var/log/auth.log
+*.*;auth,authpriv.none -/var/log/sys.log
+daemon.* -/var/log/daemon.log
+kern.* -/var/log/kern.log
+mail.* -/var/log/mail.log
+user.* -/var/log/user.log
+*.emerg *
+
+# End /etc/syslog.conf
+EOF

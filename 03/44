@@ -1,10 +1,11 @@
-<{toBeReplaced}>
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf file-5.41.tar.gz
-
-cd file-5.41.
+cd file-5.41
 ./configure --prefix=/usr
 make
 make check
 make install
- rm -rf $LFS/sources/file-5.41.
-<{toBeEnded}>

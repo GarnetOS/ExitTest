@@ -1,6 +1,10 @@
-<{toBeReplaced}>
-tar -xvf util-linux-2.37.4.tar.xz
-cd util-linux-2.37.4
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf binutils-2.38.tar.xz
+cd binutils-2.38
 mkdir -pv /var/lib/hwclock
 ./configure ADJTIME_PATH=/var/lib/hwclock/adjtime    \
             --libdir=/usr/lib    \
@@ -17,5 +21,3 @@ mkdir -pv /var/lib/hwclock
             runstatedir=/run
 make
 make install
- rm -rf $LFS/sources/util-linux-2.37.4
-<{toBeEnded}>

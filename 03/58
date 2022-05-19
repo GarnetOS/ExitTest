@@ -1,10 +1,11 @@
-<{toBeReplaced}>
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf libcap-2.63.tar.xz
 cd libcap-2.63
 sed -i '/install -m.*STA/d' libcap/Makefile
 make prefix=/usr lib=lib
 make test
 make prefix=/usr lib=lib install
-
- rm -rf $LFS/sources/libcap-2.63
-<{toBeEnded}>

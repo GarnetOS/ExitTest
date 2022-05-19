@@ -1,4 +1,8 @@
-<{toBeReplaced}>
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf mpc-1.2.1.tar.gz
 cd mpc-1.2.1
 ./configure --prefix=/usr    \
@@ -9,5 +13,3 @@ make html
 make check
 make install
 make install-html
- rm -rf $LFS/sources/mpc-1.2.1
-<{toBeEnded}>

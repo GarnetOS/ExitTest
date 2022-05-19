@@ -1,13 +1,18 @@
-<{toBeReplaced}>
-tar -xvf gettext-0.21.tar.xz
-cd gettext-0.21
-./configure --prefix=/usr    \
-            --disable-static \
-            --docdir=/usr/share/doc/gettext-0.21
-
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf openssl-3.0.1.tar.gz
+cd openssl-3.0.1
+./config --prefix=/usr         \
+         --openssldir=/etc/ssl \
+         --libdir=lib          \
+         shared                \
+         zlib-dynamic
 make
-make check
-make install
-chmod -v 0755 /usr/lib/preloadable_libintl.so
- rm -rf $LFS/sources/gettext-0.21
-<{toBeEnded}>
+make test
+sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
+make MANSUFFIX=ssl install
+mv -v /usr/share/doc/openssl /usr/share/doc/openssl-3.0.1
+cp -vfr doc/* /usr/share/doc/openssl-3.0.1

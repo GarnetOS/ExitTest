@@ -1,4 +1,8 @@
-<{toBeReplaced}>
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf bzip2-1.0.8.tar.gz
 cd bzip2-1.0.8
 patch -Np1 -i ../bzip2-1.0.8-install_docs-1.patch
@@ -15,5 +19,3 @@ for i in /usr/bin/{bzcat,bunzip2}; do
   ln -sfv bzip2 $i
 done
 rm -fv /usr/lib/libbz2.a
- rm -rf $LFS/sources/bzip2-1.0.8
-<{toBeEnded}>

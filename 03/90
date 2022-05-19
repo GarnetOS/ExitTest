@@ -1,10 +1,11 @@
-<{toBeReplaced}>
-tar -xvf less-590.tar.gz
-cd less-590
-./configure --prefix=/usr --sysconfdir=/etc
-
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf diffutils-3.8.tar.xz
+cd diffutils-3.8
+./configure --prefix=/usr
 make
-
+make check
 make install
- rm -rf $LFS/sources/less-590
-<{toBeEnded}>

@@ -1,4 +1,8 @@
-<{toBeReplaced}>
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf eudev-3.2.11.tar.gz
 cd eudev-3.2.11
 ./configure --prefix=/usr           \
@@ -14,23 +18,3 @@ make install
 tar -xvf ../udev-lfs-20171102.tar.xz
 make -f udev-lfs-20171102/Makefile.lfs install
 udevadm hwdb --update
- rm -rf $LFS/sources/eudev-3.2.11
-<{toBeEnded}>customizing settings, not after
-source $VIMRUNTIME/defaults.vim
-let skip_defaults_vim=1
-
-set nocompatible
-set backspace=2
-set mouse=
-syntax on
-if (&term == "xterm") || (&term == "putty")
-  set background=dark
-endif
-
-" End /etc/vimrc
-EOF
-vim -c ':options'
-set spelllang=en,ru
-set spell
- rm -rf $LFS/sources/vim-8.2.4383
-<{toBeEnded}>

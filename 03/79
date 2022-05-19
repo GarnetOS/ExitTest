@@ -1,14 +1,11 @@
-<{toBeReplaced}>
-tar -xvf sed-4.8.tar.xz
-cd sed-4.8
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf autoconf-2.71.tar.xz
+cd autoconf-2.71
 ./configure --prefix=/usr
 make
-make html
-
-chown -Rv tester .
-su tester -c "PATH=$PATH make check"
+make check
 make install
-install -d -m755           /usr/share/doc/sed-4.8
-install -m644 doc/sed.html /usr/share/doc/sed-4.8
- rm -rf $LFS/sources/sed-4.8
-<{toBeEnded}>

@@ -1,10 +1,12 @@
-<{toBeReplaced}>
-tar -xvf Python-3.10.2.tar.xz
-cd Python-3.10.2
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf python-3.10.2-docs-html.tar.bz2
+cd python-3.10.2-docs-html
 ./configure --prefix=/usr   \
             --enable-shared \
             --without-ensurepip
 make
 make install
- rm -rf $LFS/sources/Python-3.10.2
-<{toBeEnded}>

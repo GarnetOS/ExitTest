@@ -1,15 +1,11 @@
-<{toBeReplaced}>
-tar -xvf pkg-config-0.29.2.tar.gz
-cd pkg-config-0.29.2
-./configure --prefix=/usr              \
-            --with-internal-glib       \
-            --disable-host-tool        \
-            --docdir=/usr/share/doc/pkg-config-0.29.2
-
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf XML-Parser-2.46.tar.gz
+cd XML-Parser-2.46
+perl Makefile.PL
 make
-make check
+make test
 make install
-
-
- rm -rf $LFS/sources/pkg-config-0.29.2
-<{toBeEnded}>

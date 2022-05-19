@@ -1,0 +1,11 @@
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf automake-1.16.5.tar.xz
+cd automake-1.16.5
+./configure --prefix=/usr
+make
+make check
+make install

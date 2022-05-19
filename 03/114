@@ -1,9 +1,22 @@
-<{toBeReplaced}>
-tar -xvf libpipeline-1.5.5.tar.gz
-cd libpipeline-1.5.5
-./configure --prefix=/usr
-make
-make check
-make install
- rm -rf $LFS/sources/libpipeline-1.5.5
-<{toBeEnded}>
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+cat > /etc/fstab << "EOF"
+# Begin /etc/fstab
+
+# file system  mount-point  type     options             dump  fsck
+#                                                              order
+
+/dev/<xxx>     /            <fff>    defaults            1     1
+/dev/<yyy>     swap         swap     pri=1               0     0
+proc           /proc        proc     nosuid,noexec,nodev 0     0
+sysfs          /sys         sysfs    nosuid,noexec,nodev 0     0
+devpts         /dev/pts     devpts   gid=5,mode=620      0     0
+tmpfs          /run         tmpfs    defaults            0     0
+devtmpfs       /dev         devtmpfs mode=0755,nosuid    0     0
+
+# End /etc/fstab
+EOF
+hdparm -I /dev/sda | grep NCQ

@@ -1,10 +1,21 @@
-<{toBeReplaced}>
-tar -xvf bison-3.8.2.tar.xz
-cd bison-3.8.2
-./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.8.2
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf kmod-29.tar.xz
+cd kmod-29
+./configure --prefix=/usr          \
+            --sysconfdir=/etc      \
+            --with-openssl         \
+            --with-xz              \
+            --with-zstd            \
+            --with-zlib
 make
-make check
 make install
 
- rm -rf $LFS/sources/bison-3.8.2
-<{toBeEnded}>
+for target in depmod insmod modinfo modprobe rmmod; do
+  ln -sfv ../bin/kmod /usr/sbin/$target
+done
+
+ln -sfv kmod /usr/bin/lsmod

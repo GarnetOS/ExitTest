@@ -1,8 +1,10 @@
-<{toBeReplaced}>
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 tar -xvf gettext-0.21.tar.xz
 cd gettext-0.21
 ./configure --disable-shared
 make
 cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
- rm -rf $LFS/sources/gettext-0.21
-<{toBeEnded}>

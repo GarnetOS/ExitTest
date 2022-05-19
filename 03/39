@@ -1,4 +1,8 @@
-<{toBeReplaced}>
+#!/bin/bash -e
+set -e
+./prepare
+export MAKEFLAGS='-j2'
+cd $LFS/sources
 cd glibc-2.35
 patch -Np1 -i ../glibc-2.35-fhs-1.patch
 mkdir -v build
@@ -103,6 +107,3 @@ include /etc/ld.so.conf.d/*.conf
 
 EOF
 mkdir -pv /etc/ld.so.conf.d
-
- rm -rf $LFS/sources/glibc-2.35
-<{toBeEnded}>
