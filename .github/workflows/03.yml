@@ -24,14 +24,20 @@ jobs:
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
             sudo apt install curl wget grep
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
+            wget https://dl.min.io/client/mc/release/linux-amd64/archive/mcli_20220426180022.0.0_amd64.deb
+            sudo dpkg -i mcli_20220426180022.0.0_amd64.deb
+            mcli alias set myminio/ http://${{ secrets.MINIO_IP }}:9000 ${{ secrets.MINIO_ACCESS }} ${{ secrets.MINIO_SECRET }}
             echo "PREV=$((${{ github.event.inputs.package }}-1))" >> $GITHUB_ENV
       - uses: actions/checkout@v3
         name: Checkout
-      - name: Download artifact
-        uses: GarnetOS/action-download-artifact@new
-        with:
-          workflow: 0203.yml
-          name: out-${{matrix.arch}}-${{env.PREV}}
+      #- name: Download artifact
+      #  uses: GarnetOS/action-download-artifact@new
+      #  with:
+      #    workflow: 0203.yml
+      #    name: out-${{matrix.arch}}-${{env.PREV}}
+      - name: Download
+        run: |
+            mcli cp myminio/bucket/out-${{matrix.arch}}.tar.gz out.tar.gz
       - name: Prepare image
         run: |
             pwd
@@ -67,16 +73,33 @@ jobs:
             ls /mnt/lfs/usr/bin/env
             ls /usr/bin/env
             export LFS=/mnt/lfs
-            chroot /mnt/lfs /usr/bin/env -i   \
-            HOME=/root                  \
-            TERM="$TERM"                \
-            PATH=/usr/bin:/usr/sbin     \
-            /bin/bash --login +h
+            #chroot /mnt/lfs /usr/bin/env -i   \
+            #HOME=/root                  \
+            #TERM="$TERM"                \
+            #PATH=/usr/bin:/usr/sbin     \
+            #/bin/bash --login +h
             sudo ./timeout sudo chroot /mnt/lfs /usr/bin/env -i   \
             HOME=/root                  \
             TERM="$TERM"                \
             PATH=/usr/bin:/usr/sbin     \
             ./${{github.event.inputs.package}}
+      - name: Unmount
+        run: |
+            sleep 1m
+            sudo umount /mnt/lfs           
+      - name: Prepare image
+        run: |
+               tar -czvf out.tar.gz VHD.img
+               tar -tzf out.tar.gz >/dev/null
+      - uses: actions/upload-artifact@v2.3.1
+        with:
+          name: out-${{matrix.arch}}-${{env.CURR}}
+          path: out.tar.gz
+      - name: Rename
+        run: mv out.tar.gz out-${{matrix.arch}}.tar.gz
+      - name: Minio install and deploy
+        run: |
+            mcli cp out-${{matrix.arch}}.tar.gz myminio/bucket
       - uses: actions/upload-artifact@v2
         with:
           name: out-${{matrix.arch}}-${{github.event.inputs.package}}
