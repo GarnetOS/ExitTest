@@ -1,6 +1,5 @@
 #!/bin/bash -e
 set -e
-./prepare
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf grep-3.7.tar.xz

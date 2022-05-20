@@ -1,6 +1,5 @@
 #!/bin/bash -e
 set -e
-./prepare
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf check-0.15.2.tar.gz

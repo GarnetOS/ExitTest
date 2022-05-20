@@ -1,6 +1,5 @@
 #!/bin/bash -e
 set -e
-./prepare
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf libtool-2.4.6.tar.xz

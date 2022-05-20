@@ -1,6 +1,5 @@
 #!/bin/bash -e
 set -e
-./prepare
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf libpipeline-1.5.5.tar.gz

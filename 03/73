@@ -1,6 +1,5 @@
 #!/bin/bash -e
 set -e
-./prepare
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf inetutils-2.2.tar.xz
