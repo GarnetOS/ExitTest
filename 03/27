@@ -17,7 +17,7 @@ ln -sfv /run/lock /var/lock
 
 install -dv -m 0750 /root
 install -dv -m 1777 /tmp /var/tmp
-
+rm /etc/mtab
 ln -sv /proc/self/mounts /etc/mtab
 cat > /etc/hosts << EOF
 127.0.0.1  localhost $(hostname)
