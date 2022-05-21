@@ -68,7 +68,6 @@ jobs:
             chmod +x -R 03
             cd 03
             cp ${{github.event.inputs.package}} $LFS/
-            
             sudo ./prepare
             sudo ./timeout sudo chroot /mnt/lfs /usr/bin/env -i   \
             HOME=/root                  \
@@ -92,10 +91,6 @@ jobs:
       - name: Minio install and deploy
         run: |
             mcli cp out-${{matrix.arch}}.tar.gz myminio/bucket
-      - uses: actions/upload-artifact@v2
-        with:
-          name: out-${{matrix.arch}}-${{github.event.inputs.package}}
-          path: VHD.img
   post:
     needs: build
     runs-on: ubuntu-latest
