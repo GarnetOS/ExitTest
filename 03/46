@@ -8,3 +8,5 @@ cd m4-1.4.19
 make
 make check
 make install
+cd /sources
+rm /sources/m4-1.4.19

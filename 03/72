@@ -11,3 +11,5 @@ make
 make check
 make install
 install -v -m644 doc/*.{html,css} /usr/share/doc/expat-2.4.6
+cd /sources
+rm /sources/expat-2.4.6

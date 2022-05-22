@@ -8,3 +8,5 @@ cd libpipeline-1.5.5
 make
 make check
 make install
+cd /sources
+rm /sources/libpipeline-1.5.5

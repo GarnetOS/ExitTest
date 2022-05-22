@@ -17,3 +17,5 @@ pushd /usr/share/info
     do install-info $f dir 2>/dev/null
   done
 popd
+cd /sources
+rm /sources/texinfo-6.8

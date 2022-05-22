@@ -12,3 +12,5 @@ make html
 make check
 make install
 make install-html
+cd /sources
+rm /sources/mpc-1.2.1

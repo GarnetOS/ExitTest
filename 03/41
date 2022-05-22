@@ -18,3 +18,5 @@ for i in /usr/bin/{bzcat,bunzip2}; do
   ln -sfv bzip2 $i
 done
 rm -fv /usr/lib/libbz2.a
+cd /sources
+rm /sources/bzip2-1.0.8

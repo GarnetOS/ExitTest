@@ -10,3 +10,5 @@ make
 make SBINDIR=/usr/sbin install
 mkdir -pv             /usr/share/doc/iproute2-5.16.0
 cp -v COPYING README* /usr/share/doc/iproute2-5.16.0
+cd /sources
+rm /sources/iproute2-5.16.0

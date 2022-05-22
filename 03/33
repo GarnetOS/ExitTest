@@ -20,3 +20,5 @@ mkdir -pv /var/lib/hwclock
             runstatedir=/run
 make
 make install
+cd /sources
+rm /sources/binutils-2.38

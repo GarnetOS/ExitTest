@@ -8,3 +8,5 @@ cd grep-3.7
 make
 make check
 make install
+cd /sources
+rm /sources/grep-3.7

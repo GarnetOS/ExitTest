@@ -33,3 +33,5 @@ endif
 " End /etc/vimrc
 EOF
 vim -c ':options'
+cd /sources
+rm /sources/vim-8.2.4383

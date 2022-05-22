@@ -7,3 +7,5 @@ cd less-590
 ./configure --prefix=/usr --sysconfdir=/etc
 make
 make install
+cd /sources
+rm /sources/less-590

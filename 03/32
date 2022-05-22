@@ -9,3 +9,5 @@ sed -e 's/__attribute_nonnull__/__nonnull/' \
 ./configure --prefix=/usr
 make
 make install
+cd /sources
+rm /sources/texinfo-6.8

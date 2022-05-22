@@ -36,3 +36,5 @@ make distclean
             --with-abi-version=5
 make sources libs
 cp -av lib/lib*.so.5* /usr/lib
+cd /sources
+rm /sources/ncurses-6.3

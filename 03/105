@@ -17,3 +17,5 @@ cd man-db-2.10.1
 make
 make check
 make install
+cd /sources
+rm /sources/man-db-2.10.1

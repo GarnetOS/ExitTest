@@ -7,3 +7,5 @@ cd psmisc-23.4
 ./configure --prefix=/usr
 make
 make install
+cd /sources
+rm /sources/psmisc-23.4

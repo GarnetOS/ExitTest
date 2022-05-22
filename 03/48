@@ -11,3 +11,5 @@ make
 make check
 make install
 ln -sv flex /usr/bin/lex
+cd /sources
+rm /sources/flex-2.6.4

@@ -11,3 +11,5 @@ cd libffi-3.4.2
 make
 make check
 make install
+cd /sources
+rm /sources/libffi-3.4.2

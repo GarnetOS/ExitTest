@@ -18,3 +18,5 @@ for target in depmod insmod modinfo modprobe rmmod; do
 done
 
 ln -sfv kmod /usr/bin/lsmod
+cd /sources
+rm /sources/kmod-29

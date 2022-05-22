@@ -9,3 +9,5 @@ make
 make check
 make install
 rm -fv /usr/lib/libz.a
+cd /sources
+rm /sources/zlib-1.2.11

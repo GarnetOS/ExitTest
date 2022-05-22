@@ -17,3 +17,5 @@ make check 2>&amp;1 | tee gmp-check-log
 awk '/# PASS:/{total+=$3} ; END{print total}' gmp-check-log
 make install
 make install-html
+cd /sources
+rm /sources/gmp-6.2.1

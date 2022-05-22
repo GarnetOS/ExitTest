@@ -8,3 +8,5 @@ cd gzip-1.11
 make
 make check
 make install
+cd /sources
+rm /sources/gzip-1.11

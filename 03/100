@@ -8,3 +8,5 @@ cd patch-2.7.6
 make
 make check
 make install
+cd /sources
+rm /sources/patch-2.7.6

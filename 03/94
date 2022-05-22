@@ -11,3 +11,5 @@ cd grub-2.06
 make
 make install
 mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions
+cd /sources
+rm /sources/grub-2.06

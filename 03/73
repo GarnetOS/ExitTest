@@ -18,3 +18,5 @@ make
 make check
 make install
 mv -v /usr/{,s}bin/ifconfig
+cd /sources
+rm /sources/inetutils-2.2

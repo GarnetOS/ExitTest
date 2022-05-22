@@ -13,3 +13,5 @@ make check
 make install
 mkdir -pv           /usr/share/doc/kbd-2.4.0
 cp -R -v docs/doc/* /usr/share/doc/kbd-2.4.0
+cd /sources
+rm /sources/kbd-2.4.0

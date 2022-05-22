@@ -8,3 +8,5 @@ make
 make check
 make prefix=/usr install
 rm -v /usr/lib/libzstd.a
+cd /sources
+rm /sources/zstd-1.5.2
