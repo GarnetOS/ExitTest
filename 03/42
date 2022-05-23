@@ -2,8 +2,8 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf acl-2.3.1.tar.xz
-cd acl-2.3.1
+tar -xvf xz-5.2.5.tar.xz
+cd xz-5.2.5
 ./configure --prefix=/usr    \
             --disable-static \
             --docdir=/usr/share/doc/xz-5.2.5
@@ -11,4 +11,4 @@ make
 make check
 make install
 cd /sources
-rm -rf /sources/acl-2.3.1
+rm -rf /sources/xz-5.2.5
