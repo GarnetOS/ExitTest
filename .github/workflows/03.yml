@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
           arch: [armv6,armv7,aarch64,i386,amd64]
           distro: [bullseye]
