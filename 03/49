@@ -37,4 +37,4 @@ mv /usr/share/man/man3/{Thread,Tcl_Thread}.3
 mkdir -v -p /usr/share/doc/tcl-8.6.12
 cp -v -r  ../html/* /usr/share/doc/tcl-8.6.12
 cd /sources
-rm /sources/tcl8.6.12-src
+rm -rf /sources/tcl8.6.12-src

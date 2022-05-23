@@ -11,4 +11,4 @@ make check
 make install
 make -C doc install-html docdir=/usr/share/doc/tar-1.34
 cd /sources
-rm /sources/acl-2.3.1
+rm -rf /sources/acl-2.3.1

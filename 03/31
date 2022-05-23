@@ -10,4 +10,4 @@ cd python-3.10.2-docs-html
 make
 make install
 cd /sources
-rm /sources/python-3.10.2-docs-html
+rm -rf /sources/python-3.10.2-docs-html

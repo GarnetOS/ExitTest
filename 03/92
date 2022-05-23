@@ -13,4 +13,4 @@ chown -Rv tester .
 su tester -c "PATH=$PATH make check"
 make install
 cd /sources
-rm /sources/findutils-4.9.0
+rm -rf /sources/findutils-4.9.0

@@ -8,4 +8,4 @@ cd less-590
 make
 make install
 cd /sources
-rm /sources/less-590
+rm -rf /sources/less-590

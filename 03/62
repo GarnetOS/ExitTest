@@ -37,4 +37,4 @@ make distclean
 make sources libs
 cp -av lib/lib*.so.5* /usr/lib
 cd /sources
-rm /sources/ncurses-6.3
+rm -rf /sources/ncurses-6.3

@@ -19,4 +19,4 @@ done
 
 ln -sfv kmod /usr/bin/lsmod
 cd /sources
-rm /sources/kmod-29
+rm -rf /sources/kmod-29

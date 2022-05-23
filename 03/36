@@ -6,4 +6,4 @@ tar -xvf iana-etc-20220207.tar.gz
 cd iana-etc-20220207
 cp services protocols /etc
 cd /sources
-rm /sources/iana-etc-20220207
+rm -rf /sources/iana-etc-20220207

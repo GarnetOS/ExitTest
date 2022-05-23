@@ -27,4 +27,4 @@ useradd -D --gid 999
 sed -i '/MAIL/s/yes/no/' /etc/default/useradd
 passwd root
 cd /sources
-rm /sources/shadow-4.11.1
+rm -rf /sources/shadow-4.11.1

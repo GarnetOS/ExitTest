@@ -14,4 +14,4 @@ make test
 make install
 ln -svf expect5.45.4/libexpect5.45.4.so /usr/lib
 cd /sources
-rm /sources/expect5.45.4
+rm -rf /sources/expect5.45.4

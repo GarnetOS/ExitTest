@@ -22,4 +22,4 @@ user.* -/var/log/user.log
 # End /etc/syslog.conf
 EOF
 cd /sources
-rm /sources/sysklogd-1.5.1
+rm -rf /sources/sysklogd-1.5.1

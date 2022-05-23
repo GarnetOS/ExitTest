@@ -9,4 +9,4 @@ make
 make test
 make install
 cd /sources
-rm /sources/XML-Parser-2.46
+rm -rf /sources/XML-Parser-2.46

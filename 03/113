@@ -6,4 +6,4 @@ tar -xvf lfs-bootscripts-20210608.tar.xz
 cd lfs-bootscripts-20210608
 make install
 cd /sources
-rm /sources/lfs-bootscripts-20210608
+rm -rf /sources/lfs-bootscripts-20210608

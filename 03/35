@@ -6,4 +6,4 @@ tar -xvf man-db-2.10.1.tar.xz
 cd man-db-2.10.1
 make prefix=/usr install
 cd /sources
-rm /sources/man-db-2.10.1
+rm -rf /sources/man-db-2.10.1

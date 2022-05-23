@@ -14,4 +14,4 @@ make check
 make install
 make install-html
 cd /sources
-rm /sources/mpfr-4.1.0
+rm -rf /sources/mpfr-4.1.0

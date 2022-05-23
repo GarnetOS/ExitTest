@@ -21,4 +21,4 @@ mkdir -pv /var/lib/hwclock
 make
 make install
 cd /sources
-rm /sources/binutils-2.38
+rm -rf /sources/binutils-2.38

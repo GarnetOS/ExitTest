@@ -20,4 +20,4 @@ tar --strip-components=1  \
     -C /usr/share/doc/python-3.10.2/html \
     -xvf ../python-3.10.2-docs-html.tar.bz2
 cd /sources
-rm /sources/python-3.10.2-docs-html
+rm -rf /sources/python-3.10.2-docs-html

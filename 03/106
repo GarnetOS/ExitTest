@@ -12,4 +12,4 @@ make
 make check
 make install
 cd /sources
-rm /sources/procps-ng-3.3.17
+rm -rf /sources/procps-ng-3.3.17

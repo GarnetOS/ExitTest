@@ -9,4 +9,4 @@ make prefix=/usr lib=lib
 make test
 make prefix=/usr lib=lib install
 cd /sources
-rm /sources/libcap-2.63
+rm -rf /sources/libcap-2.63

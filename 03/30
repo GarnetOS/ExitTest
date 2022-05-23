@@ -16,4 +16,4 @@ sh Configure -des                                        \
 make
 make install
 cd /sources
-rm /sources/perl-5.34.0
+rm -rf /sources/perl-5.34.0

@@ -25,4 +25,4 @@ make test
 make install
 unset BUILD_ZLIB BUILD_BZIP2
 cd /sources
-rm /sources/perl-5.34.0
+rm -rf /sources/perl-5.34.0

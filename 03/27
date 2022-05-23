@@ -17,4 +17,4 @@ cd       build
 make
 make install
 cd /sources
-rm /sources/gcc-11.2.0
+rm -rf /sources/gcc-11.2.0

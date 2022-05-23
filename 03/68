@@ -20,4 +20,4 @@ EOF
 make install
 exec /usr/bin/bash --login
 cd /sources
-rm /sources/bash-5.1.16
+rm -rf /sources/bash-5.1.16

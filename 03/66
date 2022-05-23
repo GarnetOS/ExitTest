@@ -9,4 +9,4 @@ make
 make check
 make install
 cd /sources
-rm /sources/bison-3.8.2
+rm -rf /sources/bison-3.8.2

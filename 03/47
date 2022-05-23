@@ -9,4 +9,4 @@ make
 make test
 make install
 cd /sources
-rm /sources/bc-5.2.2
+rm -rf /sources/bc-5.2.2

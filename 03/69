@@ -10,4 +10,4 @@ make check
 make install
 rm -fv /usr/lib/libltdl.a
 cd /sources
-rm /sources/libtool-2.4.6
+rm -rf /sources/libtool-2.4.6
