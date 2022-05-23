@@ -2,8 +2,8 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf man-db-2.10.1.tar.xz
-cd man-db-2.10.1
+tar -xvf man-pages-5.13.tar.xz
+cd man-pages-5.13
 make prefix=/usr install
 cd /sources
-rm -rf /sources/man-db-2.10.1
+rm -rf /sources/man-pages-5.13
