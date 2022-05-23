@@ -1,5 +1,5 @@
 #!/bin/bash -e
-timeout 18900 su lfs $@
+timeout 18900 $@
 EXITCODE=$?
 echo $EXITCODE
 if (( $EXITCODE == 124 ))
