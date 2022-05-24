@@ -28,7 +28,10 @@ jobs:
             wget https://dl.min.io/client/mc/release/linux-amd64/archive/mcli_20220426180022.0.0_amd64.deb
             sudo dpkg -i mcli_20220426180022.0.0_amd64.deb
             mcli alias set myminio/ http://${{ secrets.MINIO_IP }}:9000 ${{ secrets.MINIO_ACCESS }} ${{ secrets.MINIO_SECRET }}
-            echo "PREV=$((${{ github.event.inputs.package }}-1))" >> $GITHUB_ENV
+            export CURR=$(([ -z "${{ github.event.inputs.package }}" ] && echo ${{github.event.client_payload.number}})||echo ${{ github.event.inputs.package }})
+            echo "CURR=$(($CURR))" >> $GITHUB_ENV
+            echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
+            echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
       - uses: actions/checkout@v3
         name: Checkout
       #- name: Download artifact
@@ -68,13 +71,13 @@ jobs:
             export LFS=/mnt/lfs
             chmod +x -R 03
             cd 03
-            cp ${{github.event.inputs.package}} $LFS/
+            cp ${{env.CURR}} $LFS/
             sudo ./prepare
             sudo ./timeout sudo chroot /mnt/lfs /usr/bin/env -i   \
             HOME=/root                  \
             TERM="$TERM"                \
             PATH=/usr/bin:/usr/sbin     \
-            ./${{github.event.inputs.package}}
+            ./${{env.CURR}}
       - name: Unmount
         run: |
             sleep 1m
