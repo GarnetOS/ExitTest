@@ -5,4 +5,3 @@ cd $LFS/sources
 cd glibc-2.35
 cd       build
 make
-make check
