@@ -92,8 +92,9 @@ jobs:
           path: out.tar.gz
       - name: Rename
         run: mv out.tar.gz out-${{matrix.arch}}.tar.gz
-      - name: Minio install and deploy
+      - name: Minio deploy
         run: |
+            sleep 30s
             mcli cp out-${{matrix.arch}}.tar.gz myminio/bucket
   post:
     needs: build
