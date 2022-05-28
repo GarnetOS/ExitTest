@@ -23,11 +23,11 @@ jobs:
       - name: Prepare host
         run: |
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
-            sudo apt install curl wget grep
+            sudo apt install curl wget grep fallocate
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
             wget https://dl.min.io/client/mc/release/linux-amd64/archive/mcli_20220426180022.0.0_amd64.deb
             sudo dpkg -i mcli_20220426180022.0.0_amd64.deb
-            sudo dd if=/dev/zero of=/swapfile bs=1024 count=3221225472
+            sudo fallocate -l 6G /swapfile
             sudo chmod 600 /swapfile
             sudo mkswap /swapfile
             sudo swapon /swapfile
