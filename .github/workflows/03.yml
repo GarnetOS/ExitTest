@@ -23,7 +23,7 @@ jobs:
       - name: Prepare host
         run: |
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
-            sudo apt install curl wget grep fallocate
+            sudo apt install curl wget grep util-linux
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
             wget https://dl.min.io/client/mc/release/linux-amd64/archive/mcli_20220426180022.0.0_amd64.deb
             sudo dpkg -i mcli_20220426180022.0.0_amd64.deb
