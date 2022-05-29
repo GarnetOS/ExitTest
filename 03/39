@@ -5,7 +5,7 @@ cd $LFS/sources
 cd glibc-2.35
 cd       build
 make
-make check || true
+make check -j1 || true
 touch /etc/ld.so.conf
 sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
 make install
