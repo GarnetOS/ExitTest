@@ -77,7 +77,7 @@ jobs:
             cd 03
             cp ${{env.CURR}} $LFS/
             sudo ./prepare
-            sudo cpulimit -l 95 sudo ./timeout sudo chroot /mnt/lfs /usr/bin/env -i   \
+            sudo cpulimit -l 95 -e sudo ./timeout sudo chroot /mnt/lfs /usr/bin/env -i   \
             HOME=/root                  \
             TERM="$TERM"                \
             PATH=/usr/bin:/usr/sbin     \
