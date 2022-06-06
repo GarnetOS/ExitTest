@@ -27,7 +27,7 @@ jobs:
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
             wget https://dl.min.io/client/mc/release/linux-amd64/archive/mcli_20220426180022.0.0_amd64.deb
             sudo dpkg -i mcli_20220426180022.0.0_amd64.deb
-            sudo fallocate -l 6G /swapfile
+            sudo fallocate -l 8G /swapfile
             sudo chmod 600 /swapfile
             sudo mkswap /swapfile
             sudo swapon /swapfile
