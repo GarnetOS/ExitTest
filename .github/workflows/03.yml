@@ -1,8 +1,8 @@
 name: 03 build
 
 on:
-  repository_dispatch:
-    types: [run-another-3]
+#  repository_dispatch:
+#    types: [run-another-3]
   workflow_dispatch:
     inputs:
       package:
