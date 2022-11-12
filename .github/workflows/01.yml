@@ -28,8 +28,11 @@ jobs:
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
             sudo apt install curl wget grep
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
-            wget https://dl.min.io/client/mc/release/linux-amd64/mcli_20220416211121.0.0_amd64.deb
-            sudo dpkg -i mcli_20220416211121.0.0_amd64.deb
+            curl https://dl.min.io/client/mc/release/linux-amd64/mc \
+            --create-dirs \
+            -o $HOME/minio-binaries/mc
+            chmod +x $HOME/minio-binaries/mc
+            export PATH=$PATH:$HOME/minio-binaries/
             mcli alias set myminio/ http://${{ secrets.MINIO_IP }}:9000 ${{ secrets.MINIO_ACCESS }} ${{ secrets.MINIO_SECRET }}
             export CURR=$(([ -z "${{ github.event.inputs.package }}" ] && echo ${{github.event.client_payload.number}})||echo ${{ github.event.inputs.package }})
             echo "CURR=$(($CURR))" >> $GITHUB_ENV
