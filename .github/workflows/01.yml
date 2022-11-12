@@ -40,14 +40,15 @@ jobs:
             echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
       - uses: actions/checkout@v2
         name: Checkout
-      - name: Download artifact
-        uses: GarnetOS/action-download-artifact@new
-        with:
-         workflow: prepare.yml
-         name: out-${{matrix.arch}}-${{env.PREV}}
-      #- name: Build
-      #  run: |
-      #     mc cp myminio/bucket/out-${{matrix.arch}}.tar.gz out.tar.gz
+      #- name: Download artifact
+      #  uses: GarnetOS/action-download-artifact@new
+      #  with:
+      #   workflow: prepare.yml
+      #   name: out-${{matrix.arch}}-${{env.PREV}}
+      - name: Build
+        run: |
+           export PATH=$PATH:$HOME/minio-binaries/
+           mc cp myminio/bucket/out-${{matrix.arch}}.tar.gz out.tar.gz
       - name: Prepare image
         run: |
             pwd
