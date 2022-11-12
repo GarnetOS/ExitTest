@@ -33,7 +33,7 @@ jobs:
             -o $HOME/minio-binaries/mc
             chmod +x $HOME/minio-binaries/mc
             export PATH=$PATH:$HOME/minio-binaries/
-            mcli alias set myminio/ http://${{ secrets.MINIO_IP }}:9000 ${{ secrets.MINIO_ACCESS }} ${{ secrets.MINIO_SECRET }}
+            mc alias set myminio/ http://${{ secrets.MINIO_IP }}:9000 ${{ secrets.MINIO_ACCESS }} ${{ secrets.MINIO_SECRET }}
             export CURR=$(([ -z "${{ github.event.inputs.package }}" ] && echo ${{github.event.client_payload.number}})||echo ${{ github.event.inputs.package }})
             echo "CURR=$(($CURR))" >> $GITHUB_ENV
             echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
@@ -47,7 +47,7 @@ jobs:
          name: out-${{matrix.arch}}-${{env.PREV}}
       #- name: Build
       #  run: |
-      #     mcli cp myminio/bucket/out-${{matrix.arch}}.tar.gz out.tar.gz
+      #     mc cp myminio/bucket/out-${{matrix.arch}}.tar.gz out.tar.gz
       - name: Prepare image
         run: |
             pwd
@@ -109,7 +109,7 @@ jobs:
         run: mv out.tar.gz out-${{matrix.arch}}.tar.gz
       - name: Minio install and deploy
         run: |
-            mcli cp out-${{matrix.arch}}.tar.gz myminio/bucket
+            mc cp out-${{matrix.arch}}.tar.gz myminio/bucket
   post:
     needs: build
     # The type of runner that the job will run on
