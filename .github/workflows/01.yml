@@ -37,14 +37,14 @@ jobs:
             echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
       - uses: actions/checkout@v2
         name: Checkout
-      #- name: Download artifact
-      #  uses: GarnetOS/action-download-artifact@new
-      #  with:
-      #   workflow: 01.yml
-      #    name: out-${{matrix.arch}}-${{env.PREV}}
-      - name: Build
-        run: |
-            mcli cp myminio/bucket/out-${{matrix.arch}}.tar.gz out.tar.gz
+      - name: Download artifact
+        uses: GarnetOS/action-download-artifact@new
+        with:
+         workflow: 01.yml
+         name: out-${{matrix.arch}}-${{env.PREV}}
+      #- name: Build
+      #  run: |
+      #     mcli cp myminio/bucket/out-${{matrix.arch}}.tar.gz out.tar.gz
       - name: Prepare image
         run: |
             pwd
@@ -55,7 +55,7 @@ jobs:
             sudo mount VHD.img /mnt/lfs
             sudo ls 
       - uses: GarnetOS/run-on-arch-action@v2.1.2
-        name: Download and release
+        name: Build in archtecture ${{matrix.arch}}
         with:
           arch: ${{matrix.arch}}
           distro: ${{matrix.distro}}
