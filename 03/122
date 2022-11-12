@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -17,5 +17,5 @@ cd man-db-2.10.2
 make
 make check
 make install
-cd /sources
-rm -rf /sources/man-db-2.10.2
+cd $LFS/sources
+rm -rf $LFS/sources/man-db-2.10.2

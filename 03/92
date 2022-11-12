@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -23,5 +23,5 @@ make
 make test
 make install
 unset BUILD_ZLIB BUILD_BZIP2
-cd /sources
-rm -rf /sources/perl-5.36.0
+cd $LFS/sources
+rm -rf $LFS/sources/perl-5.36.0

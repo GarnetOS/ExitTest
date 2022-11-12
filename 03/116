@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -8,5 +8,5 @@ cd automake-1.16.5
 make
 make check
 make install
-cd /sources
-rm -rf /sources/automake-1.16.5
+cd $LFS/sources
+rm -rf $LFS/sources/automake-1.16.5

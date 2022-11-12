@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -11,5 +11,5 @@ make check
 make install
 mkdir -pv                                   /usr/share/doc/gawk-5.1.1
 cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} /usr/share/doc/gawk-5.1.1
-cd /sources
-rm -rf /sources/gawk-5.1.1
+cd $LFS/sources
+rm -rf $LFS/sources/gawk-5.1.1

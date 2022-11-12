@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -11,5 +11,5 @@ cd procps-ng-4.0.0
 make
 make check
 make install
-cd /sources
-rm -rf /sources/procps-ng-4.0.0
+cd $LFS/sources
+rm -rf $LFS/sources/procps-ng-4.0.0

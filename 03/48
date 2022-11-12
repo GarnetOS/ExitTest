@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -35,5 +35,5 @@ ln -sfv tclsh8.6 /usr/bin/tclsh
 mv /usr/share/man/man3/{Thread,Tcl_Thread}.3
 mkdir -v -p /usr/share/doc/tcl-8.6.12
 cp -v -r  ../html/* /usr/share/doc/tcl-8.6.12
-cd /sources
-rm -rf /sources/tcl8.6.12-src
+cd $LFS/sources
+rm -rf $LFS/sources/tcl8.6.12-src

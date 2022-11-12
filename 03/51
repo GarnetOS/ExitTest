@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -20,5 +20,5 @@ make tooldir=/usr
 make -k check
 make tooldir=/usr install
 rm -fv /usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes}.a
-cd /sources
-rm -rf /sources/binutils-2.39
+cd $LFS/sources
+rm -rf $LFS/sources/binutils-2.39

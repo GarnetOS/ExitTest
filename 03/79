@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -12,5 +12,5 @@ su tester -c "PATH=$PATH make check"
 make install
 install -d -m755           /usr/share/doc/sed-4.8
 install -m644 doc/sed.html /usr/share/doc/sed-4.8
-cd /sources
-rm -rf /sources/sed-4.8
+cd $LFS/sources
+rm -rf $LFS/sources/sed-4.8

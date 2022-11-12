@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -10,5 +10,5 @@ cd findutils-4.9.0
             --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
-cd /sources
-rm -rf /sources/findutils-4.9.0
+cd $LFS/sources
+rm -rf $LFS/sources/findutils-4.9.0

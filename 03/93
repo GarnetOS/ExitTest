@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -8,5 +8,5 @@ perl Makefile.PL
 make
 make test
 make install
-cd /sources
-rm -rf /sources/XML-Parser-2.46
+cd $LFS/sources
+rm -rf $LFS/sources/XML-Parser-2.46

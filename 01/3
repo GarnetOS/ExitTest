@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -41,5 +41,5 @@ make install
 cd ..
 cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
   `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
-cd /sources
-rm -rf /sources/gcc-12.2.0
+cd $LFS/sources
+rm -rf $LFS/sources/gcc-12.2.0

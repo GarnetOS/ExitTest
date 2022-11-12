@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -13,5 +13,5 @@ make install
 install -v -dm755  /usr/share/doc/dejagnu-1.6.3
 install -v -m644   doc/dejagnu.{html,txt} /usr/share/doc/dejagnu-1.6.3
 make check
-cd /sources
-rm -rf /sources/dejagnu-1.6.3
+cd $LFS/sources
+rm -rf $LFS/sources/dejagnu-1.6.3

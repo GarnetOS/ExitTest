@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -11,5 +11,5 @@ make
 make check
 make install
 install -v -m644 doc/*.{html,css} /usr/share/doc/expat-2.4.8
-cd /sources
-rm -rf /sources/expat-2.4.8
+cd $LFS/sources
+rm -rf $LFS/sources/expat-2.4.8

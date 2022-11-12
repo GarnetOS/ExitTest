@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -8,5 +8,5 @@ cd gperf-3.1
 make
 make -j1 check
 make install
-cd /sources
-rm -rf /sources/gperf-3.1
+cd $LFS/sources
+rm -rf $LFS/sources/gperf-3.1

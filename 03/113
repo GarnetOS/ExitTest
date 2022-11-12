@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -10,5 +10,5 @@ make NETNS_RUN_DIR=/run/netns
 make SBINDIR=/usr/sbin install
 mkdir -pv             /usr/share/doc/iproute2-5.19.0
 cp -v COPYING README* /usr/share/doc/iproute2-5.19.0
-cd /sources
-rm -rf /sources/iproute2-5.19.0
+cd $LFS/sources
+rm -rf $LFS/sources/iproute2-5.19.0

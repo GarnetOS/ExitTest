@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -9,5 +9,5 @@ make prefix=/usr
 make check
 make prefix=/usr install
 rm -v /usr/lib/libzstd.a
-cd /sources
-rm -rf /sources/zstd-1.5.2
+cd $LFS/sources
+rm -rf $LFS/sources/zstd-1.5.2

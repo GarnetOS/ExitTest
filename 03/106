@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -8,5 +8,5 @@ cd check-0.15.2
 make
 make check
 make docdir=/usr/share/doc/check-0.15.2 install
-cd /sources
-rm -rf /sources/check-0.15.2
+cd $LFS/sources
+rm -rf $LFS/sources/check-0.15.2

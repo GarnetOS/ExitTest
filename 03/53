@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -13,5 +13,5 @@ make html
 make check
 make install
 make install-html
-cd /sources
-rm -rf /sources/mpfr-4.1.0
+cd $LFS/sources
+rm -rf $LFS/sources/mpfr-4.1.0

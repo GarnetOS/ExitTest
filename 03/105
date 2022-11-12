@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -19,5 +19,5 @@ make install
 mv -v /usr/bin/chroot /usr/sbin
 mv -v /usr/share/man/man1/chroot.1 /usr/share/man/man8/chroot.8
 sed -i 's/"1"/"8"/' /usr/share/man/man8/chroot.8
-cd /sources
-rm -rf /sources/coreutils-9.1
+cd $LFS/sources
+rm -rf $LFS/sources/coreutils-9.1

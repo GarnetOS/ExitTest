@@ -1,9 +1,9 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf wheel-0.37.1.tar.gz
 cd wheel-0.37.1
 pip3 install --no-index $PWD
-cd /sources
-rm -rf /sources/wheel-0.37.1
+cd $LFS/sources
+rm -rf $LFS/sources/wheel-0.37.1

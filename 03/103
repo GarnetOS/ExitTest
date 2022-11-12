@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -16,5 +16,5 @@ python3 configure.py --bootstrap
 install -vm755 ninja /usr/bin/
 install -vDm644 misc/bash-completion /usr/share/bash-completion/completions/ninja
 install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja
-cd /sources
-rm -rf /sources/ninja-1.11.0
+cd $LFS/sources
+rm -rf $LFS/sources/ninja-1.11.0

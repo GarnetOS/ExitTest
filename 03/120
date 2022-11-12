@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -33,5 +33,5 @@ endif
 " End /etc/vimrc
 EOF
 vim -c ':options'
-cd /sources
-rm -rf /sources/vim-9.0.0228
+cd $LFS/sources
+rm -rf $LFS/sources/vim-9.0.0228

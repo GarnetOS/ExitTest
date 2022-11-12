@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -19,5 +19,5 @@ exit $value
 EOF
 make install
 exec /usr/bin/bash --login
-cd /sources
-rm -rf /sources/bash-5.1.16
+cd $LFS/sources
+rm -rf $LFS/sources/bash-5.1.16

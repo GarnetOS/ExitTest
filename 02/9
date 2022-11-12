@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -11,5 +11,5 @@ cd bash-5.1.16
 make
 make DESTDIR=$LFS install
 ln -sv bash $LFS/bin/sh
-cd /sources
-rm -rf /sources/bash-5.1.16
+cd $LFS/sources
+rm -rf $LFS/sources/bash-5.1.16

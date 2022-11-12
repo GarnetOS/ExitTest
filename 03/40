@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -18,5 +18,5 @@ for i in /usr/bin/{bzcat,bunzip2}; do
   ln -sfv bzip2 $i
 done
 rm -fv /usr/lib/libbz2.a
-cd /sources
-rm -rf /sources/bzip2-1.0.8
+cd $LFS/sources
+rm -rf $LFS/sources/bzip2-1.0.8

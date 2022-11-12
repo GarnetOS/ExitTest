@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -11,5 +11,5 @@ cd pkg-config-0.29.2
 make
 make check
 make install
-cd /sources
-rm -rf /sources/pkg-config-0.29.2
+cd $LFS/sources
+rm -rf $LFS/sources/pkg-config-0.29.2

@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -15,5 +15,5 @@ sh Configure -des                                        \
              -Dvendorarch=/usr/lib/perl5/5.36/vendor_perl
 make
 make install
-cd /sources
-rm -rf /sources/perl-5.36.0
+cd $LFS/sources
+rm -rf $LFS/sources/perl-5.36.0

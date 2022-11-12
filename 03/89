@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -18,5 +18,5 @@ make
 make check
 make install
 mv -v /usr/{,s}bin/ifconfig
-cd /sources
-rm -rf /sources/inetutils-2.3
+cd $LFS/sources
+rm -rf $LFS/sources/inetutils-2.3

@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -12,5 +12,5 @@ make check
 make -C libelf install
 install -vm644 config/libelf.pc /usr/lib/pkgconfig
 rm /usr/lib/libelf.a
-cd /sources
-rm -rf /sources/elfutils-0.187
+cd $LFS/sources
+rm -rf $LFS/sources/elfutils-0.187

@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -9,5 +9,5 @@ cd python-3.10.6-docs-html
             --without-ensurepip
 make
 make install
-cd /sources
-rm -rf /sources/python-3.10.6-docs-html
+cd $LFS/sources
+rm -rf $LFS/sources/python-3.10.6-docs-html

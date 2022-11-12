@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -39,5 +39,5 @@ grep found dummy.log
 rm -v dummy.c a.out dummy.log
 mkdir -pv /usr/share/gdb/auto-load/usr/lib
 mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib
-cd /sources
-rm -rf /sources/gcc-12.2.0
+cd $LFS/sources
+rm -rf $LFS/sources/gcc-12.2.0

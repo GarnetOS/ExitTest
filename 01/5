@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -29,5 +29,5 @@ echo 'int main(){}' | gcc -xc -
 readelf -l a.out | grep ld-linux
 rm -v a.out
 $LFS/tools/libexec/gcc/$LFS_TGT/12.2.0/install-tools/mkheaders
-cd /sources
-rm -rf /sources/glibc-2.36
+cd $LFS/sources
+rm -rf $LFS/sources/glibc-2.36

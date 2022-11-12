@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -26,5 +26,5 @@ popd
 make
 make DESTDIR=$LFS TIC_PATH=$(pwd)/build/progs/tic install
 echo "INPUT(-lncursesw)" > $LFS/usr/lib/libncurses.so
-cd /sources
-rm -rf /sources/ncurses-6.3
+cd $LFS/sources
+rm -rf $LFS/sources/ncurses-6.3

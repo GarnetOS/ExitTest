@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -11,5 +11,5 @@ make
 make check
 make install
 ln -sv flex /usr/bin/lex
-cd /sources
-rm -rf /sources/flex-2.6.4
+cd $LFS/sources
+rm -rf $LFS/sources/flex-2.6.4

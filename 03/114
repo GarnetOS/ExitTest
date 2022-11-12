@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -13,5 +13,5 @@ make check
 make install
 mkdir -pv           /usr/share/doc/kbd-2.5.1
 cp -R -v docs/doc/* /usr/share/doc/kbd-2.5.1
-cd /sources
-rm -rf /sources/kbd-2.5.1
+cd $LFS/sources
+rm -rf $LFS/sources/kbd-2.5.1

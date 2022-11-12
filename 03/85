@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -9,5 +9,5 @@ make
 make check
 make install
 rm -fv /usr/lib/libltdl.a
-cd /sources
-rm -rf /sources/libtool-2.4.7
+cd $LFS/sources
+rm -rf $LFS/sources/libtool-2.4.7

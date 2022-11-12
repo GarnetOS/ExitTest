@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -7,5 +7,5 @@ cd gettext-0.21
 ./configure --disable-shared
 make
 cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
-cd /sources
-rm -rf /sources/gettext-0.21
+cd $LFS/sources
+rm -rf $LFS/sources/gettext-0.21

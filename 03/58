@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -26,5 +26,5 @@ mkdir -p /etc/default
 useradd -D --gid 999
 sed -i '/MAIL/s/yes/no/' /etc/default/useradd
 passwd root
-cd /sources
-rm -rf /sources/shadow-4.12.2
+cd $LFS/sources
+rm -rf $LFS/sources/shadow-4.12.2

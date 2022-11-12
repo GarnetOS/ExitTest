@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -7,5 +7,5 @@ cd less-590
 ./configure --prefix=/usr --sysconfdir=/etc
 make
 make install
-cd /sources
-rm -rf /sources/less-590
+cd $LFS/sources
+rm -rf $LFS/sources/less-590

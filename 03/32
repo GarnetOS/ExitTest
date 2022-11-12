@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -20,5 +20,5 @@ mkdir -pv /var/lib/hwclock
             runstatedir=/run
 make
 make install
-cd /sources
-rm -rf /sources/binutils-2.39
+cd $LFS/sources
+rm -rf $LFS/sources/binutils-2.39

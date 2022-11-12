@@ -1,9 +1,9 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf lfs-bootscripts-20220723.tar.xz
 cd lfs-bootscripts-20220723
 make install
-cd /sources
-rm -rf /sources/lfs-bootscripts-20220723
+cd $LFS/sources
+rm -rf $LFS/sources/lfs-bootscripts-20220723

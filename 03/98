@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
@@ -18,5 +18,5 @@ for target in depmod insmod modinfo modprobe rmmod; do
 done
 
 ln -sfv kmod /usr/bin/lsmod
-cd /sources
-rm -rf /sources/kmod-30
+cd $LFS/sources
+rm -rf $LFS/sources/kmod-30
