@@ -2,11 +2,21 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf check-0.15.2.tar.gz
-cd check-0.15.2
-./configure --prefix=/usr --disable-static
+tar -xvf inetutils-2.3.tar.xz
+cd inetutils-2.3
+./configure --prefix=/usr        \
+            --bindir=/usr/bin    \
+            --localstatedir=/var \
+            --disable-logger     \
+            --disable-whois      \
+            --disable-rcp        \
+            --disable-rexec      \
+            --disable-rlogin     \
+            --disable-rsh        \
+            --disable-servers
 make
 make check
-make docdir=/usr/share/doc/check-0.15.2 install
+make install
+mv -v /usr/{,s}bin/ifconfig
 cd /sources
-rm -rf /sources/check-0.15.2
+rm -rf /sources/inetutils-2.3

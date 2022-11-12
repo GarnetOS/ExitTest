@@ -2,11 +2,10 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf diffutils-3.8.tar.xz
-cd diffutils-3.8
-./configure --prefix=/usr
+tar -xvf less-590.tar.gz
+cd less-590
+./configure --prefix=/usr --sysconfdir=/etc
 make
-make check
 make install
 cd /sources
-rm -rf /sources/diffutils-3.8
+rm -rf /sources/less-590

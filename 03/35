@@ -2,8 +2,8 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf man-pages-5.13.tar.xz
-cd man-pages-5.13
-make prefix=/usr install
+tar -xvf iana-etc-20220812.tar.gz
+cd iana-etc-20220812
+cp services protocols /etc
 cd /sources
-rm -rf /sources/man-pages-5.13
+rm -rf /sources/iana-etc-20220812

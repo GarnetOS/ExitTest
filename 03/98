@@ -2,11 +2,21 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf libpipeline-1.5.5.tar.gz
-cd libpipeline-1.5.5
-./configure --prefix=/usr
+tar -xvf kmod-30.tar.xz
+cd kmod-30
+./configure --prefix=/usr          \
+            --sysconfdir=/etc      \
+            --with-openssl         \
+            --with-xz              \
+            --with-zstd            \
+            --with-zlib
 make
-make check
 make install
+
+for target in depmod insmod modinfo modprobe rmmod; do
+  ln -sfv ../bin/kmod /usr/sbin/$target
+done
+
+ln -sfv kmod /usr/bin/lsmod
 cd /sources
-rm -rf /sources/libpipeline-1.5.5
+rm -rf /sources/kmod-30

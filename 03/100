@@ -2,11 +2,14 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf patch-2.7.6.tar.xz
-cd patch-2.7.6
-./configure --prefix=/usr
+tar -xvf libffi-3.4.2.tar.gz
+cd libffi-3.4.2
+./configure --prefix=/usr          \
+            --disable-static       \
+            --with-gcc-arch=native \
+            --disable-exec-static-tramp
 make
 make check
 make install
 cd /sources
-rm -rf /sources/patch-2.7.6
+rm -rf /sources/libffi-3.4.2

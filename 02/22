@@ -1,9 +1,9 @@
-#!/bin/bash -e 
-./prepare 
-export MAKEFLAGS='-j2' 
+#!/bin/bash -e
+set -e
+export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf binutils-2.38.tar.xz
-cd binutils-2.38
+tar -xvf binutils-2.39.tar.xz
+cd binutils-2.39
 sed '6009s/$add_dir//' -i ltmain.sh
 mkdir -v build
 cd       build
@@ -13,8 +13,11 @@ cd       build
     --host=$LFS_TGT            \
     --disable-nls              \
     --enable-shared            \
+    --enable-gprofng=no        \
     --disable-werror           \
     --enable-64-bit-bfd
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/binutils-2.38
+rm -v $LFS/usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes}.{a,la}
+cd /sources
+rm -rf /sources/binutils-2.39

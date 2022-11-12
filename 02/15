@@ -1,6 +1,6 @@
-#!/bin/bash -e 
-./prepare 
-export MAKEFLAGS='-j2' 
+#!/bin/bash -e
+set -e
+export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf grep-3.7.tar.xz
 cd grep-3.7
@@ -8,4 +8,5 @@ cd grep-3.7
             --host=$LFS_TGT
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/grep-3.7
+cd /sources
+rm -rf /sources/grep-3.7

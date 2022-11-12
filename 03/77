@@ -2,11 +2,14 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf XML-Parser-2.46.tar.gz
-cd XML-Parser-2.46
-perl Makefile.PL
+tar -xvf pkg-config-0.29.2.tar.gz
+cd pkg-config-0.29.2
+./configure --prefix=/usr              \
+            --with-internal-glib       \
+            --disable-host-tool        \
+            --docdir=/usr/share/doc/pkg-config-0.29.2
 make
-make test
+make check
 make install
 cd /sources
-rm -rf /sources/XML-Parser-2.46
+rm -rf /sources/pkg-config-0.29.2

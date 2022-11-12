@@ -2,12 +2,23 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf texinfo-6.8.tar.xz
-cd texinfo-6.8
-sed -e 's/__attribute_nonnull__/__nonnull/' \
-    -i gnulib/lib/malloc/dynarray-skeleton.c
-./configure --prefix=/usr
+tar -xvf binutils-2.39.tar.xz
+cd binutils-2.39
+mkdir -pv /var/lib/hwclock
+./configure ADJTIME_PATH=/var/lib/hwclock/adjtime    \
+            --libdir=/usr/lib    \
+            --docdir=/usr/share/doc/util-linux-2.38.1 \
+            --disable-chfn-chsh  \
+            --disable-login      \
+            --disable-nologin    \
+            --disable-su         \
+            --disable-setpriv    \
+            --disable-runuser    \
+            --disable-pylibmount \
+            --disable-static     \
+            --without-python     \
+            runstatedir=/run
 make
 make install
 cd /sources
-rm -rf /sources/texinfo-6.8
+rm -rf /sources/binutils-2.39

@@ -1,14 +1,16 @@
-#!/bin/bash -e 
-./prepare 
-export MAKEFLAGS='-j2' 
+#!/bin/bash -e
+set -e
+export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf xz-5.2.5.tar.xz
-cd xz-5.2.5
+tar -xvf acl-2.3.1.tar.xz
+cd acl-2.3.1
 ./configure --prefix=/usr                     \
             --host=$LFS_TGT                   \
             --build=$(build-aux/config.guess) \
             --disable-static                  \
-            --docdir=/usr/share/doc/xz-5.2.5
+            --docdir=/usr/share/doc/xz-5.2.6
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/xz-5.2.5
+rm -v $LFS/usr/lib/liblzma.la
+cd /sources
+rm -rf /sources/acl-2.3.1

@@ -2,12 +2,10 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf Python-3.10.2.tar.xz
-cd Python-3.10.2
-./configure --prefix=/usr   \
-            --enable-shared \
-            --without-ensurepip
+tar -xvf texinfo-6.8.tar.xz
+cd texinfo-6.8
+./configure --prefix=/usr
 make
 make install
 cd /sources
-rm -rf /sources/Python-3.10.2
+rm -rf /sources/texinfo-6.8

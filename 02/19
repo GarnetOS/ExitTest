@@ -1,6 +1,6 @@
-#!/bin/bash -e 
-./prepare 
-export MAKEFLAGS='-j2' 
+#!/bin/bash -e
+set -e
+export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf sed-4.8.tar.xz
 cd sed-4.8
@@ -8,4 +8,5 @@ cd sed-4.8
             --host=$LFS_TGT
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/sed-4.8
+cd /sources
+rm -rf /sources/sed-4.8

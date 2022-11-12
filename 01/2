@@ -1,9 +1,9 @@
 #!/bin/bash -e
-./prepare
+set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf gcc-11.2.0.tar.xz
-cd gcc-11.2.0
+tar -xvf gcc-12.2.0.tar.xz
+cd gcc-12.2.0
 tar -xf ../mpfr-4.1.0.tar.xz
 mv -v mpfr-4.1.0 mpfr
 tar -xf ../gmp-6.2.1.tar.xz
@@ -15,40 +15,16 @@ case $(uname -m) in
     sed -e '/m64=/s/lib64/lib/' \
         -i.orig gcc/config/i386/t-linux64
  ;;
-   ppc64le)
-    sed -e '/m64=/s/lib64/lib/' \
-        -i.orig gcc/config/rs6000/t-linux64
- ;;
-  aarch64)
-    sed -e '/mabi.lp64=/s/lib64/lib/' \
-    -i.orig gcc/config/aarch64/t-aarch64-linux
- ;;
-  mips64le)
-    sed -e '/ma64=/s/lib64/lib/' \
-    -i.orig gcc/config/mips/t-linux64
- ;;
-esac
-case $(uname -m) in
-  armv6l)
-    patch -Np1 -i ../gcc-10.2.0-armv6.patch
- ;;
-  armv7l)
-    patch -Np1 -i ../gcc-10.2.0-armv7.patch
- ;;
-  aarch64)
-    patch -Np1 -i ../gcc-10.2.0-armv8.patch
- ;;
 esac
 mkdir -v build
 cd       build
 ../configure                  \
     --target=$LFS_TGT         \
     --prefix=$LFS/tools       \
-    --with-glibc-version=2.35 \
+    --with-glibc-version=2.36 \
     --with-sysroot=$LFS       \
     --with-newlib             \
     --without-headers         \
-    --enable-initfini-array   \
     --disable-nls             \
     --disable-shared          \
     --disable-multilib        \
@@ -64,3 +40,5 @@ cd       build
 make
 make install
 cd ..
+cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
+  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/install-tools/include/limits.h

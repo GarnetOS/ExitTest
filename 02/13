@@ -1,6 +1,6 @@
-#!/bin/bash -e 
-./prepare 
-export MAKEFLAGS='-j2' 
+#!/bin/bash -e
+set -e
+export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf findutils-4.9.0.tar.xz
 cd findutils-4.9.0
@@ -10,4 +10,5 @@ cd findutils-4.9.0
             --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/findutils-4.9.0
+cd /sources
+rm -rf /sources/findutils-4.9.0

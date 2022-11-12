@@ -1,6 +1,6 @@
-#!/bin/bash -e 
-./prepare 
-export MAKEFLAGS='-j2' 
+#!/bin/bash -e
+set -e
+export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf m4-1.4.19.tar.xz
 cd m4-1.4.19
@@ -9,4 +9,5 @@ cd m4-1.4.19
             --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/m4-1.4.19
+cd /sources
+rm -rf /sources/m4-1.4.19

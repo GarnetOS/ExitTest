@@ -2,7 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-rm -rf /tmp/*
-find /usr/lib /usr/libexec -name \*.la -delete
-find /usr -depth -name $(uname -m)-lfs-linux-gnu\* | xargs rm -rf
-userdel -r tester
+tar -xvf gzip-1.12.tar.xz
+cd gzip-1.12
+./configure --prefix=/usr
+make
+make check
+make install
+cd /sources
+rm -rf /sources/gzip-1.12

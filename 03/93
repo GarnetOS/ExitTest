@@ -2,10 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf groff-1.22.4.tar.gz
-cd groff-1.22.4
-PAGE=<paper_size> ./configure --prefix=/usr
-make -j1
+tar -xvf XML-Parser-2.46.tar.gz
+cd XML-Parser-2.46
+perl Makefile.PL
+make
+make test
 make install
 cd /sources
-rm -rf /sources/groff-1.22.4
+rm -rf /sources/XML-Parser-2.46

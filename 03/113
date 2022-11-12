@@ -2,8 +2,13 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf lfs-bootscripts-20210608.tar.xz
-cd lfs-bootscripts-20210608
-make install
+tar -xvf iproute2-5.19.0.tar.xz
+cd iproute2-5.19.0
+sed -i /ARPD/d Makefile
+rm -fv man/man8/arpd.8
+make NETNS_RUN_DIR=/run/netns
+make SBINDIR=/usr/sbin install
+mkdir -pv             /usr/share/doc/iproute2-5.19.0
+cp -v COPYING README* /usr/share/doc/iproute2-5.19.0
 cd /sources
-rm -rf /sources/lfs-bootscripts-20210608
+rm -rf /sources/iproute2-5.19.0

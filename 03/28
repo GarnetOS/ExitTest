@@ -2,10 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf gettext-0.21.tar.xz
-cd gettext-0.21
-./configure --disable-shared
+tar -xvf bison-3.8.2.tar.xz
+cd bison-3.8.2
+./configure --prefix=/usr \
+            --docdir=/usr/share/doc/bison-3.8.2
 make
-cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
+make install
 cd /sources
-rm -rf /sources/gettext-0.21
+rm -rf /sources/bison-3.8.2

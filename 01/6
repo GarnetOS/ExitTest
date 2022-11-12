@@ -1,9 +1,9 @@
 #!/bin/bash -e
-./prepare
+set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf gcc-11.2.0.tar.xz
-cd gcc-11.2.0
+tar -xvf gcc-12.2.0.tar.xz
+cd gcc-12.2.0
 mkdir -v build
 cd       build
 ../libstdc++-v3/configure           \
@@ -13,7 +13,9 @@ cd       build
     --disable-multilib              \
     --disable-nls                   \
     --disable-libstdcxx-pch         \
-    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/11.2.0
+    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/12.2.0
 make
 make DESTDIR=$LFS install
-rm -rf $LFS/sources/gcc-11.2.0
+rm -v $LFS/usr/lib/lib{stdc++,stdc++fs,supc++}.la
+cd /sources
+rm -rf /sources/gcc-12.2.0

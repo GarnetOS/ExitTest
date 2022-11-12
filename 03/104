@@ -2,20 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf eudev-3.2.11.tar.gz
-cd eudev-3.2.11
-./configure --prefix=/usr           \
-            --bindir=/usr/sbin      \
-            --sysconfdir=/etc       \
-            --enable-manpages       \
-            --disable-static
-make
-mkdir -pv /usr/lib/udev/rules.d
-mkdir -pv /etc/udev/rules.d
-make check
-make install
-tar -xvf ../udev-lfs-20171102.tar.xz
-make -f udev-lfs-20171102/Makefile.lfs install
-udevadm hwdb --update
+tar -xvf meson-0.63.1.tar.gz
+cd meson-0.63.1
+pip3 wheel -w dist --no-build-isolation --no-deps $PWD
+pip3 install --no-index --find-links dist meson
+install -vDm644 data/shell-completions/bash/meson /usr/share/bash-completion/completions/meson
+install -vDm644 data/shell-completions/zsh/_meson /usr/share/zsh/site-functions/_meson
 cd /sources
-rm -rf /sources/eudev-3.2.11
+rm -rf /sources/meson-0.63.1

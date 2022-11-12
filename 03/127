@@ -1,0 +1,11 @@
+#!/bin/bash -e
+set -e
+export MAKEFLAGS='-j2'
+cd $LFS/sources
+tar -xvf sysvinit-3.04.tar.xz
+cd sysvinit-3.04
+patch -Np1 -i ../sysvinit-3.04-consolidated-1.patch
+make
+make install
+cd /sources
+rm -rf /sources/sysvinit-3.04

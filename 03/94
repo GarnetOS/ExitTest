@@ -2,14 +2,13 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf grub-2.06.tar.xz
-cd grub-2.06
-./configure --prefix=/usr          \
-            --sysconfdir=/etc      \
-            --disable-efiemu       \
-            --disable-werror
+tar -xvf intltool-0.51.0.tar.gz
+cd intltool-0.51.0
+sed -i 's:\\\${:\\\$\\{:' intltool-update.in
+./configure --prefix=/usr
 make
+make check
 make install
-mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions
+install -v -Dm644 doc/I18N-HOWTO /usr/share/doc/intltool-0.51.0/I18N-HOWTO
 cd /sources
-rm -rf /sources/grub-2.06
+rm -rf /sources/intltool-0.51.0

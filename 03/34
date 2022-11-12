@@ -2,6 +2,8 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-rm -rf /usr/share/{info,man,doc}/*
-find /usr/{lib,libexec} -name \*.la -delete
-rm -rf /tools
+tar -xvf man-db-2.10.2.tar.xz
+cd man-db-2.10.2
+make prefix=/usr install
+cd /sources
+rm -rf /sources/man-db-2.10.2

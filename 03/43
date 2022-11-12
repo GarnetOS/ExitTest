@@ -2,11 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf zstd-1.5.2.tar.gz
-cd zstd-1.5.2
+tar -xvf file-5.42.tar.gz
+cd file-5.42
+./configure --prefix=/usr
 make
 make check
-make prefix=/usr install
-rm -v /usr/lib/libzstd.a
+make install
 cd /sources
-rm -rf /sources/zstd-1.5.2
+rm -rf /sources/file-5.42

@@ -2,23 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf util-linux-2.37.4.tar.xz
-cd util-linux-2.37.4
-mkdir -pv /var/lib/hwclock
-./configure ADJTIME_PATH=/var/lib/hwclock/adjtime    \
-            --libdir=/usr/lib    \
-            --docdir=/usr/share/doc/util-linux-2.37.4 \
-            --disable-chfn-chsh  \
-            --disable-login      \
-            --disable-nologin    \
-            --disable-su         \
-            --disable-setpriv    \
-            --disable-runuser    \
-            --disable-pylibmount \
-            --disable-static     \
-            --without-python     \
-            runstatedir=/run
-make
-make install
-cd /sources
-rm -rf /sources/util-linux-2.37.4
+rm -rf /usr/share/{info,man,doc}/*
+find /usr/{lib,libexec} -name \*.la -delete
+rm -rf /tools
+exit
+umount $LFS/dev/pts
+umount $LFS/{sys,proc,run,dev}
+cd $LFS
+tar -cJpf $HOME/lfs-temp-tools-11.2.tar.xz .

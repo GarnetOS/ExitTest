@@ -1,6 +1,6 @@
-#!/bin/bash -e 
-./prepare 
-export MAKEFLAGS='-j2' 
+#!/bin/bash -e
+set -e
+export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf gawk-5.1.1.tar.xz
 cd gawk-5.1.1
@@ -10,4 +10,5 @@ sed -i 's/extras//' Makefile.in
             --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/gawk-5.1.1
+cd /sources
+rm -rf /sources/gawk-5.1.1

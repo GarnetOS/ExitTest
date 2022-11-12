@@ -1,6 +1,6 @@
-#!/bin/bash -e 
-./prepare 
-export MAKEFLAGS='-j2' 
+#!/bin/bash -e
+set -e
+export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf patch-2.7.6.tar.xz
 cd patch-2.7.6
@@ -9,4 +9,5 @@ cd patch-2.7.6
             --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
- rm -rf $LFS/sources/patch-2.7.6
+cd /sources
+rm -rf /sources/patch-2.7.6

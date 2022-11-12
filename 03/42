@@ -2,13 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf xz-5.2.5.tar.xz
-cd xz-5.2.5
-./configure --prefix=/usr    \
-            --disable-static \
-            --docdir=/usr/share/doc/xz-5.2.5
-make
+tar -xvf zstd-1.5.2.tar.gz
+cd zstd-1.5.2
+patch -Np1 -i ../zstd-1.5.2-upstream_fixes-1.patch
+make prefix=/usr
 make check
-make install
+make prefix=/usr install
+rm -v /usr/lib/libzstd.a
 cd /sources
-rm -rf /sources/xz-5.2.5
+rm -rf /sources/zstd-1.5.2

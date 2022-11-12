@@ -2,16 +2,16 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf expect5.45.4.tar.gz
-cd expect5.45.4
-./configure --prefix=/usr           \
-            --with-tcl=/usr/lib     \
-            --enable-shared         \
-            --mandir=/usr/share/man \
-            --with-tclinclude=/usr/include
-make
-make test
+tar -xvf dejagnu-1.6.3.tar.gz
+cd dejagnu-1.6.3
+mkdir -v build
+cd       build
+../configure --prefix=/usr
+makeinfo --html --no-split -o doc/dejagnu.html ../doc/dejagnu.texi
+makeinfo --plaintext       -o doc/dejagnu.txt  ../doc/dejagnu.texi
 make install
-ln -svf expect5.45.4/libexpect5.45.4.so /usr/lib
+install -v -dm755  /usr/share/doc/dejagnu-1.6.3
+install -v -m644   doc/dejagnu.{html,txt} /usr/share/doc/dejagnu-1.6.3
+make check
 cd /sources
-rm -rf /sources/expect5.45.4
+rm -rf /sources/dejagnu-1.6.3

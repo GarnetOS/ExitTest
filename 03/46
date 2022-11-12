@@ -2,11 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf m4-1.4.19.tar.xz
-cd m4-1.4.19
-./configure --prefix=/usr
+tar -xvf bc-6.0.1.tar.xz
+cd bc-6.0.1
+CC=gcc ./configure --prefix=/usr -G -O3 -r
 make
-make check
+make test
 make install
 cd /sources
-rm -rf /sources/m4-1.4.19
+rm -rf /sources/bc-6.0.1

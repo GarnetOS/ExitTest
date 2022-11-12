@@ -2,22 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf python-3.10.2-docs-html.tar.bz2
-cd python-3.10.2-docs-html
-./configure --prefix=/usr        \
-            --enable-shared      \
-            --with-system-expat  \
-            --with-system-ffi    \
-            --with-ensurepip=yes \
-            --enable-optimizations
+tar -xvf libtool-2.4.7.tar.xz
+cd libtool-2.4.7
+./configure --prefix=/usr
 make
+make check
 make install
-install -v -dm755 /usr/share/doc/python-3.10.2/html
-
-tar --strip-components=1  \
-    --no-same-owner       \
-    --no-same-permissions \
-    -C /usr/share/doc/python-3.10.2/html \
-    -xvf ../python-3.10.2-docs-html.tar.bz2
+rm -fv /usr/lib/libltdl.a
 cd /sources
-rm -rf /sources/python-3.10.2-docs-html
+rm -rf /sources/libtool-2.4.7

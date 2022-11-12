@@ -2,11 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf gzip-1.11.tar.xz
-cd gzip-1.11
+tar -xvf autoconf-2.71.tar.xz
+cd autoconf-2.71
 ./configure --prefix=/usr
 make
 make check
 make install
 cd /sources
-rm -rf /sources/gzip-1.11
+rm -rf /sources/autoconf-2.71

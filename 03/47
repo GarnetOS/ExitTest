@@ -2,11 +2,14 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf bc-5.2.2.tar.xz
-cd bc-5.2.2
-CC=gcc ./configure --prefix=/usr -G -O3
+tar -xvf flex-2.6.4.tar.gz
+cd flex-2.6.4
+./configure --prefix=/usr \
+            --docdir=/usr/share/doc/flex-2.6.4 \
+            --disable-static
 make
-make test
+make check
 make install
+ln -sv flex /usr/bin/lex
 cd /sources
-rm -rf /sources/bc-5.2.2
+rm -rf /sources/flex-2.6.4
