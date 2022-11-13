@@ -30,13 +30,13 @@ case $(uname -m) in
 esac
 case $(uname -m) in
   armv6l)
-    patch -Np1 -i ../gcc-10.2.0-armv6.patch
+    patch -Np1 -i ../gcc-11.2.0-armv6.patch
  ;;
   armv7l)
-    patch -Np1 -i ../gcc-10.2.0-armv7.patch
+    patch -Np1 -i ../gcc-11.2.0-armv7.patch
  ;;
   aarch64)
-    patch -Np1 -i ../gcc-10.2.0-armv8.patch
+    patch -Np1 -i ../gcc-11.2.0-armv8.patch
  ;;
 esac
 mkdir -v build
