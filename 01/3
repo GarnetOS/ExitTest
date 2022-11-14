@@ -3,6 +3,7 @@ set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 cd gcc-12.2.0
+cd build
 ../configure                  \
     --target=$LFS_TGT         \
     --prefix=$LFS/tools       \
