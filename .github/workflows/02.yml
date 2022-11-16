@@ -14,7 +14,7 @@ jobs:
   build:
     strategy:
       matrix:
-          arch: [armv6,armv7,aarch64,amd64,ppc64le,i386]
+          arch: [armv6,armv7,aarch64,amd64,i386]
           distro: [bullseye]
           #include:
           #  - arch: riscv64
@@ -28,23 +28,27 @@ jobs:
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
             sudo apt install curl wget grep
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
-            wget https://dl.min.io/client/mc/release/linux-amd64/archive/mcli_20220426180022.0.0_amd64.deb
-            sudo dpkg -i mcli_20220426180022.0.0_amd64.deb
-            mcli alias set myminio/ http://${{ secrets.MINIO_IP }}:9000 ${{ secrets.MINIO_ACCESS }} ${{ secrets.MINIO_SECRET }}
+            curl https://dl.min.io/client/mc/release/linux-amd64/mc \
+            --create-dirs \
+            -o $HOME/minio-binaries/mc
+            chmod +x $HOME/minio-binaries/mc
+            export PATH=$PATH:$HOME/minio-binaries/
+            mc alias set myminio/ http://${{ secrets.MINIO_IP }}:9000 ${{ secrets.MINIO_ACCESS }} ${{ secrets.MINIO_SECRET }}
             export CURR=$(([ -z "${{ github.event.inputs.package }}" ] && echo ${{github.event.client_payload.number}})||echo ${{ github.event.inputs.package }})
             echo "CURR=$(($CURR))" >> $GITHUB_ENV
             echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
             echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
       - uses: actions/checkout@v2
         name: Checkout
-      - name: Download artifact
-        uses: GarnetOS/action-download-artifact@new
-        with:
-          workflow: 01.yml
-          name: out-${{matrix.arch}}-${{env.PREV}}
-      #- name: Download
-      #  run: |
-      #      mcli cp myminio/bucket/out-${{matrix.arch}}.tar.gz out.tar.gz
+      #- name: Download artifact
+      #  uses: GarnetOS/action-download-artifact@new
+      #  with:
+      #    workflow: 01.yml
+      #    name: out-${{matrix.arch}}-${{env.PREV}}
+      - name: Download
+        run: |
+            export PATH=$PATH:$HOME/minio-binaries/
+            mc cp myminio/bucket/out-${{matrix.arch}}.tar.gz out.tar.gz
       - name: Prepare image
         run: |
             pwd
@@ -107,7 +111,8 @@ jobs:
         run: mv out.tar.gz out-${{matrix.arch}}.tar.gz
       - name: Minio install and deploy
         run: |
-            mcli cp out-${{matrix.arch}}.tar.gz myminio/bucket
+            export PATH=$PATH:$HOME/minio-binaries/
+            mc cp out-${{matrix.arch}}.tar.gz myminio/bucket
   post:
     needs: build
     # The type of runner that the job will run on
