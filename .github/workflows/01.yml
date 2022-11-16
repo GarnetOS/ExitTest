@@ -14,7 +14,7 @@ jobs:
   build:
     strategy:
       matrix:
-          arch: [armv6,armv7,aarch64,amd64,ppc64le,mips64le,i386]
+          arch: [armv6,armv7,aarch64,amd64,i386]
           distro: [bullseye]
         #  include:
         #    - arch: riscv64
