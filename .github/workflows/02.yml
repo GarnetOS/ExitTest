@@ -57,6 +57,8 @@ jobs:
             sudo mkdir /mnt/lfs
             tar -xvf out.tar.gz
             sudo mount -o suid VHD.img /mnt/lfs
+            cd /mnt/lfs/sources/
+            wget https://invisible-island.net/archives/ncurses/ncurses-6.3.tar.gz
             sudo ls 
       - uses: GarnetOS/run-on-arch-action@v2.1.2
         name: Download and release
