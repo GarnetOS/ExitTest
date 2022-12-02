@@ -2,7 +2,7 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-chown -R root:root $LFS/{usr,lib,var,etc,bin,sbin,tools}
+sudo chown -R root:root $LFS/{usr,lib,var,etc,bin,sbin,tools}
 case $(uname -m) in
-  *64) chown -R root:root $LFS/lib64 ;;
+  *64) sudo chown -R root:root $LFS/lib64 ;;
 esac
