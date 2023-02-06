@@ -2,6 +2,7 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
+chmod u+s /usr/bin/sudo
 ls -l /usr/bin/sudo
 sudo chown -R root:root $LFS/{usr,lib,var,etc,bin,sbin,tools}
 case $(uname -m) in
