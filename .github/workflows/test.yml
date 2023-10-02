@@ -2,6 +2,11 @@ name: Test of Arch
 on:
   workflow_dispatch:
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare
+        run: apt update; apt-get install qemu binfmt-support qemu-user-static
   container-test-job:
     runs-on: ubuntu-latest
     container:
