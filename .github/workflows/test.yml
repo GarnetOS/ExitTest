@@ -1,0 +1,16 @@
+name: Test of Arch
+on:
+  workflow_dispatch:
+jobs:
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: arm64v8/debian:testing
+      ports:
+        - 80
+      volumes:
+        - my_docker_volume:/volume_mount
+      options: --cpus 8
+    steps:
+      - name: Check for dockerenv file
+        run: uname -a
