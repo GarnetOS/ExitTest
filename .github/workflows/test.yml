@@ -10,7 +10,7 @@ jobs:
         - 80
       volumes:
         - my_docker_volume:/volume_mount
-      options: --cpus 8
+      options: --cpus 2
     steps:
       - name: Check for dockerenv file
         run: uname -a
