@@ -31,7 +31,7 @@ jobs:
             sudo mkdir /mnt/lfs
             dd if=/dev/zero of=VHD.img bs=1M count=20480
             sudo mkfs -v -t ext4 VHD.img
-            sudo mount VHD.img /mnt/lfs
+            sudo mount -o rw,acl,user_xattr VHD.img /mnt/lfs
       - uses: GarnetOS/run-on-arch-action@v2.1.2
         name: Download and release
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -63,19 +63,18 @@ jobs:
             chmod -v a+wt $LFS/sources
             #dhclient -r
             cd $LFS/sources
-            wget https://www.linuxfromscratch.org/lfs/downloads/11.2/wget-list
+            wget https://www.linuxfromscratch.org/lfs/downloads/12.0/wget-list
             wget --input-file=wget-list --continue --directory-prefix=$LFS/sources --tries=2 || true
-            wget --directory-prefix=$LFS/sources https://prdownloads.sourceforge.net/expat/expat-2.5.0.tar.xz
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.2/patches/gcc-11.2.0-armv6.patch
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.2/patches/gcc-11.2.0-armv7.patch
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.2/patches/gcc-11.2.0-armv8.patch
             wget --directory-prefix=$LFS/sources https://raw.githubusercontent.com/tarmiste/lfs-non-ia/master/lfs-11.2/patches/binutils_ppc_fix_1.patch
             wget --directory-prefix=$LFS/sources -O coreutils.patch https://711722.bugs.gentoo.org/attachment.cgi?id=617340
-            wget --directory-prefix=$LFS/sources https://github.com/p11-glue/p11-kit/releases/download/0.24.1/p11-kit-0.24.1.tar.xz
-            wget --directory-prefix=$LFS/sources https://github.com/lfs-book/make-ca/releases/download/v1.10/make-ca-1.10.tar.xz
-            wget --directory-prefix=$LFS/sources https://ftp.gnu.org/gnu/wget/wget-1.21.3.tar.gz
-            wget --directory-prefix=$LFS/sources https://roy.marples.name/downloads/dhcpcd/dhcpcd-9.4.1.tar.xz
-            wget --directory-prefix=$LFS/sources https://www.nano-editor.org/dist/v6/nano-6.4.tar.xz
+            wget --directory-prefix=$LFS/sources https://github.com/p11-glue/p11-kit/releases/download/0.25.0/p11-kit-0.25.0.tar.xz
+            wget --directory-prefix=$LFS/sources https://github.com/lfs-book/make-ca/releases/download/v1.12/make-ca-1.12.tar.xz
+            wget --directory-prefix=$LFS/sources https://ftp.gnu.org/gnu/wget/wget-1.21.4.tar.gz
+            wget --directory-prefix=$LFS/sources https://github.com/NetworkConfiguration/dhcpcd/releases/download/v10.0.2/dhcpcd-10.0.2.tar.xz
+            wget --directory-prefix=$LFS/sources https://www.nano-editor.org/dist/v7/nano-7.2.tar.xz
             
             cd /mnt/lfs
             mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
