@@ -2,13 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf make-4.3.tar.gz
-cd make-4.3
+tar -xvf patch-2.7.6.tar.xz
+cd patch-2.7.6
 ./configure --prefix=/usr   \
-            --without-guile \
             --host=$LFS_TGT \
             --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
 cd $LFS/sources
-rm -rf $LFS/sources/make-4.3
+rm -rf $LFS/sources/patch-2.7.6

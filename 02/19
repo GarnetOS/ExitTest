@@ -2,11 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf sed-4.8.tar.xz
-cd sed-4.8
-./configure --prefix=/usr   \
-            --host=$LFS_TGT
+tar -xvf acl-2.3.1.tar.xz
+cd acl-2.3.1
+./configure --prefix=/usr                     \
+            --host=$LFS_TGT                   \
+            --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
 cd $LFS/sources
-rm -rf $LFS/sources/sed-4.8
+rm -rf $LFS/sources/acl-2.3.1

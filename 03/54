@@ -2,15 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf mpc-1.2.1.tar.gz
-cd mpc-1.2.1
-./configure --prefix=/usr    \
-            --disable-static \
-            --docdir=/usr/share/doc/mpc-1.2.1
-make
-make html
-make check
-make install
-make install-html
+tar -xvf libcap-2.69.tar.xz
+cd libcap-2.69
+sed -i '/install -m.*STA/d' libcap/Makefile
+make prefix=/usr lib=lib
+make test
+make prefix=/usr lib=lib install
 cd $LFS/sources
-rm -rf $LFS/sources/mpc-1.2.1
+rm -rf $LFS/sources/libcap-2.69

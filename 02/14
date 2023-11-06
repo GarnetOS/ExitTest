@@ -2,13 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf gawk-5.1.1.tar.xz
-cd gawk-5.1.1
-sed -i 's/extras//' Makefile.in
+tar -xvf grep-3.11.tar.xz
+cd grep-3.11
 ./configure --prefix=/usr   \
             --host=$LFS_TGT \
-            --build=$(build-aux/config.guess)
+            --build=$(./build-aux/config.guess)
 make
 make DESTDIR=$LFS install
 cd $LFS/sources
-rm -rf $LFS/sources/gawk-5.1.1
+rm -rf $LFS/sources/grep-3.11

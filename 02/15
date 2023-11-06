@@ -2,11 +2,10 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf grep-3.7.tar.xz
-cd grep-3.7
-./configure --prefix=/usr   \
-            --host=$LFS_TGT
+tar -xvf gzip-1.12.tar.xz
+cd gzip-1.12
+./configure --prefix=/usr --host=$LFS_TGT
 make
 make DESTDIR=$LFS install
 cd $LFS/sources
-rm -rf $LFS/sources/grep-3.7
+rm -rf $LFS/sources/gzip-1.12

@@ -2,14 +2,16 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf flex-2.6.4.tar.gz
-cd flex-2.6.4
-./configure --prefix=/usr \
-            --docdir=/usr/share/doc/flex-2.6.4 \
-            --disable-static
-make
-make check
+tar -xvf dejagnu-1.6.3.tar.gz
+cd dejagnu-1.6.3
+mkdir -v build
+cd       build
+../configure --prefix=/usr
+makeinfo --html --no-split -o doc/dejagnu.html ../doc/dejagnu.texi
+makeinfo --plaintext       -o doc/dejagnu.txt  ../doc/dejagnu.texi
 make install
-ln -sv flex /usr/bin/lex
+install -v -dm755  /usr/share/doc/dejagnu-1.6.3
+install -v -m644   doc/dejagnu.{html,txt} /usr/share/doc/dejagnu-1.6.3
+make check
 cd $LFS/sources
-rm -rf $LFS/sources/flex-2.6.4
+rm -rf $LFS/sources/dejagnu-1.6.3

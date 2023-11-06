@@ -2,13 +2,13 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf findutils-4.9.0.tar.xz
-cd findutils-4.9.0
-./configure --prefix=/usr                   \
-            --localstatedir=/var/lib/locate \
-            --host=$LFS_TGT                 \
+tar -xvf gawk-5.2.2.tar.xz
+cd gawk-5.2.2
+sed -i 's/extras//' Makefile.in
+./configure --prefix=/usr   \
+            --host=$LFS_TGT \
             --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
 cd $LFS/sources
-rm -rf $LFS/sources/findutils-4.9.0
+rm -rf $LFS/sources/gawk-5.2.2

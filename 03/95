@@ -2,11 +2,15 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf autoconf-2.71.tar.xz
-cd autoconf-2.71
-./configure --prefix=/usr
+tar -xvf kbd-2.6.1.tar.xz
+cd kbd-2.6.1
+patch -Np1 -i ../kbd-2.6.1-backspace-1.patch
+sed -i '/RESIZECONS_PROGS=/s/yes/no/' configure
+sed -i 's/resizecons.8 //' docs/man/man8/Makefile.in
+./configure --prefix=/usr --disable-vlock
 make
 make check
 make install
+cp -R -v docs/doc -T /usr/share/doc/kbd-2.6.1
 cd $LFS/sources
-rm -rf $LFS/sources/autoconf-2.71
+rm -rf $LFS/sources/kbd-2.6.1

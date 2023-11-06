@@ -2,11 +2,30 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf diffutils-3.8.tar.xz
-cd diffutils-3.8
-./configure --prefix=/usr
+tar -xvf binutils-2.41.tar.xz
+cd binutils-2.41
+sed -i '/test_mkfds/s/^/#/' tests/helpers/Makemodule.am
+./configure ADJTIME_PATH=/var/lib/hwclock/adjtime \
+            --bindir=/usr/bin    \
+            --libdir=/usr/lib    \
+            --runstatedir=/run   \
+            --sbindir=/usr/sbin  \
+            --disable-chfn-chsh  \
+            --disable-login      \
+            --disable-nologin    \
+            --disable-su         \
+            --disable-setpriv    \
+            --disable-runuser    \
+            --disable-pylibmount \
+            --disable-static     \
+            --without-python     \
+            --without-systemd    \
+            --without-systemdsystemunitdir \
+            --docdir=/usr/share/doc/util-linux-2.39.1
 make
-make check
+bash tests/run.sh --srcdir=$PWD --builddir=$PWD
+chown -Rv tester .
+su tester -c "make -k check"
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/diffutils-3.8
+rm -rf $LFS/sources/binutils-2.41

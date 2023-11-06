@@ -2,10 +2,13 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf psmisc-23.5.tar.xz
-cd psmisc-23.5
-./configure --prefix=/usr
+tar -xvf libffi-3.4.4.tar.gz
+cd libffi-3.4.4
+./configure --prefix=/usr          \
+            --disable-static       \
+            --with-gcc-arch=native
 make
+make check
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/psmisc-23.5
+rm -rf $LFS/sources/libffi-3.4.4

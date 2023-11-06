@@ -2,14 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf expat-2.4.8.tar.xz
-cd expat-2.4.8
-./configure --prefix=/usr    \
-            --disable-static \
-            --docdir=/usr/share/doc/expat-2.4.8
+tar -xvf diffutils-3.10.tar.xz
+cd diffutils-3.10
+./configure --prefix=/usr
 make
 make check
 make install
-install -v -m644 doc/*.{html,css} /usr/share/doc/expat-2.4.8
 cd $LFS/sources
-rm -rf $LFS/sources/expat-2.4.8
+rm -rf $LFS/sources/diffutils-3.10

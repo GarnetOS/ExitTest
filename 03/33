@@ -2,11 +2,8 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-rm -rf /usr/share/{info,man,doc}/*
-find /usr/{lib,libexec} -name \*.la -delete
-rm -rf /tools
-exit
-umount $LFS/dev/pts
-umount $LFS/{sys,proc,run,dev}
-cd $LFS
-tar -cJpf $HOME/lfs-temp-tools-11.2.tar.xz .
+tar -xvf iana-etc-20230810.tar.gz
+cd iana-etc-20230810
+cp services protocols /etc
+cd $LFS/sources
+rm -rf $LFS/sources/iana-etc-20230810

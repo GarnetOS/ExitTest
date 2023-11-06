@@ -2,8 +2,8 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf binutils-2.39.tar.xz
-cd binutils-2.39
+tar -xvf binutils-2.41.tar.xz
+cd binutils-2.41
 mkdir -v build
 cd       build
 ../configure --prefix=$LFS/tools \
@@ -15,4 +15,4 @@ cd       build
 make
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/binutils-2.39
+rm -rf $LFS/sources/binutils-2.41

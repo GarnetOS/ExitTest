@@ -2,11 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf gperf-3.1.tar.gz
-cd gperf-3.1
-./configure --prefix=/usr --docdir=/usr/share/doc/gperf-3.1
+tar -xvf check-0.15.2.tar.gz
+cd check-0.15.2
+./configure --prefix=/usr --disable-static
 make
-make -j1 check
-make install
+make check
+make docdir=/usr/share/doc/check-0.15.2 install
 cd $LFS/sources
-rm -rf $LFS/sources/gperf-3.1
+rm -rf $LFS/sources/check-0.15.2

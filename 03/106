@@ -2,11 +2,14 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf check-0.15.2.tar.gz
-cd check-0.15.2
-./configure --prefix=/usr --disable-static
+tar -xvf procps-ng-4.0.3.tar.xz
+cd procps-ng-4.0.3
+./configure --prefix=/usr                           \
+            --docdir=/usr/share/doc/procps-ng-4.0.3 \
+            --disable-static                        \
+            --disable-kill
 make
 make check
-make docdir=/usr/share/doc/check-0.15.2 install
+make install
 cd $LFS/sources
-rm -rf $LFS/sources/check-0.15.2
+rm -rf $LFS/sources/procps-ng-4.0.3

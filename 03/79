@@ -2,15 +2,15 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf sed-4.8.tar.xz
-cd sed-4.8
-./configure --prefix=/usr
+tar -xvf elfutils-0.189.tar.bz2
+cd elfutils-0.189
+./configure --prefix=/usr                \
+            --disable-debuginfod         \
+            --enable-libdebuginfod=dummy
 make
-make html
-chown -Rv tester .
-su tester -c "PATH=$PATH make check"
-make install
-install -d -m755           /usr/share/doc/sed-4.8
-install -m644 doc/sed.html /usr/share/doc/sed-4.8
+make check
+make -C libelf install
+install -vm644 config/libelf.pc /usr/lib/pkgconfig
+rm /usr/lib/libelf.a
 cd $LFS/sources
-rm -rf $LFS/sources/sed-4.8
+rm -rf $LFS/sources/elfutils-0.189

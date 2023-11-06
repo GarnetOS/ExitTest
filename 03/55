@@ -2,14 +2,23 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf attr-2.5.1.tar.gz
-cd attr-2.5.1
-./configure --prefix=/usr     \
-            --disable-static  \
-            --sysconfdir=/etc \
-            --docdir=/usr/share/doc/attr-2.5.1
+tar -xvf libxcrypt-4.4.36.tar.xz
+cd libxcrypt-4.4.36
+./configure --prefix=/usr                \
+            --enable-hashes=strong,glibc \
+            --enable-obsolete-api=no     \
+            --disable-static             \
+            --disable-failure-tokens
 make
 make check
 make install
+make distclean
+./configure --prefix=/usr                \
+            --enable-hashes=strong,glibc \
+            --enable-obsolete-api=glibc  \
+            --disable-static             \
+            --disable-failure-tokens
+make
+cp -av .libs/libcrypt.so.1* /usr/lib
 cd $LFS/sources
-rm -rf $LFS/sources/attr-2.5.1
+rm -rf $LFS/sources/libxcrypt-4.4.36

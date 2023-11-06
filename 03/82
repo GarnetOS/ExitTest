@@ -2,11 +2,9 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf bison-3.8.2.tar.xz
-cd bison-3.8.2
-./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.8.2
-make
-make check
-make install
+tar -xvf flit_core-3.9.0.tar.gz
+cd flit_core-3.9.0
+pip3 wheel -w dist --no-build-isolation --no-deps $PWD
+pip3 install --no-index --no-user --find-links dist flit_core
 cd $LFS/sources
-rm -rf $LFS/sources/bison-3.8.2
+rm -rf $LFS/sources/flit_core-3.9.0

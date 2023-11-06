@@ -2,31 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-cd gcc-12.2.0
-cd build
-../configure                  \
-    --target=$LFS_TGT         \
-    --prefix=$LFS/tools       \
-    --with-glibc-version=2.36 \
-    --with-sysroot=$LFS       \
-    --with-newlib             \
-    --without-headers         \
-    --disable-nls             \
-    --disable-shared          \
-    --disable-multilib        \
-    --disable-decimal-float   \
-    --disable-threads         \
-    --disable-libatomic       \
-    --disable-libgomp         \
-    --disable-libquadmath     \
-    --disable-libssp          \
-    --disable-libvtv          \
-    --disable-libstdcxx       \
-    --enable-languages=c,c++
-make
-make install
-cd ..
-cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
-  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
+tar -xvf linux-6.4.12.tar.xz
+cd linux-6.4.12
+make mrproper
+make headers
+find usr/include -type f ! -name '*.h' -delete
+
+cp -rv usr/include $LFS/usr
 cd $LFS/sources
-rm -rf $LFS/sources/gcc-12.2.0
+rm -rf $LFS/sources/linux-6.4.12

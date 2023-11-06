@@ -2,11 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf automake-1.16.5.tar.xz
-cd automake-1.16.5
-./configure --prefix=/usr --docdir=/usr/share/doc/automake-1.16.5
+tar -xvf libpipeline-1.5.7.tar.gz
+cd libpipeline-1.5.7
+./configure --prefix=/usr
 make
-make -j4 check
+make check
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/automake-1.16.5
+rm -rf $LFS/sources/libpipeline-1.5.7

@@ -2,14 +2,18 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf libffi-3.4.2.tar.gz
-cd libffi-3.4.2
-./configure --prefix=/usr          \
-            --disable-static       \
-            --with-gcc-arch=native \
-            --disable-exec-static-tramp
+tar -xvf texinfo-7.0.3.tar.xz
+cd texinfo-7.0.3
+./configure --prefix=/usr
 make
 make check
 make install
+make TEXMF=/usr/share/texmf install-tex
+pushd /usr/share/info
+  rm -v dir
+  for f in *
+    do install-info $f dir 2>/dev/null
+  done
+popd
 cd $LFS/sources
-rm -rf $LFS/sources/libffi-3.4.2
+rm -rf $LFS/sources/texinfo-7.0.3

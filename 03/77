@@ -2,14 +2,18 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf pkg-config-0.29.2.tar.gz
-cd pkg-config-0.29.2
-./configure --prefix=/usr              \
-            --with-internal-glib       \
-            --disable-host-tool        \
-            --docdir=/usr/share/doc/pkg-config-0.29.2
+tar -xvf openssl-3.1.2.tar.gz
+cd openssl-3.1.2
+./config --prefix=/usr         \
+         --openssldir=/etc/ssl \
+         --libdir=lib          \
+         shared                \
+         zlib-dynamic
 make
-make check
-make install
+make test
+sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
+make MANSUFFIX=ssl install
+mv -v /usr/share/doc/openssl /usr/share/doc/openssl-3.1.2
+cp -vfr doc/* /usr/share/doc/openssl-3.1.2
 cd $LFS/sources
-rm -rf $LFS/sources/pkg-config-0.29.2
+rm -rf $LFS/sources/openssl-3.1.2

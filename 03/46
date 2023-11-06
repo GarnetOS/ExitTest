@@ -2,11 +2,16 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf bc-6.0.1.tar.xz
-cd bc-6.0.1
-CC=gcc ./configure --prefix=/usr -G -O3 -r
+tar -xvf expect5.45.4.tar.gz
+cd expect5.45.4
+./configure --prefix=/usr           \
+            --with-tcl=/usr/lib     \
+            --enable-shared         \
+            --mandir=/usr/share/man \
+            --with-tclinclude=/usr/include
 make
 make test
 make install
+ln -svf expect5.45.4/libexpect5.45.4.so /usr/lib
 cd $LFS/sources
-rm -rf $LFS/sources/bc-6.0.1
+rm -rf $LFS/sources/expect5.45.4

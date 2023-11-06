@@ -2,10 +2,19 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf gettext-0.21.tar.xz
-cd gettext-0.21
-./configure --disable-shared
+tar -xvf perl-5.38.0.tar.xz
+cd perl-5.38.0
+sh Configure -des                                        \
+             -Dprefix=/usr                               \
+             -Dvendorprefix=/usr                         \
+             -Duseshrplib                                \
+             -Dprivlib=/usr/lib/perl5/5.38/core_perl     \
+             -Darchlib=/usr/lib/perl5/5.38/core_perl     \
+             -Dsitelib=/usr/lib/perl5/5.38/site_perl     \
+             -Dsitearch=/usr/lib/perl5/5.38/site_perl    \
+             -Dvendorlib=/usr/lib/perl5/5.38/vendor_perl \
+             -Dvendorarch=/usr/lib/perl5/5.38/vendor_perl
 make
-cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
+make install
 cd $LFS/sources
-rm -rf $LFS/sources/gettext-0.21
+rm -rf $LFS/sources/perl-5.38.0

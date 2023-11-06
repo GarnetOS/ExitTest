@@ -2,10 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf texinfo-6.8.tar.xz
-cd texinfo-6.8
-./configure --prefix=/usr
-make
-make install
-cd $LFS/sources
-rm -rf $LFS/sources/texinfo-6.8
+rm -rf /usr/share/{info,man,doc}/*
+find /usr/{lib,libexec} -name \*.la -delete
+rm -rf /tools
+exit
+mountpoint -q $LFS/dev/shm &amp;&amp; umount $LFS/dev/shm
+umount $LFS/dev/pts
+umount $LFS/{sys,proc,run,dev}
+cd $LFS
+tar -cJpf $HOME/lfs-temp-tools-12.0.tar.xz .

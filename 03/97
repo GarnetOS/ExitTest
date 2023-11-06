@@ -2,18 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf openssl-3.0.5.tar.gz
-cd openssl-3.0.5
-./config --prefix=/usr         \
-         --openssldir=/etc/ssl \
-         --libdir=lib          \
-         shared                \
-         zlib-dynamic
+tar -xvf automake-1.16.5.tar.xz
+cd automake-1.16.5
+./configure --prefix=/usr
 make
-make test
-sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
-make MANSUFFIX=ssl install
-mv -v /usr/share/doc/openssl /usr/share/doc/openssl-3.0.5
-cp -vfr doc/* /usr/share/doc/openssl-3.0.5
+chown -Rv tester .
+su tester -c "PATH=$PATH make check"
+make install
 cd $LFS/sources
-rm -rf $LFS/sources/openssl-3.0.5
+rm -rf $LFS/sources/automake-1.16.5

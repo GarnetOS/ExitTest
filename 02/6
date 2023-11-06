@@ -2,12 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf sed-4.9.tar.xz
-cd sed-4.9
+tar -xvf m4-1.4.19.tar.xz
+cd m4-1.4.19
 ./configure --prefix=/usr   \
             --host=$LFS_TGT \
-            --build=$(./build-aux/config.guess)
+            --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
 cd $LFS/sources
-rm -rf $LFS/sources/sed-4.9
+rm -rf $LFS/sources/m4-1.4.19

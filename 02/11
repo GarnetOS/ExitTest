@@ -2,10 +2,19 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf diffutils-3.8.tar.xz
-cd diffutils-3.8
-./configure --prefix=/usr --host=$LFS_TGT
-make
+tar -xvf file-5.45.tar.gz
+cd file-5.45
+mkdir build
+pushd build
+  ../configure --disable-bzlib      \
+               --disable-libseccomp \
+               --disable-xzlib      \
+               --disable-zlib
+  make
+popd
+./configure --prefix=/usr --host=$LFS_TGT --build=$(./config.guess)
+make FILE_COMPILE=$(pwd)/build/src/file
 make DESTDIR=$LFS install
+rm -v $LFS/usr/lib/libmagic.la
 cd $LFS/sources
-rm -rf $LFS/sources/diffutils-3.8
+rm -rf $LFS/sources/file-5.45

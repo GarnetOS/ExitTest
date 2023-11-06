@@ -2,10 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf less-590.tar.gz
-cd less-590
-./configure --prefix=/usr --sysconfdir=/etc
+tar -xvf findutils-4.9.0.tar.xz
+cd findutils-4.9.0
+./configure --prefix=/usr --localstatedir=/var/lib/locate
 make
+chown -Rv tester .
+su tester -c "PATH=$PATH make check"
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/less-590
+rm -rf $LFS/sources/findutils-4.9.0

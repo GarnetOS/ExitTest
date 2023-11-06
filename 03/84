@@ -2,22 +2,19 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf bash-5.1.16.tar.gz
-cd bash-5.1.16
-./configure --prefix=/usr                      \
-            --docdir=/usr/share/doc/bash-5.1.16 \
-            --without-bash-malloc              \
-            --with-installed-readline
-make
-chown -Rv tester .
-su -s /usr/bin/expect tester << EOF
-set timeout -1
-spawn make tests
-expect eof
-lassign [wait] _ _ _ value
-exit $value
-EOF
-make install
-exec /usr/bin/bash --login
+tar -xvf ninja-1.11.1.tar.gz
+cd ninja-1.11.1
+sed -i '/int Guess/a \
+  int   j = 0;\
+  char* jobs = getenv( "NINJAJOBS" );\
+  if ( jobs != NULL ) j = atoi( jobs );\
+  if ( j > 0 ) return j;\
+' src/ninja.cc
+python3 configure.py --bootstrap
+./ninja ninja_test
+./ninja_test --gtest_filter=-SubprocessTest.SetWithLots
+install -vm755 ninja /usr/bin/
+install -vDm644 misc/bash-completion /usr/share/bash-completion/completions/ninja
+install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja
 cd $LFS/sources
-rm -rf $LFS/sources/bash-5.1.16
+rm -rf $LFS/sources/ninja-1.11.1

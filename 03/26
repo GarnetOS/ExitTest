@@ -2,20 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-mkdir -pv /{boot,home,mnt,opt,srv}
-mkdir -pv /etc/{opt,sysconfig}
-mkdir -pv /lib/firmware
-mkdir -pv /media/{floppy,cdrom}
-mkdir -pv /usr/{,local/}{include,src}
-mkdir -pv /usr/local/{bin,lib,sbin}
-mkdir -pv /usr/{,local/}share/{color,dict,doc,info,locale,man}
-mkdir -pv /usr/{,local/}share/{misc,terminfo,zoneinfo}
-mkdir -pv /usr/{,local/}share/man/man{1..8}
-mkdir -pv /var/{cache,local,log,mail,opt,spool}
-mkdir -pv /var/lib/{color,misc,locate}
-
-ln -sfv /run /var/run
-ln -sfv /run/lock /var/lock
-
-install -dv -m 0750 /root
-install -dv -m 1777 /tmp /var/tmp
+tar -xvf bison-3.8.2.tar.xz
+cd bison-3.8.2
+./configure --prefix=/usr \
+            --docdir=/usr/share/doc/bison-3.8.2
+make
+make install
+cd $LFS/sources
+rm -rf $LFS/sources/bison-3.8.2

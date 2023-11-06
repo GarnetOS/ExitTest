@@ -2,20 +2,14 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf gmp-6.2.1.tar.xz
-cd gmp-6.2.1
-ABI=32 ./configure ...
-cp -v configfsf.guess config.guess
-cp -v configfsf.sub   config.sub
-./configure --prefix=/usr    \
-            --enable-cxx     \
-            --disable-static \
-            --docdir=/usr/share/doc/gmp-6.2.1
+tar -xvf attr-2.5.1.tar.gz
+cd attr-2.5.1
+./configure --prefix=/usr     \
+            --disable-static  \
+            --sysconfdir=/etc \
+            --docdir=/usr/share/doc/attr-2.5.1
 make
-make html
-make check 2>&amp;1 | tee gmp-check-log
-awk '/# PASS:/{total+=$3} ; END{print total}' gmp-check-log
+make check
 make install
-make install-html
 cd $LFS/sources
-rm -rf $LFS/sources/gmp-6.2.1
+rm -rf $LFS/sources/attr-2.5.1

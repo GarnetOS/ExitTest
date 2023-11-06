@@ -2,29 +2,14 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf ncurses-6.3.tar.gz
-cd ncurses-6.3
-sed -i s/mawk// configure
-mkdir build
-pushd build
-  ../configure
-  make -C include
-  make -C progs tic
-popd
-./configure --prefix=/usr                \
-            --host=$LFS_TGT              \
-            --build=$(./config.guess)    \
-            --mandir=/usr/share/man      \
-            --with-manpage-format=normal \
-            --with-shared                \
-            --without-normal             \
-            --with-cxx-shared            \
-            --without-debug              \
-            --without-ada                \
-            --disable-stripping          \
-            --enable-widec
+tar -xvf bash-5.2.15.tar.gz
+cd bash-5.2.15
+./configure --prefix=/usr                      \
+            --build=$(sh support/config.guess) \
+            --host=$LFS_TGT                    \
+            --without-bash-malloc
 make
-make DESTDIR=$LFS TIC_PATH=$(pwd)/build/progs/tic install
-echo "INPUT(-lncursesw)" > $LFS/usr/lib/libncurses.so
+make DESTDIR=$LFS install
+ln -sv bash $LFS/bin/sh
 cd $LFS/sources
-rm -rf $LFS/sources/ncurses-6.3
+rm -rf $LFS/sources/bash-5.2.15

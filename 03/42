@@ -2,12 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf zstd-1.5.2.tar.gz
-cd zstd-1.5.2
-patch -Np1 -i ../zstd-1.5.2-upstream_fixes-1.patch
-make prefix=/usr
+tar -xvf m4-1.4.19.tar.xz
+cd m4-1.4.19
+./configure --prefix=/usr
+make
 make check
-make prefix=/usr install
-rm -v /usr/lib/libzstd.a
+make install
 cd $LFS/sources
-rm -rf $LFS/sources/zstd-1.5.2
+rm -rf $LFS/sources/m4-1.4.19

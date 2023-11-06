@@ -2,11 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf XML-Parser-2.46.tar.gz
-cd XML-Parser-2.46
-perl Makefile.PL
+tar -xvf gzip-1.12.tar.xz
+cd gzip-1.12
+./configure --prefix=/usr
 make
-make test
+make check
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/XML-Parser-2.46
+rm -rf $LFS/sources/gzip-1.12
