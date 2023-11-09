@@ -2,12 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf acl-2.3.1.tar.xz
-cd acl-2.3.1
+tar -xvf tar-1.35.tar.xz
+cd tar-1.35
 ./configure --prefix=/usr                     \
             --host=$LFS_TGT                   \
             --build=$(build-aux/config.guess)
 make
 make DESTDIR=$LFS install
 cd $LFS/sources
-rm -rf $LFS/sources/acl-2.3.1
+rm -rf $LFS/sources/tar-1.35
