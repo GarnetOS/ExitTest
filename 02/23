@@ -3,8 +3,8 @@ set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 #lsattr $LFS/usr
-su root -c "chown -R root:root $LFS/{usr,lib,var,etc,bin,sbin,tools}"
+chown -R root:root $LFS/{usr,lib,var,etc,bin,sbin,tools}
 case $(uname -m) in
-  *64) su root -c "chown -R root:root $LFS/lib64 ;;"
+  *64) chown -R root:root $LFS/lib64 ;;
 esac
 mkdir -pv $LFS/{dev,proc,sys,run}
