@@ -3,7 +3,7 @@ set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 echo "SUCCESS"
-chattr -ais -f -R $LFS/{usr,lib,var,etc,bin,sbin,tools} | true
+chattr -ais -f -R $LFS | true
 chown -R root:root $LFS/{usr,lib,var,etc,bin,sbin,tools}
 case $(uname -m) in
   *64) chown -R root:root $LFS/lib64 ;;
