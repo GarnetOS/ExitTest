@@ -3,7 +3,7 @@ set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 #lsattr $LFS/usr
-chattr -V -ais -R $LFS/{usr,lib,var,etc,bin,sbin,tools}
+chattr -V -ais -f -R $LFS/{usr,lib,var,etc,bin,sbin,tools}
 chown -R root:root $LFS/{usr,lib,var,etc,bin,sbin,tools}
 case $(uname -m) in
   *64) chown -R root:root $LFS/lib64 ;;
