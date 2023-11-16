@@ -20,6 +20,7 @@ jobs:
     steps:
       - name: Prepare host
         run: |
+            sudo apt update
             sudo apt-get purge -y dotnet* gfortran gfortran* android-sdk
             sudo apt install curl wget grep
             sudo rm -r /usr/share/dotnet/ /usr/local/lib/android/sdk
