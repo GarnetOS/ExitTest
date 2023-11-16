@@ -70,8 +70,9 @@ jobs:
         run: mv out.tar.gz out-${{matrix.arch}}.tar.gz
       - name: Minio install and deploy
         run: |
+            ls -l
             mcli cp out-${{matrix.arch}}.tar.gz myminio/bucket
       - uses: actions/upload-artifact@v2
         with:
-          name: out-${{matrix.arch}}-26
+          name: out-${{matrix.arch}}-23
           path: VHD.img
