@@ -2,9 +2,9 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf man-db-2.11.2.tar.xz
-cd man-db-2.11.2
+tar -xvf man-pages-6.05.01.tar.xz
+cd man-pages-6.05.01
 rm -v man3/crypt*
 make prefix=/usr install
 cd $LFS/sources
-rm -rf $LFS/sources/man-db-2.11.2
+rm -rf $LFS/sources/man-pages-6.05.01
