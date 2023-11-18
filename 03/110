@@ -2,10 +2,14 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf sysvinit-3.07.tar.xz
-cd sysvinit-3.07
-patch -Np1 -i ../sysvinit-3.07-consolidated-1.patch
+tar -xvf procps-ng-4.0.3.tar.xz
+cd procps-ng-4.0.3
+./configure --prefix=/usr                           \
+            --docdir=/usr/share/doc/procps-ng-4.0.3 \
+            --disable-static                        \
+            --disable-kill
 make
+make check
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/sysvinit-3.07
+rm -rf $LFS/sources/procps-ng-4.0.3

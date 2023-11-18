@@ -2,27 +2,18 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf python-3.11.4-docs-html.tar.bz2
-cd python-3.11.4-docs-html
-./configure --prefix=/usr        \
-            --enable-shared      \
-            --with-system-expat  \
-            --with-system-ffi    \
-            --enable-optimizations
+tar -xvf openssl-3.1.2.tar.gz
+cd openssl-3.1.2
+./config --prefix=/usr         \
+         --openssldir=/etc/ssl \
+         --libdir=lib          \
+         shared                \
+         zlib-dynamic
 make
-make install
-cat > /etc/pip.conf << EOF
-[global]
-root-user-action = ignore
-disable-pip-version-check = true
-EOF
-
-install -v -dm755 /usr/share/doc/python-3.11.4/html
-
-tar --strip-components=1  \
-    --no-same-owner       \
-    --no-same-permissions \
-    -C /usr/share/doc/python-3.11.4/html \
-    -xvf ../python-3.11.4-docs-html.tar.bz2
+make test
+sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
+make MANSUFFIX=ssl install
+mv -v /usr/share/doc/openssl /usr/share/doc/openssl-3.1.2
+cp -vfr doc/* /usr/share/doc/openssl-3.1.2
 cd $LFS/sources
-rm -rf $LFS/sources/python-3.11.4-docs-html
+rm -rf $LFS/sources/openssl-3.1.2

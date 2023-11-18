@@ -2,11 +2,13 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf less-643.tar.gz
-cd less-643
-./configure --prefix=/usr --sysconfdir=/etc
+tar -xvf gdbm-1.23.tar.gz
+cd gdbm-1.23
+./configure --prefix=/usr    \
+            --disable-static \
+            --enable-libgdbm-compat
 make
 make check
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/less-643
+rm -rf $LFS/sources/gdbm-1.23

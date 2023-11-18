@@ -2,14 +2,14 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf gettext-0.22.tar.xz
-cd gettext-0.22
-./configure --prefix=/usr    \
-            --disable-static \
-            --docdir=/usr/share/doc/gettext-0.22
+tar -xvf pkgconf-2.0.1.tar.xz
+cd pkgconf-2.0.1
+./configure --prefix=/usr              \
+            --disable-static           \
+            --docdir=/usr/share/doc/pkgconf-2.0.1
 make
-make check
 make install
-chmod -v 0755 /usr/lib/preloadable_libintl.so
+ln -sv pkgconf   /usr/bin/pkg-config
+ln -sv pkgconf.1 /usr/share/man/man1/pkg-config.1
 cd $LFS/sources
-rm -rf $LFS/sources/gettext-0.22
+rm -rf $LFS/sources/pkgconf-2.0.1

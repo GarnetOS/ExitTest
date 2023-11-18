@@ -2,12 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf automake-1.16.5.tar.xz
-cd automake-1.16.5
+tar -xvf gzip-1.12.tar.xz
+cd gzip-1.12
 ./configure --prefix=/usr
 make
-chown -Rv tester .
-su tester -c "PATH=$PATH make check"
+make check
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/automake-1.16.5
+rm -rf $LFS/sources/gzip-1.12

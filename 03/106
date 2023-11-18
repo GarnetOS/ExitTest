@@ -2,14 +2,9 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf procps-ng-4.0.3.tar.xz
-cd procps-ng-4.0.3
-./configure --prefix=/usr                           \
-            --docdir=/usr/share/doc/procps-ng-4.0.3 \
-            --disable-static                        \
-            --disable-kill
-make
-make check
-make install
+tar -xvf MarkupSafe-2.1.3.tar.gz
+cd MarkupSafe-2.1.3
+pip3 wheel -w dist --no-build-isolation --no-deps $PWD
+pip3 install --no-index --no-user --find-links dist Markupsafe
 cd $LFS/sources
-rm -rf $LFS/sources/procps-ng-4.0.3
+rm -rf $LFS/sources/MarkupSafe-2.1.3

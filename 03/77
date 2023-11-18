@@ -2,18 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf openssl-3.1.2.tar.gz
-cd openssl-3.1.2
-./config --prefix=/usr         \
-         --openssldir=/etc/ssl \
-         --libdir=lib          \
-         shared                \
-         zlib-dynamic
+tar -xvf XML-Parser-2.46.tar.gz
+cd XML-Parser-2.46
+perl Makefile.PL
 make
 make test
-sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
-make MANSUFFIX=ssl install
-mv -v /usr/share/doc/openssl /usr/share/doc/openssl-3.1.2
-cp -vfr doc/* /usr/share/doc/openssl-3.1.2
+make install
 cd $LFS/sources
-rm -rf $LFS/sources/openssl-3.1.2
+rm -rf $LFS/sources/XML-Parser-2.46

@@ -2,9 +2,21 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf flit_core-3.9.0.tar.gz
-cd flit_core-3.9.0
-pip3 wheel -w dist --no-build-isolation --no-deps $PWD
-pip3 install --no-index --no-user --find-links dist flit_core
+tar -xvf kmod-30.tar.xz
+cd kmod-30
+./configure --prefix=/usr          \
+            --sysconfdir=/etc      \
+            --with-openssl         \
+            --with-xz              \
+            --with-zstd            \
+            --with-zlib
+make
+make install
+
+for target in depmod insmod modinfo modprobe rmmod; do
+  ln -sfv ../bin/kmod /usr/sbin/$target
+done
+
+ln -sfv kmod /usr/bin/lsmod
 cd $LFS/sources
-rm -rf $LFS/sources/flit_core-3.9.0
+rm -rf $LFS/sources/kmod-30

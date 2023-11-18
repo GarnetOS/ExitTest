@@ -2,21 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf inetutils-2.4.tar.xz
-cd inetutils-2.4
-./configure --prefix=/usr        \
-            --bindir=/usr/bin    \
-            --localstatedir=/var \
-            --disable-logger     \
-            --disable-whois      \
-            --disable-rcp        \
-            --disable-rexec      \
-            --disable-rlogin     \
-            --disable-rsh        \
-            --disable-servers
+tar -xvf libtool-2.4.7.tar.xz
+cd libtool-2.4.7
+./configure --prefix=/usr
 make
-make check
+make -k check
 make install
-mv -v /usr/{,s}bin/ifconfig
+rm -fv /usr/lib/libltdl.a
 cd $LFS/sources
-rm -rf $LFS/sources/inetutils-2.4
+rm -rf $LFS/sources/libtool-2.4.7

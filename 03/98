@@ -2,11 +2,13 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf patch-2.7.6.tar.xz
-cd patch-2.7.6
-./configure --prefix=/usr
-make
-make check
-make install
+tar -xvf iproute2-6.4.0.tar.xz
+cd iproute2-6.4.0
+sed -i /ARPD/d Makefile
+rm -fv man/man8/arpd.8
+make NETNS_RUN_DIR=/run/netns
+make SBINDIR=/usr/sbin install
+mkdir -pv             /usr/share/doc/iproute2-6.4.0
+cp -v COPYING README* /usr/share/doc/iproute2-6.4.0
 cd $LFS/sources
-rm -rf $LFS/sources/patch-2.7.6
+rm -rf $LFS/sources/iproute2-6.4.0

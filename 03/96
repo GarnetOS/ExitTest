@@ -2,11 +2,16 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf libpipeline-1.5.7.tar.gz
-cd libpipeline-1.5.7
-./configure --prefix=/usr
+tar -xvf grub-2.06.tar.xz
+cd grub-2.06
+unset {C,CPP,CXX,LD}FLAGS
+patch -Np1 -i ../grub-2.06-upstream_fixes-1.patch
+./configure --prefix=/usr          \
+            --sysconfdir=/etc      \
+            --disable-efiemu       \
+            --disable-werror
 make
-make check
 make install
+mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions
 cd $LFS/sources
-rm -rf $LFS/sources/libpipeline-1.5.7
+rm -rf $LFS/sources/grub-2.06

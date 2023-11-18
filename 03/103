@@ -2,9 +2,13 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf Jinja2-3.1.2.tar.gz
-cd Jinja2-3.1.2
-pip3 wheel -w dist --no-build-isolation --no-deps $PWD
-pip3 install --no-index --no-user --find-links dist Jinja2
+tar -xvf acl-2.3.1.tar.xz
+cd acl-2.3.1
+FORCE_UNSAFE_CONFIGURE=1  \
+./configure --prefix=/usr
+make
+make check
+make install
+make -C doc install-html docdir=/usr/share/doc/tar-1.35
 cd $LFS/sources
-rm -rf $LFS/sources/Jinja2-3.1.2
+rm -rf $LFS/sources/acl-2.3.1

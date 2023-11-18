@@ -2,14 +2,22 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf expat-2.5.0.tar.xz
-cd expat-2.5.0
-./configure --prefix=/usr    \
-            --disable-static \
-            --docdir=/usr/share/doc/expat-2.5.0
+tar -xvf bash-5.2.15.tar.gz
+cd bash-5.2.15
+./configure --prefix=/usr             \
+            --without-bash-malloc     \
+            --with-installed-readline \
+            --docdir=/usr/share/doc/bash-5.2.15
 make
-make check
+chown -Rv tester .
+su -s /usr/bin/expect tester << EOF
+set timeout -1
+spawn make tests
+expect eof
+lassign [wait] _ _ _ value
+exit $value
+EOF
 make install
-install -v -m644 doc/*.{html,css} /usr/share/doc/expat-2.5.0
+exec /usr/bin/bash --login
 cd $LFS/sources
-rm -rf $LFS/sources/expat-2.5.0
+rm -rf $LFS/sources/bash-5.2.15

@@ -2,13 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf libffi-3.4.4.tar.gz
-cd libffi-3.4.4
-./configure --prefix=/usr          \
-            --disable-static       \
-            --with-gcc-arch=native
+tar -xvf automake-1.16.5.tar.xz
+cd automake-1.16.5
+./configure --prefix=/usr --docdir=/usr/share/doc/automake-1.16.5
 make
-make check
+make -j4 check
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/libffi-3.4.4
+rm -rf $LFS/sources/automake-1.16.5

@@ -2,11 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf groff-1.23.0.tar.gz
-cd groff-1.23.0
-PAGE=<paper_size> ./configure --prefix=/usr
+tar -xvf check-0.15.2.tar.gz
+cd check-0.15.2
+./configure --prefix=/usr --disable-static
 make
 make check
-make install
+make docdir=/usr/share/doc/check-0.15.2 install
 cd $LFS/sources
-rm -rf $LFS/sources/groff-1.23.0
+rm -rf $LFS/sources/check-0.15.2

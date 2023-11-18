@@ -2,9 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf MarkupSafe-2.1.3.tar.gz
-cd MarkupSafe-2.1.3
-pip3 wheel -w dist --no-build-isolation --no-deps $PWD
-pip3 install --no-index --no-user --find-links dist Markupsafe
+tar -xvf patch-2.7.6.tar.xz
+cd patch-2.7.6
+./configure --prefix=/usr
+make
+make check
+make install
 cd $LFS/sources
-rm -rf $LFS/sources/MarkupSafe-2.1.3
+rm -rf $LFS/sources/patch-2.7.6

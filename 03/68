@@ -2,11 +2,12 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf gperf-3.1.tar.gz
-cd gperf-3.1
-./configure --prefix=/usr --docdir=/usr/share/doc/gperf-3.1
+tar -xvf grep-3.11.tar.xz
+cd grep-3.11
+sed -i "s/echo/#echo/" src/egrep.sh
+./configure --prefix=/usr
 make
-make -j1 check
+make check
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/gperf-3.1
+rm -rf $LFS/sources/grep-3.11

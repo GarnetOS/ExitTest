@@ -2,11 +2,14 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf XML-Parser-2.46.tar.gz
-cd XML-Parser-2.46
-perl Makefile.PL
+tar -xvf expat-2.5.0.tar.xz
+cd expat-2.5.0
+./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/expat-2.5.0
 make
-make test
+make check
 make install
+install -v -m644 doc/*.{html,css} /usr/share/doc/expat-2.5.0
 cd $LFS/sources
-rm -rf $LFS/sources/XML-Parser-2.46
+rm -rf $LFS/sources/expat-2.5.0

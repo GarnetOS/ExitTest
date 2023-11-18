@@ -2,12 +2,14 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf libtool-2.4.7.tar.xz
-cd libtool-2.4.7
-./configure --prefix=/usr
+tar -xvf gettext-0.22.tar.xz
+cd gettext-0.22
+./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/gettext-0.22
 make
-make -k check
+make check
 make install
-rm -fv /usr/lib/libltdl.a
+chmod -v 0755 /usr/lib/preloadable_libintl.so
 cd $LFS/sources
-rm -rf $LFS/sources/libtool-2.4.7
+rm -rf $LFS/sources/gettext-0.22

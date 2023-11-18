@@ -2,14 +2,11 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf autoconf-2.71.tar.xz
-cd autoconf-2.71
-sed -e 's/SECONDS|/&amp;SHLVL|/'               \
-    -e '/BASH_ARGV=/a\        /^SHLVL=/ d' \
-    -i.orig tests/local.at
-./configure --prefix=/usr
+tar -xvf less-643.tar.gz
+cd less-643
+./configure --prefix=/usr --sysconfdir=/etc
 make
 make check
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/autoconf-2.71
+rm -rf $LFS/sources/less-643
