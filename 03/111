@@ -2,8 +2,8 @@
 set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
-tar -xvf binutils-2.41.tar.xz
-cd binutils-2.41
+tar -xvf util-linux-2.39.1.tar.xz
+cd util-linux-2.39.1
 sed -i '/test_mkfds/s/^/#/' tests/helpers/Makemodule.am
 ./configure ADJTIME_PATH=/var/lib/hwclock/adjtime \
             --bindir=/usr/bin    \
@@ -23,9 +23,8 @@ sed -i '/test_mkfds/s/^/#/' tests/helpers/Makemodule.am
             --without-systemdsystemunitdir \
             --docdir=/usr/share/doc/util-linux-2.39.1
 make
-bash tests/run.sh --srcdir=$PWD --builddir=$PWD
 chown -Rv tester .
 su tester -c "make -k check"
 make install
 cd $LFS/sources
-rm -rf $LFS/sources/binutils-2.41
+rm -rf $LFS/sources/util-linux-2.39.1

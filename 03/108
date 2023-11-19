@@ -3,7 +3,7 @@ set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf systemd-254.tar.gz
-cd udev-lfs-20230818
+cd systemd-254
 sed -i -e 's/GROUP="render"/GROUP="video"/' \
        -e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
 sed '/systemd-sysctl/s/^/#/' -i rules.d/99-systemd.rules.in
@@ -49,4 +49,4 @@ sed 's|lib.*udevd|sbin/udevd|'                                        \
 rm  /usr/share/man/man8/systemd-*.8
 udev-hwdb update
 cd $LFS/sources
-rm -rf $LFS/sources/udev-lfs-20230818
+rm -rf $LFS/sources/systemd-254
