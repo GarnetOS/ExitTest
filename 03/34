@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf glibc-2.38.tar.xz
 cd glibc-2.38
