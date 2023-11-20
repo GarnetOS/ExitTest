@@ -37,6 +37,10 @@ jobs:
             echo "CURR=$(($CURR))" >> $GITHUB_ENV
             echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
             echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 10
       - uses: actions/checkout@v3
         name: Checkout
       #- name: Download artifact
