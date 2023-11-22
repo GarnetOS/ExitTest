@@ -3,7 +3,7 @@ set -e
 export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf tcl8.6.13-src.tar.gz
-cd tcl8.6.13-src
+cd tcl8.6.13
 SRCDIR=$(pwd)
 cd unix
 ./configure --prefix=/usr           \
@@ -37,4 +37,4 @@ tar -xf ../tcl8.6.13-html.tar.gz --strip-components=1
 mkdir -v -p /usr/share/doc/tcl-8.6.13
 cp -v -r  ./html/* /usr/share/doc/tcl-8.6.13
 cd $LFS/sources
-rm -rf $LFS/sources/tcl8.6.13-src
+rm -rf $LFS/sources/tcl8.6.13
