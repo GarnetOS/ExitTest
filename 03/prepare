@@ -1,3 +1,4 @@
+set -e
 export LFS=/mnt/lfs
 sudo ls -l /
 sudo ls -l $LFS
