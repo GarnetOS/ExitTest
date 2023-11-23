@@ -53,6 +53,7 @@ jobs:
       #    name: out-${{matrix.arch}}-${{env.PREV}}
       - name: Download
         run: |
+            export PATH=$PATH:$HOME/minio-binaries/
             mc cp myminio/bucket/out-${{matrix.arch}}.tar.gz out.tar.gz
       - name: Prepare image
         run: |
@@ -107,6 +108,7 @@ jobs:
       - name: Minio deploy
         run: |
             sleep 30s
+            export PATH=$PATH:$HOME/minio-binaries/
             mc cp out-${{matrix.arch}}.tar.gz myminio/bucket
   post:
     needs: build
