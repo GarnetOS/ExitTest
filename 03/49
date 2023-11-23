@@ -4,7 +4,6 @@ export MAKEFLAGS='-j2'
 cd $LFS/sources
 tar -xvf gmp-6.3.0.tar.xz
 cd gmp-6.3.0
-ABI=32 ./configure ...
 ./configure --prefix=/usr    \
             --enable-cxx     \
             --disable-static \
