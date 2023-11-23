@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/bin/bash
+set -e
 timeout 18900 $@
 EXITCODE=$?
 echo $EXITCODE
