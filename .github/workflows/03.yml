@@ -86,11 +86,11 @@ jobs:
             cd 03
             cp test $LFS/
             sudo ./prepare
-            sudo cpulimit -l 80 -f -- ((sudo ./timeout sudo chroot /mnt/lfs /usr/bin/env -i   \
+            sudo nice -n -19 sudo ./timeout sudo chroot /mnt/lfs /usr/bin/env -i   \
             HOME=/root                  \
             TERM="$TERM"                \
             PATH=/usr/bin:/usr/sbin     \
-            ./test) || exit 1)
+            ./test
             echo $?
       - name: Unmount
         run: |
