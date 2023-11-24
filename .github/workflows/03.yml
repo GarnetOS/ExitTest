@@ -36,8 +36,8 @@ jobs:
             chmod +x $HOME/minio-binaries/mc
             export PATH=$PATH:$HOME/minio-binaries/
             mc alias set myminio/ http://${{ secrets.MINIO_IP }}:9000 ${{ secrets.MINIO_ACCESS }} ${{ secrets.MINIO_SECRET }}
-            export CURR=(echo ${{ github.event.inputs.package }})
-            echo "CURR=$(($CURR))" >> $GITHUB_ENV
+            export CURR="test"
+            echo "CURR=$CURR" >> $GITHUB_ENV
             echo "PREV=$(($CURR-1))" >> $GITHUB_ENV
             echo "NEXT=$(($CURR+1))" >> $GITHUB_ENV
       - name: Set Swap Space
@@ -84,13 +84,13 @@ jobs:
             export LFS=/mnt/lfs
             chmod +x -R 03
             cd 03
-            cp ${{env.CURR}} $LFS/
+            cp test $LFS/
             sudo ./prepare
             sudo cpulimit -l 80 -f -- sudo ./timeout sudo chroot /mnt/lfs /usr/bin/env -i   \
             HOME=/root                  \
             TERM="$TERM"                \
             PATH=/usr/bin:/usr/sbin     \
-            ./${{env.CURR}}
+            ./test
       - name: Unmount
         run: |
             sleep 1m
