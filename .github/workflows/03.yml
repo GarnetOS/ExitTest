@@ -95,21 +95,6 @@ jobs:
         run: |
             sleep 1m
             sudo umount /mnt/lfs           
-      - name: Prepare image
-        run: |
-               tar -czvf out.tar.gz VHD.img
-               tar -tzf out.tar.gz >/dev/null
-      - uses: actions/upload-artifact@v2.3.1
-        with:
-          name: out-${{matrix.arch}}-${{env.CURR}}
-          path: out.tar.gz
-      - name: Rename
-        run: mv out.tar.gz out-${{matrix.arch}}.tar.gz
-      - name: Minio deploy
-        run: |
-            sleep 30s
-            export PATH=$PATH:$HOME/minio-binaries/
-            mc cp out-${{matrix.arch}}.tar.gz myminio/bucket
   post:
     needs: build
     runs-on: ubuntu-latest
