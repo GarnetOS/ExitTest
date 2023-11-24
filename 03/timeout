@@ -1,8 +1,10 @@
 #!/bin/bash
 set -e
+echo $@
 timeout 18900 $@
 EXITCODE=$?
 echo $EXITCODE
+echo "After exit code"
 if (( $EXITCODE == 124 ))
 then
     exit 0
