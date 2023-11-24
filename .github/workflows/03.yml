@@ -91,6 +91,7 @@ jobs:
             TERM="$TERM"                \
             PATH=/usr/bin:/usr/sbin     \
             ./test
+            echo $?
       - name: Unmount
         run: |
             sleep 1m
