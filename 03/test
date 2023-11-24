@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+ls -l /dev
+ls -l /devel
+ls -l /etc
