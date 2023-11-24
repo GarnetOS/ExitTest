@@ -7,6 +7,7 @@ echo $EXITCODE
 echo "After exit code"
 if (( $EXITCODE == 124 ))
 then
+    echo "Timed out"
     exit 0
 fi
 exit $EXITCODE
